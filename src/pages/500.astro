@@ -1,0 +1,20 @@
+---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+import { site } from "~/config/site";
+const title = `Something went wrong · OneInfra`;
+const description = `The page failed to load. Please try again or call us.`;
+---
+
+<MarketingLayout title={title} description={description} current="home">
+  <section class="page-hero" style="text-align:center;">
+    <div class="container">
+      <p class="eyebrow">500</p>
+      <h1>Something went wrong on our end.</h1>
+      <p>Try the page again in a minute, or call us — we answer fast.</p>
+      <div style="display:inline-flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;margin-top:var(--space-5);">
+        <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>Call {site.phone}</a>
+        <a class="btn btn-secondary" href="/">Go home</a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

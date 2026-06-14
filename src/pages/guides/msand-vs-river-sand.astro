@@ -1,0 +1,28 @@
+---
+import GuideLayout from "~/layouts/GuideLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site } from "~/config/site";
+import { localBusinessLd, faqLd, breadcrumbLd } from "~/lib/schema";
+
+const title = `M-Sand vs River Sand · Chennai Builder's Comparison`;
+const description = `M-Sand vs river sand compared across strength, silt, grading, cost, and environmental impact. Why Chennai construction has shifted to washed M-Sand, and how to read the difference on your site.`;
+const jsonLd = [
+  localBusinessLd(),
+  breadcrumbLd([
+    { name: "Home", url: site.url + "/" },
+    { name: "Guides", url: site.url + "/guides/cft-lorry-guide" },
+    { name: "M-Sand vs River Sand", url: site.url + "/guides/msand-vs-river-sand" },
+  ]),
+  faqLd([
+    { q: "Is M-Sand as strong as river sand?", a: "Yes. Washed M-Sand graded to IS 383 performs as well as or better than river sand in RCC and plaster, with more consistent grading." },
+    { q: "Why is M-Sand cheaper than river sand in Chennai?", a: "M-Sand is manufactured locally from granite, no river mining, lower transport cost, and more consistent supply — so it usually prices 10-20% below river sand." },
+    { q: "Does M-Sand contain silt?", a: "Washed M-Sand has < 3% silt, well within IS 383 limits. Unwashed crusher dust can run 8-15% silt and is not suitable for plaster." },
+  ]),
+];
+---
+
+<GuideLayout title={title} description={description} eyebrow="Field guide" body="M-Sand and river sand compared on strength, silt, grading, cost, and environmental impact — and how to tell what you're getting on your Chennai site." bgImage="/images/msand.jpg" bgAlt="Handful of dark grey double-washed M-Sand" jsonLd={jsonLd}>
+  <h2>The short version</h2>
+  <p>Washed, IS 383 graded M-Sand is what most Chennai builders now use for both RCC and plaster. It's stronger, more consistent, cheaper, and avoids the silt and oversize problems of river sand.</p>
+  <p>Read the <a href="/guides/quality-check">5 field tests for M-Sand quality</a>.</p>
+</GuideLayout>

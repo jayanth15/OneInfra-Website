@@ -1,0 +1,51 @@
+---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site } from "~/config/site";
+import { whatsappUrl } from "~/lib/whatsapp";
+import { localBusinessLd } from "~/lib/schema";
+import "~/styles/cards.css";
+
+const title = `Contact OneInfra · Call, WhatsApp, or Visit · Chennai`;
+const description = `Call OneInfra, a trusted M-Sand, P-Sand and aggregate supplier in Chennai, at ${site.phone}. Delivery to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, Anna Nagar.`;
+const jsonLd = localBusinessLd();
+const waUrl = whatsappUrl();
+---
+
+<MarketingLayout title={title} description={description} current="contact" jsonLd={jsonLd}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Get in touch</p>
+      <h1>Call, WhatsApp, or visit the yard</h1>
+      <p>We answer in under a minute during work hours. No forms, no waiting.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+      <div class="stats-strip" style="grid-template-columns: 1fr; gap: var(--space-6);">
+        <div class="stat">
+          <span class="num"><a href={`tel:${site.phoneTel}`}>{site.phone}</a></span>
+          <span class="lbl">Tap to call · {site.hours}</span>
+        </div>
+        <div class="stat">
+          <span class="num"><a href={waUrl}>WhatsApp us</a></span>
+          <span class="lbl">Prefilled message · we reply within minutes</span>
+        </div>
+        <div class="stat">
+          <span class="num" style="font-size: 22px;">{site.address}</span>
+          <span class="lbl">Supply point · visit the yard · weigh-ins welcome</span>
+        </div>
+        <div class="stat">
+          <span class="num" style="font-size: 22px;">{site.email}</span>
+          <span class="lbl">Email for invoicing and bulk enquiries</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    title="Prefer a form? Just call."
+    body={`We tried forms. People prefer the phone. ${site.phone} — try it.`}
+  />
+</MarketingLayout>

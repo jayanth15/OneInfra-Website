@@ -1,0 +1,126 @@
+---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { productOrder, prices } from "~/config/site";
+import { localBusinessLd } from "~/lib/schema";
+
+const title = `Quantity Calculator · Free Chennai Builder Tool · OneInfra`;
+const description = `Free Chennai-builder quantity calculator. Type your built-up area and number of floors, get M-Sand, P-Sand and blue-metal tonnage, CFT and tipper count in seconds. Live price estimate included.`;
+const jsonLd = localBusinessLd();
+
+const priceMap: Record<string, { name: string; pricePerTon: number }> = {};
+for (const k of productOrder) {
+  priceMap[k] = { name: prices.products[k].name, pricePerTon: prices.products[k].pricePerTon };
+}
+const priceMapJson = JSON.stringify(priceMap);
+---
+
+<MarketingLayout title={title} description={description} current="calculator" jsonLd={jsonLd}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Quantity calculator · Live</p>
+      <h1>How much M-Sand, P-Sand and blue metal for your house?</h1>
+      <p>Type your built-up area and number of floors. The calculator returns the tonnage, CFT, tipper count and a live OneInfra price estimate for washed M-Sand, plaster sand and blue metal in Chennai.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+      <form id="qty-form" style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-5);" onsubmit="return false;">
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Built-up area (sqft)</span>
+          <input id="area" type="number" min="100" step="50" value="1200" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;" />
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Number of floors</span>
+          <input id="floors" type="number" min="1" max="5" value="2" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;" />
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">M-Sand grade</span>
+          <select id="msand-key" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;">
+            <option value="m_sand_double_washed" selected>M-Sand (Double Washed)</option>
+          </select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Aggregate grade</span>
+          <select id="agg-key" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;">
+            <option value="aggregate_20mm_jelly" selected>20mm Jelly</option>
+            <option value="aggregate_20mm_blue">20mm Blue Metal</option>
+            <option value="aggregate_25mm">25mm Blue Metal</option>
+            <option value="aggregate_40mm">40mm Blue Metal</option>
+          </select>
+        </label>
+      </form>
+
+      <div id="qty-results" style="margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);"></div>
+      <p id="qty-disclaimer" style="margin-top:var(--space-4);font-size:13px;color:var(--muted);">
+        Indicative only · based on standard Chennai builder norms. Actual quantity depends on design, wastage, and mix ratio.
+      </p>
+    </div>
+  </section>
+
+  <CtaStrip
+    title="Got a quantity? Get a firm quote."
+    body="Call us with the numbers — we'll lock the rate for your delivery."
+    secondaryCta={{ href: "/price", label: "See this week's price" }}
+  />
+
+  <script type="application/json" id="price-map" set:html={priceMapJson} is:inline></script>
+  <script is:inline>
+    (function () {
+      const PRICES = JSON.parse(document.getElementById("price-map").textContent);
+      const RCC_SAND = 28, PLASTER_SAND = 8, AGG = 22;
+      const TIPPER_TONS = 3.5;
+      const TON_CFT = 32;
+
+      const fmtINR = (n) => "₹" + Math.round(n).toLocaleString("en-IN");
+      const fmt1 = (n) => (Math.round(n * 10) / 10).toLocaleString("en-IN");
+
+      function calc() {
+        const area = +document.getElementById("area").value || 0;
+        const floors = +document.getElementById("floors").value || 1;
+        const mKey = document.getElementById("msand-key").value;
+        const aKey = document.getElementById("agg-key").value;
+
+        const totalSqft = area * floors;
+        const msandKg = totalSqft * RCC_SAND;
+        const psandKg = totalSqft * PLASTER_SAND;
+        const aggKg = totalSqft * AGG;
+
+        const msandTon = msandKg / 1000;
+        const psandTon = psandKg / 1000;
+        const aggTon = aggKg / 1000;
+
+        const msandPrice = msandTon * PRICES[mKey].pricePerTon;
+        const psandPrice = psandTon * PRICES.p_sand.pricePerTon;
+        const aggPrice = aggTon * PRICES[aKey].pricePerTon;
+        const total = msandPrice + psandPrice + aggPrice;
+
+        const out = document.getElementById("qty-results");
+        out.innerHTML = [
+          { l: "M-Sand (RCC)", qty: fmt1(msandTon) + " ton", cft: Math.round(msandTon * TON_CFT), tipper: fmt1(msandTon / TIPPER_TONS), price: fmtINR(msandPrice) },
+          { l: "P-Sand (plaster)", qty: fmt1(psandTon) + " ton", cft: Math.round(psandTon * TON_CFT), tipper: fmt1(psandTon / TIPPER_TONS), price: fmtINR(psandPrice) },
+          { l: PRICES[aKey].name, qty: fmt1(aggTon) + " ton", cft: Math.round(aggTon * TON_CFT), tipper: fmt1(aggTon / TIPPER_TONS), price: fmtINR(aggPrice) },
+        ].map((r) => `
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);">
+            <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">${r.l}</p>
+            <p style="font-size:24px;font-weight:600;margin-top:var(--space-2);">${r.qty}</p>
+            <p style="font-size:13px;color:var(--muted);margin-top:var(--space-1);">${r.cft} CFT · ${r.tipper} tipper${r.tipper === "1.0" ? "" : "s"}</p>
+            <p style="font-size:15px;color:var(--fg);margin-top:var(--space-2);">${r.price}</p>
+          </div>
+        `).join("") + `
+          <div style="grid-column: 1 / -1;background:var(--fg);color:var(--surface);border-radius:var(--radius-md);padding:var(--space-5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-3);">
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">Live total estimate</span>
+            <span style="font-size:32px;font-weight:600;">${fmtINR(total)}</span>
+          </div>
+        `;
+      }
+
+      ["area", "floors", "msand-key", "agg-key"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", calc);
+        document.getElementById(id).addEventListener("change", calc);
+      });
+      calc();
+    })();
+  </script>
+</MarketingLayout>

@@ -1,0 +1,42 @@
+---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site } from "~/config/site";
+import { localBusinessLd } from "~/lib/schema";
+
+const title = `About OneInfra · Trusted M-Sand, P-Sand and Aggregate Supplier in Chennai`;
+const description = `OneInfra is a trusted supplier of washed M-Sand, P-Sand and aggregates to homeowners, masons and civil engineers across Chennai. Our own fleet, fair pricing, IS 383 graded.`;
+const jsonLd = localBusinessLd();
+---
+
+<MarketingLayout title={title} description={description} current="about" jsonLd={jsonLd}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">About us</p>
+      <h1>A small Chennai team, one tipper, then a fleet.</h1>
+      <p>We started in Tambaram with one tipper and a phone number. Today we run a daily route to seven Chennai areas, IS 383 graded, and price over the phone in under a minute.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 760px;">
+      <h2 style="margin-bottom: var(--space-4);">What we believe</h2>
+      <p style="font-size:17px;color:var(--muted);margin-bottom:var(--space-4);">
+        Construction buyers in Chennai deserve honest material at a fair price. We cut out middlemen, weigh every load in front of you, and tell you the IS 383 grade before you pay.
+      </p>
+      <h2 style="margin-top: var(--space-12); margin-bottom: var(--space-4);">Our quality promise</h2>
+      <ul style="display:grid;grid-template-columns:1fr;gap:var(--space-3);list-style:none;padding:0;font-size:16px;">
+        <li>✓ Washed before loading</li>
+        <li>✓ IS 383 grading on every batch</li>
+        <li>✓ Mill test report on request</li>
+        <li>✓ Tipper weighed at the yard</li>
+        <li>✓ Same-day delivery in 6 areas</li>
+      </ul>
+    </div>
+  </section>
+
+  <CtaStrip
+    title="Talk to us, not a form."
+    body="One phone call, one firm quote. We answer in under a minute during work hours."
+  />
+</MarketingLayout>

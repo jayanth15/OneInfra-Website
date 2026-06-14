@@ -1,15 +1,100 @@
 ---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+import Hero from "~/components/Hero.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site } from "~/config/site";
+import { localBusinessLd, websiteLd } from "~/lib/schema";
+import "~/styles/cards.css";
+
+const title = `OneInfra · A trusted supplier of M-Sand, P-Sand and Aggregate in Chennai`;
+const description = `OneInfra is a trusted supplier of washed M-Sand, P-Sand and blue-metal Aggregate in Chennai. Same-day supply to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi and Anna Nagar. Call ${site.phone}.`;
+const jsonLd = [localBusinessLd(), websiteLd()];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>OneInfra</title>
-  </head>
-  <body>
-    <h1>OneInfra</h1>
-    <p>Placeholder. Real pages arrive in subsequent tasks.</p>
-  </body>
-</html>
+<MarketingLayout title={title} description={description} current="home" jsonLd={jsonLd}>
+  <Hero
+    eyebrow="Chennai · Civil material supply"
+    titleHtml={`A trusted supplier of M-Sand, P-Sand and <span class="accent">Aggregate in Chennai.</span>`}
+    body="OneInfra supplies washed M-Sand, P-Sand and blue-metal aggregates to homeowners, masons and builders across Chennai. Nine grades, real product photos, a working quantity calculator, and short plain-English field guides for first-time home-builders."
+    bgImage="/images/product-msand-double-washed.jpg"
+    bgAlt="Washed M-Sand on a hand-held pile, dark grey granite fines"
+    secondaryCta={{ href: "/products", label: "See all 9 products" }}
+    trustStrip={[
+      { n: "9 grades", l: "M-Sand · P-Sand · Dust · 12/20/25/40mm · WMM" },
+      { n: "Same day", l: "delivery on most orders" },
+      { n: "IS 383", l: "graded &amp; washed before loading" },
+      { n: "Tambaram supply point", l: "7 Chennai areas served daily" },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Start here</p>
+      <h2 style="max-width: 24ch; margin-bottom: var(--space-3);">Five core pages — products, price, process, people, phone.</h2>
+      <p style="color:var(--muted);font-size:17px;max-width:56ch;margin-bottom:var(--space-8);">
+        The shortlist. Each one is one call away from a quote.
+      </p>
+      <div class="pages-grid">
+        <a class="page-card" href="/landing">
+          <div class="thumb"><img src="/images/hero-chennai-site.jpg" alt="3D illustration of a Chennai construction site with a tipper and aggregate stockpiles" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Marketing site</span>
+            <h3>Landing</h3>
+            <p>Hero, 9-product grid, audience, process, areas, phone CTA. The first page most visitors will read.</p>
+            <span class="arrow">Open landing →</span>
+          </div>
+        </a>
+        <a class="page-card" href="/products">
+          <div class="thumb"><img src="/images/product-msand-double-washed.jpg" alt="Handful of dark grey double-washed M-Sand" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Catalogue</span>
+            <h3>Products &amp; grades</h3>
+            <p>All 9 grades with real photos: M-Sand, P-Sand, dust, 12/20/20-blue/25/40mm, WMM. Sizes, uses, IS 383 spec.</p>
+            <span class="arrow">See products →</span>
+          </div>
+        </a>
+        <a class="page-card" href="/price">
+          <div class="thumb"><img src="/images/hero-three-piles.jpg" alt="Three conical piles of different construction materials" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Pricing</span>
+            <h3>This week's price in Chennai</h3>
+            <p>Per-ton and per-unit rates for tipper loads. Six factors that change the price across the year.</p>
+            <span class="arrow">See price →</span>
+          </div>
+        </a>
+        <a class="page-card" href="/about">
+          <div class="thumb"><img src="/images/About-Page.jpg" alt="20mm blue metal aggregate" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Company</span>
+            <h3>About OneInfra</h3>
+            <p>Our story, what we believe, our quality promise, and the fleet that runs the seven daily areas.</p>
+            <span class="arrow">About us →</span>
+          </div>
+        </a>
+        <a class="page-card" href="/calculator">
+          <div class="thumb"><img src="/images/calculator-preview.jpeg" alt="Quantity calculator preview" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Tool</span>
+            <h3>Quantity calculator</h3>
+            <p>Type your built-up area and number of floors. Get tonnage, CFT, tipper count and a live price estimate.</p>
+            <span class="arrow">Open calculator →</span>
+          </div>
+        </a>
+        <a class="page-card" href="/contact">
+          <div class="thumb"><img src="/images/site-construction.jpg" alt="Chennai construction site at golden hour" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Get in touch</span>
+            <h3>Contact</h3>
+            <p>Call, WhatsApp, or visit the supply point. We answer in under a minute during work hours.</p>
+            <span class="arrow">Contact us →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    title="One call gets you a firm quote for your area and quantity."
+    body="We price over the phone in under a minute. No forms, no waiting. Same-day delivery on most orders in Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, and Anna Nagar."
+  />
+</MarketingLayout>

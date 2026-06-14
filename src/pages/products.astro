@@ -1,0 +1,109 @@
+---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { prices, productOrder, type ProductKey } from "~/config/site";
+import { localBusinessLd, productListLd } from "~/lib/schema";
+import "~/styles/cards.css";
+
+const title = `Products · OneInfra M-Sand, P-Sand, Dust, 12mm / 20mm / 25mm / 40mm aggregates & WMM`;
+const description = `OneInfra is a trusted civil material supplier in Chennai for 9 grades: M-Sand, P-Sand, crusher dust, 12mm chips, 20mm jelly, 20mm blue, 25mm and 40mm blue metal, plus WMM. See real product photos, sizes, grades and what each is used for.`;
+const jsonLd = [localBusinessLd(), productListLd()];
+
+const sandKeys: ProductKey[] = ['m_sand_double_washed', 'p_sand'];
+const aggKeys: ProductKey[] = ['aggregate_12mm', 'aggregate_20mm_jelly', 'aggregate_20mm_blue', 'aggregate_25mm', 'aggregate_40mm'];
+const subKeys: ProductKey[] = ['crusher_dust', 'wmm'];
+---
+
+<MarketingLayout title={title} description={description} current="products" jsonLd={jsonLd}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Catalogue · 9 grades</p>
+      <h1>All 9 grades we deliver in Chennai</h1>
+      <p>Real photos. Real IS 383 grading. Real Chennai prices. Pick a grade to see size, use, and current rate.</p>
+    </div>
+  </section>
+
+  <section id="m-sand" class="section">
+    <div class="container">
+      <p class="eyebrow">Sand</p>
+      <h2 style="margin-bottom: var(--space-3);">M-Sand and P-Sand</h2>
+      <p style="color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:var(--space-8);">
+        Two grades of washed sand for Chennai construction — M-Sand for concrete, P-Sand for plaster.
+      </p>
+      <div class="product-grid">
+        {sandKeys.map((k) => {
+          const p = prices.products[k];
+          return (
+            <div class="page-card" id={p.slug}>
+              <div class="thumb"><img src={p.image} alt={p.name} loading="lazy" width="800" height="600" /></div>
+              <div class="body">
+                <span class="label">{p.unitSize}</span>
+                <h3>{p.name}</h3>
+                <p>{p.description}</p>
+                <span class="arrow">From ₹{p.pricePerTon}/ton · ₹{p.pricePerUnit}/unit →</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section id="aggregate" class="section">
+    <div class="container">
+      <p class="eyebrow">Aggregate (Jelly)</p>
+      <h2 style="margin-bottom: var(--space-3);">Blue-metal jelly — 12mm to 40mm</h2>
+      <p style="color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:var(--space-8);">
+        Five sizes of blue-metal aggregate, washed and graded to IS 383. Pick the right size for your slab, beam, column, or foundation.
+      </p>
+      <div class="product-grid">
+        {aggKeys.map((k) => {
+          const p = prices.products[k];
+          return (
+            <div class="page-card" id={p.slug}>
+              <div class="thumb"><img src={p.image} alt={p.name} loading="lazy" width="800" height="600" /></div>
+              <div class="body">
+                <span class="label">{p.unitSize}</span>
+                <h3>{p.name}</h3>
+                <p>{p.description}</p>
+                <span class="arrow">From ₹{p.pricePerTon}/ton · ₹{p.pricePerUnit}/unit →</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Sub-base &amp; fines</p>
+      <h2 style="margin-bottom: var(--space-3);">Crusher Dust and WMM</h2>
+      <p style="color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:var(--space-8);">
+        Crusher dust for block-work joints and yard compaction. WMM (Wet Mix Macadam) for road sub-base and heavy foundations.
+      </p>
+      <div class="product-grid">
+        {subKeys.map((k) => {
+          const p = prices.products[k];
+          return (
+            <div class="page-card" id={p.slug}>
+              <div class="thumb"><img src={p.image} alt={p.name} loading="lazy" width="800" height="600" /></div>
+              <div class="body">
+                <span class="label">{p.unitSize}</span>
+                <h3>{p.name}</h3>
+                <p>{p.description}</p>
+                <span class="arrow">From ₹{p.pricePerTon}/ton · ₹{p.pricePerUnit}/unit →</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    title="Not sure which grade you need?"
+    body="Tell us the size of the slab, beam, or wall and we'll tell you exactly what to order. No forms — one phone call."
+    secondaryCta={{ href: "/calculator", label: "Use the calculator" }}
+  />
+</MarketingLayout>

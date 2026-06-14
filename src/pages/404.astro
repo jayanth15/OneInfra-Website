@@ -1,0 +1,20 @@
+---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+const title = `Page not found · OneInfra`;
+const description = `The page you were looking for doesn't exist. Try the home page or call us.`;
+---
+
+<MarketingLayout title={title} description={description} current="home">
+  <section class="page-hero" style="text-align:center;">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1>That page doesn't exist.</h1>
+      <p>It may have moved, or the link is wrong. Try one of these:</p>
+      <div style="display:inline-flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;margin-top:var(--space-5);">
+        <a class="btn btn-primary" href="/">Go home</a>
+        <a class="btn btn-secondary" href="/products">See products</a>
+        <a class="btn btn-secondary" href="/price">See this week's price</a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

@@ -1,0 +1,42 @@
+---
+import MarketingLayout from "~/layouts/MarketingLayout.astro";
+import PriceFreshness from "~/components/PriceFreshness.astro";
+import PriceCard from "~/components/PriceCard.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site, prices, productOrder } from "~/config/site";
+import { localBusinessLd, productListLd } from "~/lib/schema";
+
+const title = `M-Sand, P-Sand and Aggregate Price in Chennai · OneInfra`;
+const description = `Current M-Sand, P-Sand and blue-metal aggregate price in Chennai per ton and per unit. Updated weekly. Factors that change the price and how to lock a quote on one call.`;
+const jsonLd = [localBusinessLd(), productListLd()];
+---
+
+<MarketingLayout title={title} description={description} current="price" jsonLd={jsonLd}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Pricing · This week in Chennai</p>
+      <h1>This week's M-Sand, P-Sand and aggregate price in Chennai</h1>
+      <p>Updated every Monday. One phone call locks the rate for your order — no form, no waiting.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <PriceFreshness />
+
+      <div class="price-grid">
+        {productOrder.map((k) => <PriceCard product={prices.products[k]} />)}
+      </div>
+
+      <div class="price-disclaimer">
+        <div class="icon">i</div>
+        <p>{site.priceDisclaimer}</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaStrip
+    title="Lock this week's rate on one call."
+    body="We price by phone in under a minute. Tell us the grade, quantity, and delivery area."
+  />
+</MarketingLayout>

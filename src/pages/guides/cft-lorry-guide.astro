@@ -1,0 +1,33 @@
+---
+import GuideLayout from "~/layouts/GuideLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site } from "~/config/site";
+import { localBusinessLd, faqLd, breadcrumbLd } from "~/lib/schema";
+
+const title = `CFT, m³, ton and units · Chennai builder's measurement guide`;
+const description = `CFT explained in plain English, with a Chennai-builder context. How to calculate CFT, m³, tons and units. How to measure a lorry's sand load with a tape. Conversion tables and worked examples.`;
+const jsonLd = [
+  localBusinessLd(),
+  breadcrumbLd([
+    { name: "Home", url: site.url + "/" },
+    { name: "Guides", url: site.url + "/guides/cft-lorry-guide" },
+    { name: "CFT & Lorry Guide", url: site.url + "/guides/cft-lorry-guide" },
+  ]),
+  faqLd([
+    { q: "What is CFT in sand and aggregate?", a: "CFT stands for cubic feet. 1 CFT = 1 ft × 1 ft × 1 ft = 0.0283 m³. Sand and aggregate in Chennai are usually quoted per CFT or per unit (1 unit = 100 CFT)." },
+    { q: "How much does 1 unit of M-Sand weigh in Chennai?", a: "1 unit of M-Sand ≈ 1.5 ton (≈ 1500 kg). A 3.5 ton tipper load = ~2.3 units." },
+    { q: "How do I measure a tipper's load with a tape?", a: "Measure length × width × height of the pile in feet. That's the CFT. Divide by 100 to get units. Multiply by 1.5 to get approximate tons." },
+  ]),
+];
+---
+
+<GuideLayout title={title} description={description} eyebrow="Field guide" body="CFT, m³, ton, units — the four ways Chennai builders measure a tipper load, and how to convert between them." bgImage="/images/Tipper-accurate.jpg" bgAlt="A tipper loaded with M-Sand at the OneInfra Tambaram yard" jsonLd={jsonLd}>
+  <h2>Quick reference</h2>
+  <ul>
+    <li><strong>1 unit</strong> = 100 CFT = ~1.5 ton (sand) or ~1.7 ton (aggregate)</li>
+    <li><strong>1 ton</strong> = 1000 kg ≈ 32 CFT of M-Sand (varies by moisture)</li>
+    <li><strong>1 m³</strong> = 35.3 CFT</li>
+    <li><strong>1 tipper (3.5 ton)</strong> = ~2.3 units of M-Sand</li>
+  </ul>
+  <p>Need a quantity for your house? <a href="/calculator">Try the calculator</a>.</p>
+</GuideLayout>
