@@ -1,0 +1,13 @@
+{
+  "name": "OneInfra — M-Sand, P-Sand, Aggregate in Chennai",
+  "short_name": "OneInfra",
+  "description": "Trusted supplier of washed M-Sand, P-Sand and blue-metal aggregate in Chennai.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#2f6feb",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "32x32", "type": "image/x-icon" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
