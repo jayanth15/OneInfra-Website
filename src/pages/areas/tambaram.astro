@@ -1,0 +1,23 @@
+---
+import AreaLayout from "~/layouts/AreaLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { areaByKey, type AreaData } from "~/content/areas";
+import { localBusinessLd, breadcrumbLd } from "~/lib/schema";
+import { site } from "~/config/site";
+
+const a: AreaData = areaByKey["tambaram"];
+const jsonLd = [
+  localBusinessLd(),
+  breadcrumbLd([
+    { name: "Home", url: site.url + "/" },
+    { name: a.name, url: site.url + "/areas/" + a.key },
+  ]),
+];
+---
+
+<AreaLayout area={a.name} intro={a.intro} landmarks={a.landmarks} deliveryTime={a.deliveryTime} jsonLd={jsonLd}>
+  <CtaStrip
+    title={`Need M-Sand or aggregate in ${a.name}?`}
+    body="Call us. We price by phone in under a minute."
+  />
+</AreaLayout>
