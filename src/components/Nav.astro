@@ -1,0 +1,65 @@
+---
+import { site } from "~/config/site";
+import "~/styles/nav.css";
+
+interface Props {
+  current: "home" | "products" | "price" | "calculator" | "about" | "contact" | "guide" | "area" | "blog";
+}
+const { current } = Astro.props;
+
+const links = [
+  { href: "/",          label: "Home",       key: "home" },
+  { href: "/products",  label: "Products",   key: "products" },
+  { href: "/price",     label: "Price",      key: "price" },
+  { href: "/calculator",label: "Calculator", key: "calculator" },
+  { href: "/about",     label: "About",      key: "about" },
+  { href: "/contact",   label: "Contact",    key: "contact" },
+] as const;
+
+const waText = encodeURIComponent("Hi OneInfra, I would like a quote.");
+const waUrl = `https://wa.me/${site.whatsapp}?text=${waText}`;
+---
+
+<header class="topnav">
+  <div class="container topnav-inner">
+    <a class="logo" href="/" aria-label="OneInfra home">
+      <img src="/images/Header-logo.png" alt="OneInfra" width="120" height="32" />
+    </a>
+    <nav aria-label="Main">
+      {links.map((l) => (
+        <a href={l.href} class:list={[{ active: current === l.key }]}>
+          {l.label}
+        </a>
+      ))}
+    </nav>
+    <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>
+      Call {site.phone}
+    </a>
+    <button class="menu-toggle" aria-label="Open menu" id="menu-toggle">☰</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  {links.map((l) => (
+    <a href={l.href}>{l.label}</a>
+  ))}
+  <a class="btn btn-primary" href={`tel:${site.phoneTel}`} style="margin-top: var(--space-4);">
+    Call {site.phone}
+  </a>
+  <a class="btn btn-secondary" href={waUrl} style="margin-top: var(--space-2);">
+    WhatsApp
+  </a>
+</div>
+
+<script is:inline>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      const open = menu.classList.toggle("is-open");
+      menu.setAttribute("aria-hidden", String(!open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      toggle.textContent = open ? "✕" : "☰";
+    });
+  }
+</script>

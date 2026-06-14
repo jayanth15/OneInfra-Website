@@ -1,0 +1,78 @@
+---
+import { site } from "~/config/site";
+import "~/styles/base.css";
+import { localBusinessLd } from "~/lib/schema";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  current: "home" | "products" | "price" | "calculator" | "about" | "contact" | "guide" | "area" | "blog";
+  jsonLd?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonical = new URL(Astro.url.pathname, site.url).toString(),
+  ogImage = "/og-image.jpg",
+  current,
+  jsonLd,
+} = Astro.props;
+
+import Nav from "~/components/Nav.astro";
+import Footer from "~/components/Footer.astro";
+import JsonLd from "~/components/JsonLd.astro";
+
+const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
+const ogImageAbs = ogImage.startsWith("http") ? ogImage : `${site.url}${ogImage}`;
+
+// Always include LocalBusiness on every page
+const baseLd = localBusinessLd();
+const allLd = jsonLd
+  ? (Array.isArray(jsonLd) ? [baseLd, ...jsonLd] : [baseLd, jsonLd])
+  : [baseLd];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#2f6feb" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <link rel="preload" href="/fonts/Inter-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <JsonLd data={allLd} />
+  </head>
+  <body>
+    <a class="visually-hidden" href="#content" style="position:absolute;left:-9999px">Skip to content</a>
+    <Nav current={current} />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

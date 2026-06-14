@@ -1,0 +1,14 @@
+---
+import { prices } from "~/config/site";
+import "~/styles/price.css";
+
+const fmt = (iso: string) => {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+};
+---
+
+<div class="freshness-banner">
+  <span class="updated">Updated {fmt(prices.validFrom)} — valid through {fmt(prices.validUntil)}</span>
+  <p class="note">{prices.lastUpdatedNote}</p>
+</div>

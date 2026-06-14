@@ -1,0 +1,33 @@
+.cta-strip {
+  background: var(--fg);
+  color: var(--surface);
+  text-align: center;
+  padding-block: var(--space-20);
+}
+@media (max-width: 640px) { .cta-strip { padding-block: var(--space-12); } }
+.cta-strip h2 {
+  color: var(--surface);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.cta-strip p {
+  color: color-mix(in oklab, var(--surface) 70%, transparent);
+  font-size: 18px;
+  max-width: 56ch;
+  margin: 0 auto var(--space-8);
+}
+.cta-strip .small {
+  color: color-mix(in oklab, var(--surface) 55%, transparent);
+  font-size: 13px;
+  margin-top: var(--space-5);
+}
+.cta-strip .btn-secondary {
+  background: transparent;
+  color: var(--surface);
+  border-color: color-mix(in oklab, var(--surface) 40%, transparent);
+}
+.cta-strip .btn-secondary:hover {
+  border-color: var(--surface);
+  background: color-mix(in oklab, var(--surface) 10%, transparent);
+}

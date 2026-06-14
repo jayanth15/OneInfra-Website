@@ -1,0 +1,10 @@
+---
+import { site } from "~/config/site";
+import { whatsappUrl } from "~/lib/whatsapp";
+
+interface Props { productKey?: string; area?: string; class?: string; label?: string; }
+const { productKey, area, class: cls = "btn btn-secondary", label = "WhatsApp us" } = Astro.props;
+const href = whatsappUrl(productKey, area);
+---
+
+<a class={cls} href={href} rel="noopener" data-wa-link="1"> {label}</a>

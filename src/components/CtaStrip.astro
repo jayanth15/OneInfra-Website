@@ -1,0 +1,30 @@
+---
+import { site } from "~/config/site";
+import "~/styles/cta.css";
+
+interface Props {
+  title: string;
+  body: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+  small?: string;
+}
+const {
+  title, body,
+  primaryCta = { href: `tel:${site.phoneTel}`, label: `Call ${site.phone}` },
+  secondaryCta,
+  small,
+} = Astro.props;
+---
+
+<section class="cta-strip">
+  <div class="container">
+    <h2>{title}</h2>
+    <p>{body}</p>
+    <div style="display:inline-flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center">
+      <a class="btn btn-primary btn-large" href={primaryCta.href}>{primaryCta.label}</a>
+      {secondaryCta && <a class="btn btn-secondary btn-large" href={secondaryCta.href}>{secondaryCta.label}</a>}
+    </div>
+    {small && <p class="small">{small}</p>}
+  </div>
+</section>

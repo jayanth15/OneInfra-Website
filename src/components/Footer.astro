@@ -1,0 +1,56 @@
+---
+import { site } from "~/config/site";
+import "~/styles/footer.css";
+const year = new Date().getFullYear();
+---
+
+<footer class="pagefoot">
+  <div class="container">
+    <div class="pagefoot-grid">
+      <div>
+        <img class="footer-logo" src="/images/Header-logo.png" alt="OneInfra" width="150" height="40" />
+        <p>
+          Trusted supplier of washed M-Sand, P-Sand and blue-metal aggregates to homeowners,
+          masons and builders across Chennai.
+        </p>
+        <p style="margin-top: var(--space-3);">
+          <a href={`tel:${site.phoneTel}`} style="color: var(--accent); font-weight: 500;">
+            {site.phone}
+          </a><br />
+          <a href={`mailto:${site.email}`} style="color: var(--muted);">
+            {site.email}
+          </a>
+        </p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <a href="/products">All 9 grades</a>
+        <a href="/products#m-sand">M-Sand</a>
+        <a href="/products#p-sand">P-Sand</a>
+        <a href="/products#aggregate">Aggregate (Jelly)</a>
+        <a href="/products#wmm">WMM</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="/calculator">Quantity calculator</a>
+        <a href="/price">This week's price</a>
+        <a href="/guides/cft-lorry-guide">CFT guide</a>
+        <a href="/guides/msand-vs-river-sand">M-Sand vs River Sand</a>
+        <a href="/guides/quality-check">Quality check</a>
+      </div>
+      <div>
+        <h4>Service areas</h4>
+        {site.serviceAreas.map((a) => (
+          <a href={`/areas/${a.toLowerCase().replace(/[\s.]/g, "-")}`}>{a}</a>
+        ))}
+        <a href="/contact" style="margin-top: var(--space-2); color: var(--accent); font-weight: 500;">
+          Contact us →
+        </a>
+      </div>
+    </div>
+    <div class="pagefoot-bottom">
+      <span>© {year} OneInfra. All rights reserved.</span>
+      <span>{site.address} · {site.hours}</span>
+    </div>
+  </div>
+</footer>

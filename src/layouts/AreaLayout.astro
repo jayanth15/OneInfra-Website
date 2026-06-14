@@ -1,0 +1,58 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import { site } from "~/config/site";
+
+interface Props {
+  area: string;
+  intro: string;
+  landmarks: string[];
+  deliveryTime: string;
+  jsonLd?: object | object[];
+}
+const { area, intro, landmarks, deliveryTime, jsonLd } = Astro.props;
+const title = `M-Sand, P-Sand and Aggregate supplier in ${area}, Chennai · OneInfra`;
+const description = `OneInfra supplies washed M-Sand, P-Sand and blue-metal aggregate to ${area}, Chennai. Same-day delivery, IS 383 graded, fair price. Call ${site.phone}.`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  current="area"
+  jsonLd={jsonLd}
+>
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/images/delivery-truck.jpg" alt={`Tipper unloading M-Sand at a ${area} construction site`} loading="eager" fetchpriority="high" />
+    </div>
+    <div class="container">
+      <p class="eyebrow">{area} · Chennai · Civil material supply</p>
+      <h1>M-Sand, P-Sand and <span class="accent">aggregate supplier in {area}</span></h1>
+      <p>{intro}</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-large" href={`tel:${site.phoneTel}`}>Call {site.phone}</a>
+        <a class="btn btn-secondary btn-large" href="/calculator">Use the calculator</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">About our {area} supply</p>
+      <h2 style="max-width:24ch; margin-bottom: var(--space-4);">Same-day delivery, fair price, IS 383 graded</h2>
+      <p style="font-size:17px;color:var(--muted);max-width:60ch;margin-bottom:var(--space-6);">
+        We run a daily route through {area} and nearby localities. Typical delivery window:
+        <strong>{deliveryTime}</strong> from the Tambaram supply point. Order before 4 PM for
+        same-day tipper loading.
+      </p>
+      <p style="font-size:15px;color:var(--muted);margin-bottom:var(--space-2);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;">
+        Areas we cover in {area}
+      </p>
+      <ul style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-2);list-style:none;padding:0;">
+        {landmarks.map((l) => (
+          <li style="padding:var(--space-2) 0;color:var(--fg);">→ {l}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <slot />
+</BaseLayout>

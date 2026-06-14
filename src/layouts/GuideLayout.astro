@@ -1,0 +1,28 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  body: string;
+  bgImage: string;
+  bgAlt: string;
+  jsonLd?: object | object[];
+}
+const { title, description, eyebrow, body, bgImage, bgAlt, jsonLd } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} current="guide" jsonLd={jsonLd}>
+  <section class="page-hero" style={`background: linear-gradient(90deg, var(--bg) 0%, transparent 60%), url(${bgImage}) right center / cover no-repeat;`}>
+    <div class="container">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p>{body}</p>
+    </div>
+  </section>
+  <article class="section">
+    <div class="container" style="max-width: 760px;">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

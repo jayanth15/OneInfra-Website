@@ -1,0 +1,28 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+interface Props {
+  title: string;
+  description: string;
+  publishDate: string;
+  author: string;
+  readingMinutes: number;
+  jsonLd?: object | object[];
+}
+const { title, description, publishDate, author, readingMinutes, jsonLd } = Astro.props;
+const fmt = new Date(publishDate).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+---
+
+<BaseLayout title={title} description={description} current="blog" jsonLd={jsonLd}>
+  <article class="section">
+    <div class="container" style="max-width: 760px;">
+      <p class="eyebrow">Field guide</p>
+      <h1 style="font-size: clamp(28px, 4vw, 48px);">{title}</h1>
+      <p style="color:var(--muted);font-size:14px;margin-top:var(--space-3);">
+        {fmt} · {author} · {readingMinutes} min read
+      </p>
+      <div style="margin-top: var(--space-8); font-size: 17px; line-height: 1.7;">
+        <slot />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
