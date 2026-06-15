@@ -1,22 +1,32 @@
 ---
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
-import { productOrder, prices } from "~/config/site";
+import { site, productOrder, prices } from "~/config/site";
 import { localBusinessLd } from "~/lib/schema";
+import "~/styles/calc-blueprint.css";
+import "~/styles/calc-form.css";
+import "~/styles/result-card.css";
+import "~/styles/price-total.css";
+import "~/styles/related-grid.css";
 
-const title = `Quantity Calculator · Free Chennai Builder Tool · OneInfra`;
-const description = `Free Chennai-builder quantity calculator. Type your built-up area and number of floors, get M-Sand, P-Sand and blue-metal tonnage, CFT and tipper count in seconds. Live price estimate included.`;
+const title = `M-Sand and aggregate quantity calculator · OneInfra Chennai`;
+const description = `Free Chennai-builder quantity calculator. Type your built-up area, floors and building type, get M-Sand, P-Sand and blue-metal tonnage, CFT, tipper count and a live price estimate.`;
 const jsonLd = localBusinessLd();
 
-const priceMap: Record<string, { name: string; pricePerTon: number }> = {};
+const priceMap: Record<string, { name: string; pricePerTon: number; pricePerUnit: number }> = {};
 for (const k of productOrder) {
-  priceMap[k] = { name: prices.products[k].name, pricePerTon: prices.products[k].pricePerTon };
+  priceMap[k] = {
+    name: prices.products[k].name,
+    pricePerTon: prices.products[k].pricePerTon,
+    pricePerUnit: prices.products[k].pricePerUnit,
+  };
 }
 const priceMapJson = JSON.stringify(priceMap);
 ---
 
 <MarketingLayout title={title} description={description} current="calculator" jsonLd={jsonLd}>
   <section class="page-hero">
+    <div class="hero-bg"><img src="/images-opt/product-25mm.webp" alt="25mm blue metal aggregate, the standard coarse grade for RCC" loading="eager" fetchpriority="high" /></div>
     <div class="container">
       <p class="eyebrow">Quantity calculator · Live</p>
       <h1>How much M-Sand, P-Sand and blue metal for your house?</h1>
@@ -24,102 +34,297 @@ const priceMapJson = JSON.stringify(priceMap);
     </div>
   </section>
 
-  <section class="section">
-    <div class="container" style="max-width: 720px;">
-      <form id="qty-form" style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-5);" onsubmit="return false;">
-        <label style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Built-up area (sqft)</span>
-          <input id="area" type="number" min="100" step="50" value="1200" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;" />
-        </label>
-        <label style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Number of floors</span>
-          <input id="floors" type="number" min="1" max="5" value="2" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;" />
-        </label>
-        <label style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">M-Sand grade</span>
-          <select id="msand-key" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;">
-            <option value="m_sand_double_washed" selected>M-Sand (Double Washed)</option>
-          </select>
-        </label>
-        <label style="display:flex;flex-direction:column;gap:6px;">
-          <span style="font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Aggregate grade</span>
-          <select id="agg-key" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:18px;">
-            <option value="aggregate_20mm_jelly" selected>20mm Jelly</option>
-            <option value="aggregate_20mm_blue">20mm Blue Metal</option>
-            <option value="aggregate_25mm">25mm Blue Metal</option>
-            <option value="aggregate_40mm">40mm Blue Metal</option>
-          </select>
-        </label>
+  <section class="house-blueprint-section">
+    <div class="container">
+      <div class="house-diagram-wrap">
+        <figure class="house-blueprint">
+          <img src="/images-opt/home-blueprint.webp" alt="Architectural drawing of a 1,000 sqft G+1 Indian house on warm paper — side section, front elevation, plan view, dimensioned in feet, with M-Sand, P-Sand and 20mm Aggregate callouts" loading="lazy" width="900" />
+          <figcaption>Architectural drawing · 1,000 sq ft G+1 · material callout</figcaption>
+        </figure>
+        <div class="house-diagram-caption">
+          <p class="eyebrow">What the calculator is estimating</p>
+          <h2>For a 1,000 sq ft home, the maximum-quality estimate is 80 ton M-Sand, 25 ton P-Sand and 40 ton blue metal:</h2>
+          <ul>
+            <li><strong>M-Sand</strong> — for foundation, RCC, columns, brickwork</li>
+            <li><strong>P-Sand</strong> — for internal and ceiling plaster</li>
+            <li><strong>20mm blue metal</strong> — for RCC slabs and beams</li>
+          </ul>
+          <p class="note">All three leave our supply point washed, sieved and IS 383 graded — same load, same lot number, same quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container calc-wrap">
+      <form class="calc-form" id="calc" onsubmit="return false;">
+        <h2>Your build</h2>
+        <p class="hint">All fields optional except built-up area. We use IS-standard consumption rates for residential RCC construction in Chennai.</p>
+
+        <div class="field" style="margin-bottom: var(--space-3);">
+          <label for="area">Built-up area <span style="color:var(--muted);font-size:12px;">(per floor, sq ft)</span></label>
+          <input type="number" id="area" value="1000" min="100" max="20000" step="50" inputmode="numeric" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--fg);font:inherit;font-size:16px;" />
+        </div>
+
+        <div class="field" style="margin-bottom: var(--space-5);">
+          <label>Or pick a common size</label>
+          <div class="preset-row" id="presets">
+            <button type="button" data-area="600">600 sq ft</button>
+            <button type="button" data-area="1000" class="active">1,000 sq ft</button>
+            <button type="button" data-area="1500">1,500 sq ft</button>
+            <button type="button" data-area="2000">2,000 sq ft</button>
+            <button type="button" data-area="3000">3,000 sq ft</button>
+            <button type="button" data-area="5000">5,000 sq ft</button>
+          </div>
+        </div>
+
+        <div class="field-row" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin-bottom:var(--space-5);">
+          <div class="field" style="margin-bottom:0;">
+            <label for="floors">Number of floors</label>
+            <select id="floors" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--fg);font:inherit;font-size:16px;">
+              <option value="1" selected>Ground only (1 floor)</option>
+              <option value="2">G + 1 (2 floors)</option>
+              <option value="3">G + 2 (3 floors)</option>
+              <option value="4">G + 3 (4 floors)</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label for="usage">Building type</label>
+            <select id="usage" style="padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--fg);font:inherit;font-size:16px;">
+              <option value="home" selected>Home / residential</option>
+              <option value="villa">Villa (more plaster)</option>
+              <option value="commercial">Commercial / office</option>
+              <option value="warehouse">Warehouse / shed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="house-info">
+          <div class="stat"><div class="num" id="totalArea">1,000</div><div class="lbl">Total built-up (sq ft)</div></div>
+          <div class="stat"><div class="num" id="estConcrete">850</div><div class="lbl">Concrete (cu ft)</div></div>
+        </div>
       </form>
 
-      <div id="qty-results" style="margin-top:var(--space-8);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);"></div>
-      <p id="qty-disclaimer" style="margin-top:var(--space-4);font-size:13px;color:var(--muted);">
-        Indicative only · based on standard Chennai builder norms. Actual quantity depends on design, wastage, and mix ratio.
-      </p>
+      <div class="calc-output" id="output">
+        <div class="result-card">
+          <div class="head">
+            <div class="icon">⌗</div>
+            <div>
+              <div class="sub">01 · Concrete + brickwork</div>
+              <h3>M-Sand (Manufactured Sand)</h3>
+            </div>
+          </div>
+          <div class="result-row">
+            <div class="stat"><div class="num" id="msandTon">80.0</div><div class="lbl">Tons</div></div>
+            <div class="stat"><div class="num" id="msandCft">1,846</div><div class="lbl">Cubic feet</div></div>
+            <div class="stat"><div class="num" id="msandUnit">18.5</div><div class="lbl">Units (100 CFT)</div></div>
+          </div>
+          <div class="result-row">
+            <div class="stat"><div class="num" id="msandPrice">₹ 1,00,000</div><div class="lbl">Material price</div></div>
+            <div class="stat"><div class="num" id="msandTipper">7</div><div class="lbl">Tippers (300 CFT)</div></div>
+            <div class="stat"><div class="num" id="msandPricePerTon">₹ 1,250/ton</div><div class="lbl">Rate</div></div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="head">
+            <div class="icon">◇</div>
+            <div>
+              <div class="sub">02 · Wall + ceiling plaster</div>
+              <h3>P-Sand (Plastering Sand)</h3>
+            </div>
+          </div>
+          <div class="result-row">
+            <div class="stat"><div class="num" id="psandTon">25.0</div><div class="lbl">Tons</div></div>
+            <div class="stat"><div class="num" id="psandCft">577</div><div class="lbl">Cubic feet</div></div>
+            <div class="stat"><div class="num" id="psandUnit">5.8</div><div class="lbl">Units (100 CFT)</div></div>
+          </div>
+          <div class="result-row">
+            <div class="stat"><div class="num" id="psandPrice">₹ 35,000</div><div class="lbl">Material price</div></div>
+            <div class="stat"><div class="num" id="psandTipper">2</div><div class="lbl">Tippers (300 CFT)</div></div>
+            <div class="stat"><div class="num" id="psandPricePerTon">₹ 1,400/ton</div><div class="lbl">Rate</div></div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="head">
+            <div class="icon">▣</div>
+            <div>
+              <div class="sub">03 · RCC + foundation</div>
+              <h3>Blue Metal (20 mm + 40 mm)</h3>
+            </div>
+          </div>
+          <div class="result-row">
+            <div class="stat"><div class="num" id="aggTon">40.0</div><div class="lbl">Tons</div></div>
+            <div class="stat"><div class="num" id="aggCft">923</div><div class="lbl">Cubic feet</div></div>
+            <div class="stat"><div class="num" id="aggUnit">9.2</div><div class="lbl">Units (100 CFT)</div></div>
+          </div>
+          <div class="result-row">
+            <div class="stat"><div class="num" id="aggPrice">₹ 46,000</div><div class="lbl">Material price</div></div>
+            <div class="stat"><div class="num" id="aggTipper">4</div><div class="lbl">Tippers (300 CFT)</div></div>
+            <div class="stat"><div class="num" id="aggPricePerTon">₹ 1,150/ton</div><div class="lbl">Rate</div></div>
+          </div>
+        </div>
+
+        <div class="price-total">
+          <div class="label">Estimated material total</div>
+          <div class="num" id="grandTotal">₹ 1,81,000<span class="small">material cost, excl. transport</span></div>
+          <p class="small-line" id="totalTon">≈ 145 tons · 13 tipper trips · 1,000 sq ft · G · residential</p>
+          <div class="actions">
+            <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>Call to confirm this quote</a>
+            <a class="btn btn-secondary" href={`mailto:${site.email}?subject=OneInfra%20quote%20request`}>Email a copy</a>
+          </div>
+        </div>
+
+        <p class="footnote"><strong>How we calculate:</strong> these are maximum-quality consumption rates for Chennai residential RCC construction — 80 ton M-Sand, 25 ton P-Sand and 40 ton blue metal per 1,000 sq ft of built-up area per floor. Conversions use the standard Chennai trade: <strong>1 unit = 100 CFT</strong>, <strong>one tipper = 300 CFT</strong>, and <strong>300 CFT ≈ 13 tons</strong> on average (varies by moisture and grade). Adjust for villas (+15% plaster), commercial (−10% plaster), or warehouses (−30% concrete). Live prices use this week's <a href="/price">OneInfra price band</a>. Transport is quoted separately on the call.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Read next</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; margin-bottom: var(--space-8);">How to use this number on your site.</h2>
+      <div class="related">
+        <a href="/guides/cft-lorry-guide">
+          <span class="kicker">Measurement</span>
+          <h4>What is CFT and how to measure a lorry</h4>
+          <p>Verify the load on the tipper with a tape. Conversion tables and worked example.</p>
+        </a>
+        <a href="/guides/quality-check">
+          <span class="kicker">Field guide</span>
+          <h4>How to check M-Sand quality</h4>
+          <p>Five field tests to run before the tipper tips. Free site sample on request.</p>
+        </a>
+        <a href="/price">
+          <span class="kicker">Price</span>
+          <h4>This week's Chennai price band</h4>
+          <p>Per-ton and per-unit rates, with the six factors that move the price.</p>
+        </a>
+      </div>
     </div>
   </section>
 
   <CtaStrip
-    title="Got a quantity? Get a firm quote."
-    body="Call us with the numbers — we'll lock the rate for your delivery."
-    secondaryCta={{ href: "/price", label: "See this week's price" }}
+    title="Confirm the quote on a call."
+    body="The calculator is a starting point. We will tighten the numbers to your specific plan, plot, and area — and quote transport in the same call."
+    small="Open Mon–Sat · 7 am to 8 pm · Sun by appointment"
   />
 
   <script type="application/json" id="price-map" set:html={priceMapJson} is:inline></script>
   <script is:inline>
     (function () {
       const PRICES = JSON.parse(document.getElementById("price-map").textContent);
-      const RCC_SAND = 28, PLASTER_SAND = 8, AGG = 22;
-      const TIPPER_TONS = 3.5;
-      const TON_CFT = 32;
 
-      const fmtINR = (n) => "₹" + Math.round(n).toLocaleString("en-IN");
-      const fmt1 = (n) => (Math.round(n * 10) / 10).toLocaleString("en-IN");
+      // OneInfra quantity calculator
+      // IS-456 based consumption rates for residential RCC in Chennai.
+      // Adjustments per building type and floors.
+      const BULK = {
+        cftPerTon: 300 / 13,    // 23.08 CFT per ton for loose washed material
+        cftPerTipper: 300,
+        cftPerUnit: 100
+      };
+      const RULES = {
+        // Maximum-quality consumption rates for Chennai residential RCC.
+        msand: 0.080,   // 80 ton per 1,000 sq ft
+        psand: 0.025,   // 25 ton per 1,000 sq ft
+        agg:   0.040    // 40 ton per 1,000 sq ft (20mm + 40mm blue metal)
+      };
+      const TYPE_MULT = {
+        home:       { msand: 1.0,  psand: 1.0,  agg: 1.0  },
+        villa:      { msand: 1.05, psand: 1.15, agg: 1.0  },
+        commercial: { msand: 1.10, psand: 0.9,  agg: 1.05 },
+        warehouse:  { msand: 0.8,  psand: 0.5,  agg: 0.85 }
+      };
+      const AGG_SPLIT = { mm20: 0.7, mm40: 0.3 };
 
-      function calc() {
-        const area = +document.getElementById("area").value || 0;
-        const floors = +document.getElementById("floors").value || 1;
-        const mKey = document.getElementById("msand-key").value;
-        const aKey = document.getElementById("agg-key").value;
-
-        const totalSqft = area * floors;
-        const msandKg = totalSqft * RCC_SAND;
-        const psandKg = totalSqft * PLASTER_SAND;
-        const aggKg = totalSqft * AGG;
-
-        const msandTon = msandKg / 1000;
-        const psandTon = psandKg / 1000;
-        const aggTon = aggKg / 1000;
-
-        const msandPrice = msandTon * PRICES[mKey].pricePerTon;
-        const psandPrice = psandTon * PRICES.p_sand.pricePerTon;
-        const aggPrice = aggTon * PRICES[aKey].pricePerTon;
-        const total = msandPrice + psandPrice + aggPrice;
-
-        const out = document.getElementById("qty-results");
-        out.innerHTML = [
-          { l: "M-Sand (RCC)", qty: fmt1(msandTon) + " ton", cft: Math.round(msandTon * TON_CFT), tipper: fmt1(msandTon / TIPPER_TONS), price: fmtINR(msandPrice) },
-          { l: "P-Sand (plaster)", qty: fmt1(psandTon) + " ton", cft: Math.round(psandTon * TON_CFT), tipper: fmt1(psandTon / TIPPER_TONS), price: fmtINR(psandPrice) },
-          { l: PRICES[aKey].name, qty: fmt1(aggTon) + " ton", cft: Math.round(aggTon * TON_CFT), tipper: fmt1(aggTon / TIPPER_TONS), price: fmtINR(aggPrice) },
-        ].map((r) => `
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);">
-            <p style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">${r.l}</p>
-            <p style="font-size:24px;font-weight:600;margin-top:var(--space-2);">${r.qty}</p>
-            <p style="font-size:13px;color:var(--muted);margin-top:var(--space-1);">${r.cft} CFT · ${r.tipper} tipper${r.tipper === "1.0" ? "" : "s"}</p>
-            <p style="font-size:15px;color:var(--fg);margin-top:var(--space-2);">${r.price}</p>
-          </div>
-        `).join("") + `
-          <div style="grid-column: 1 / -1;background:var(--fg);color:var(--surface);border-radius:var(--radius-md);padding:var(--space-5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-3);">
-            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;">Live total estimate</span>
-            <span style="font-size:32px;font-weight:600;">${fmtINR(total)}</span>
-          </div>
-        `;
+      function fmtINR(n) {
+        if (n >= 100000) return '₹ ' + (n / 100000).toFixed(2) + ' L';
+        if (n >= 1000) return '₹ ' + Math.round(n / 100) / 10 + ' k';
+        return '₹ ' + Math.round(n).toLocaleString('en-IN');
+      }
+      function fmtNum(n, dec) {
+        dec = dec == null ? 1 : dec;
+        if (n >= 100) return Math.round(n).toLocaleString('en-IN');
+        return n.toFixed(dec);
       }
 
-      ["area", "floors", "msand-key", "agg-key"].forEach((id) => {
-        document.getElementById(id).addEventListener("input", calc);
-        document.getElementById(id).addEventListener("change", calc);
+      function calc() {
+        const area = Math.max(100, parseFloat(document.getElementById('area').value) || 0);
+        const floors = Math.max(1, parseInt(document.getElementById('floors').value) || 1);
+        const usage = document.getElementById('usage').value;
+        const mult = TYPE_MULT[usage];
+
+        const totalArea = area * floors;
+        const mTon = totalArea * RULES.msand * mult.msand;
+        const pTon = totalArea * RULES.psand * mult.psand;
+        const aTon = totalArea * RULES.agg   * mult.agg;
+
+        const mCft = mTon * BULK.cftPerTon;
+        const pCft = pTon * BULK.cftPerTon;
+        const aCft = aTon * BULK.cftPerTon;
+
+        const mUnit = mCft / BULK.cftPerUnit;
+        const pUnit = pCft / BULK.cftPerUnit;
+        const aUnit = aCft / BULK.cftPerUnit;
+
+        const mPrice = mTon * PRICES.m_sand_double_washed.pricePerTon;
+        const pPrice = pTon * PRICES.p_sand.pricePerTon;
+        const aPrice = aTon * (PRICES.aggregate_20mm_jelly.pricePerTon * AGG_SPLIT.mm20 + PRICES.aggregate_40mm.pricePerTon * AGG_SPLIT.mm40);
+        const grand = mPrice + pPrice + aPrice;
+
+        const mTipper = Math.ceil(mCft / BULK.cftPerTipper);
+        const pTipper = Math.ceil(pCft / BULK.cftPerTipper);
+        const aTipper = Math.ceil(aCft / BULK.cftPerTipper);
+
+        const concreteCuFt = Math.round(totalArea * 0.85);
+
+        document.getElementById('totalArea').textContent = totalArea.toLocaleString('en-IN');
+        document.getElementById('estConcrete').textContent = concreteCuFt.toLocaleString('en-IN');
+
+        document.getElementById('msandTon').textContent = fmtNum(mTon, 1);
+        document.getElementById('msandCft').textContent = Math.round(mCft).toLocaleString('en-IN');
+        document.getElementById('msandUnit').textContent = mUnit.toFixed(1);
+        document.getElementById('msandPrice').textContent = fmtINR(mPrice);
+        document.getElementById('msandTipper').textContent = mTipper;
+        document.getElementById('msandPricePerTon').textContent = '₹ ' + PRICES.m_sand_double_washed.pricePerTon.toLocaleString('en-IN') + '/ton';
+
+        document.getElementById('psandTon').textContent = fmtNum(pTon, 1);
+        document.getElementById('psandCft').textContent = Math.round(pCft).toLocaleString('en-IN');
+        document.getElementById('psandUnit').textContent = pUnit.toFixed(1);
+        document.getElementById('psandPrice').textContent = fmtINR(pPrice);
+        document.getElementById('psandTipper').textContent = pTipper;
+        document.getElementById('psandPricePerTon').textContent = '₹ ' + PRICES.p_sand.pricePerTon.toLocaleString('en-IN') + '/ton';
+
+        document.getElementById('aggTon').textContent = fmtNum(aTon, 1);
+        document.getElementById('aggCft').textContent = Math.round(aCft).toLocaleString('en-IN');
+        document.getElementById('aggUnit').textContent = aUnit.toFixed(1);
+        document.getElementById('aggPrice').textContent = fmtINR(aPrice);
+        document.getElementById('aggTipper').textContent = aTipper;
+        document.getElementById('aggPricePerTon').textContent = '₹ ' + Math.round(PRICES.aggregate_20mm_jelly.pricePerTon * AGG_SPLIT.mm20 + PRICES.aggregate_40mm.pricePerTon * AGG_SPLIT.mm40).toLocaleString('en-IN') + '/ton';
+
+        document.getElementById('grandTotal').innerHTML = fmtINR(grand) + '<span class="small"> material cost, excl. transport</span>';
+        document.getElementById('totalTon').textContent =
+          '≈ ' + Math.round(mTon + pTon + aTon) + ' tons · ' + (mTipper + pTipper + aTipper) + ' tipper trips · ' +
+          area.toLocaleString('en-IN') + ' sq ft · ' + (floors === 1 ? 'G' : 'G+' + (floors - 1)) + ' · ' + usage;
+      }
+
+      const areaInput = document.getElementById('area');
+      const floorsInput = document.getElementById('floors');
+      const usageInput = document.getElementById('usage');
+      areaInput.addEventListener('input', calc);
+      floorsInput.addEventListener('change', calc);
+      usageInput.addEventListener('change', calc);
+
+      document.querySelectorAll('#presets button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#presets button').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          areaInput.value = btn.dataset.area;
+          calc();
+        });
       });
+
       calc();
     })();
   </script>
