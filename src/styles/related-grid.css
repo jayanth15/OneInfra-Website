@@ -1,0 +1,29 @@
+/* Related links — 3-col cards (used in price.html, calculator.html, contact.html) */
+
+.related {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+}
+@media (max-width: 920px) { .related { grid-template-columns: 1fr; } }
+.related a {
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.related a:hover { border-color: var(--fg); text-decoration: none; }
+.related a .kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.related a h4 { font-size: 16px; font-weight: 600; color: var(--fg); margin: 0; }
+.related a p { font-size: 13px; color: var(--muted); margin: 0; }

@@ -1,0 +1,94 @@
+/* Products page: 4-col product card (pcard) with size + meta + order button */
+
+.product-pcard-grid-8 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+@media (max-width: 1100px) { .product-pcard-grid-8 { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px) { .product-pcard-grid-8 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .product-pcard-grid-8 { grid-template-columns: 1fr; } }
+
+.pcard {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.pcard:hover { border-color: var(--fg); transform: translateY(-2px); }
+.pcard .photo {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.pcard .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 400ms ease;
+}
+.pcard:hover .photo img { transform: scale(1.04); }
+.pcard .body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+.pcard .size {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+.pcard h3 { font-size: 19px; font-weight: 600; line-height: 1.25; }
+.pcard .use { font-size: 13px; color: var(--muted); line-height: 1.45; flex: 1; }
+.pcard .meta {
+  display: flex;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: var(--space-3);
+  flex-wrap: wrap;
+}
+.pcard .meta strong { color: var(--fg); font-weight: 600; }
+.pcard .order {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: var(--space-3);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  text-decoration: none;
+}
+.pcard .order:hover { background: var(--accent); color: var(--accent-on); border-color: var(--accent); text-decoration: none; }
+
+/* WMM wide variant (last pcard in catalogue) */
+.pcard.pcard-wide {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: stretch;
+}
+.pcard.pcard-wide .photo { flex: 0 0 360px; aspect-ratio: auto; min-height: 280px; }
+.pcard.pcard-wide .body { flex: 1; justify-content: center; gap: var(--space-3); }
+.pcard.pcard-wide .use { max-width: 64ch; }
+@media (max-width: 800px) {
+  .pcard.pcard-wide { flex-direction: column; }
+  .pcard.pcard-wide .photo { flex: 0 0 auto; aspect-ratio: 4/3; min-height: auto; }
+}

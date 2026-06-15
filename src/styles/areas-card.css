@@ -1,0 +1,31 @@
+/* Contact: 9-area grid card */
+
+.areas-card {
+  padding: var(--space-8);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-6);
+}
+.areas-card h3 { font-size: 18px; font-weight: 600; margin-bottom: var(--space-4); }
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+@media (max-width: 920px) { .areas-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .areas-grid { grid-template-columns: 1fr; } }
+.area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--fg);
+}
+.area .pin {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  flex-shrink: 0;
+}

@@ -1,0 +1,57 @@
+/* Calculator: grand total block + footnote */
+
+.price-total {
+  background: var(--fg);
+  color: var(--surface);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.price-total .label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--surface) 65%, transparent);
+}
+.price-total .num {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.price-total .num .small {
+  font-size: 0.5em;
+  color: color-mix(in oklab, var(--surface) 70%, transparent);
+  font-weight: 500;
+  margin-left: 6px;
+}
+.price-total .small-line {
+  font-size: 13px;
+  color: color-mix(in oklab, var(--surface) 70%, transparent);
+}
+.price-total .actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  flex-wrap: wrap;
+}
+.price-total .btn-primary { background: var(--accent); color: var(--accent-on); }
+.price-total .btn-secondary {
+  background: transparent;
+  color: var(--surface);
+  border-color: color-mix(in oklab, var(--surface) 40%, transparent);
+}
+.price-total .btn-secondary:hover { border-color: var(--surface); }
+
+.footnote {
+  font-size: 12px;
+  color: var(--muted);
+  padding: var(--space-4);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+.footnote strong { color: var(--fg); }

@@ -1,0 +1,46 @@
+/* Home page: 4-card "Learn" guide grid */
+
+.home-learn {
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+  padding-block: var(--space-20);
+}
+@media (max-width: 920px) { .home-learn { padding-block: var(--space-12); } }
+
+.home-learn h2 { max-width: 28ch; }
+.home-learn .lead {
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+}
+
+.home-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+@media (max-width: 720px) { .home-learn-grid { grid-template-columns: 1fr; } }
+
+.home-learn-card {
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--fg);
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+.home-learn-card:hover { border-color: var(--fg); transform: translateY(-1px); text-decoration: none; }
+.home-learn-card .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+.home-learn-card h3 { font-size: 18px; font-weight: 600; margin: 0; }
+.home-learn-card p { font-size: 14px; color: var(--muted); margin: 0; }

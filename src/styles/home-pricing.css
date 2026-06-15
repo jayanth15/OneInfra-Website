@@ -1,0 +1,83 @@
+/* Home page: 3-card pricing block (M-Sand, P-Sand, Aggregate) + transport disclaimer */
+
+.home-pricing {
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+  padding-block: var(--space-20);
+}
+@media (max-width: 920px) { .home-pricing { padding-block: var(--space-12); } }
+
+.home-pricing h2 { max-width: 28ch; }
+.home-pricing .lead {
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+}
+
+.home-price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+@media (max-width: 920px) { .home-price-grid { grid-template-columns: 1fr; } }
+
+.home-price-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.home-price-card .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.home-price-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.home-price-card .num {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.6vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.home-price-card .num .unit {
+  font-size: 0.5em;
+  color: var(--muted);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.home-price-card .per { font-size: 13px; color: var(--muted); }
+.home-price-card .btn { margin-top: var(--space-3); }
+
+.home-price-disclaimer {
+  display: flex;
+  gap: var(--space-4);
+  background: color-mix(in oklab, var(--warn) 6%, var(--surface));
+  border: 1px solid color-mix(in oklab, var(--warn) 50%, var(--border));
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin-top: var(--space-8);
+}
+.home-price-disclaimer .icon {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--warn);
+  color: var(--fg);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+.home-price-disclaimer p { font-size: 14px; color: var(--fg); }
+.home-price-disclaimer strong { color: var(--fg); }

@@ -1,0 +1,57 @@
+/* Contact: form + info list */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-12);
+}
+@media (max-width: 920px) { .contact-grid { grid-template-columns: 1fr; gap: var(--space-8); } }
+
+.contact-card {
+  padding: var(--space-8);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.contact-card h2 { font-size: clamp(24px, 2.5vw, 28px); font-weight: 600; margin-bottom: var(--space-3); }
+.contact-card > p { color: var(--muted); font-size: 15px; margin-bottom: var(--space-6); }
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--space-4); }
+.field label { font-size: 13px; color: var(--muted); font-weight: 500; }
+.input, .textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--fg);
+  font: inherit;
+  font-size: 15px;
+}
+.input:focus, .textarea:focus {
+  outline: 2px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  border-color: var(--accent);
+}
+.textarea { min-height: 120px; resize: vertical; line-height: 1.55; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+@media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+.form-note { font-size: 13px; color: var(--muted); margin-top: var(--space-3); }
+
+.info-list { display: flex; flex-direction: column; gap: var(--space-5); }
+.info-item {
+  padding: var(--space-5);
+  border-left: 2px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.info-item .info-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.info-item .info-value { font-size: 18px; font-weight: 500; color: var(--fg); }
+.info-item .info-value.phone { font-family: var(--font-display); font-size: 24px; }
+.info-item .info-meta { font-size: 14px; color: var(--muted); margin-top: 4px; }

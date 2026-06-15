@@ -1,0 +1,25 @@
+/* Home page: 4-stat strip */
+
+.home-stats {
+  padding-block: var(--space-12);
+}
+.home-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-8);
+}
+@media (max-width: 720px) { .home-stats-strip { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
+.home-stats-strip .stat .num {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 48px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+.home-stats-strip .stat .num .accent { color: var(--accent); }
+.home-stats-strip .stat .lbl {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: var(--space-2);
+}

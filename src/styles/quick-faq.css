@@ -1,0 +1,22 @@
+/* Quick FAQ: border-separated Q&A list */
+
+.quick-faq {
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+  padding-block: var(--space-20);
+}
+@media (max-width: 920px) { .quick-faq { padding-block: var(--space-12); } }
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: var(--space-8);
+}
+.faq {
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--border);
+}
+.faq:last-child { border-bottom: 1px solid var(--border); }
+.faq h3 { font-size: 18px; font-weight: 600; margin-bottom: var(--space-2); }
+.faq p { font-size: 15px; color: var(--muted); }
