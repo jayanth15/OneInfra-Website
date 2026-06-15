@@ -1,4 +1,5 @@
 @import "./tokens.css";
+@import "./hero.css";
 
 /* Self-hosted Inter via @fontsource/inter — only 4 latin weights, ~96KB total */
 @font-face {
