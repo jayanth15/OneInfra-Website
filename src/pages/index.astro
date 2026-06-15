@@ -2,13 +2,24 @@
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import Hero from "~/components/Hero.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
-import { site } from "~/config/site";
+import { site, prices, productOrder } from "~/config/site";
 import { localBusinessLd, websiteLd } from "~/lib/schema";
 import "~/styles/cards.css";
+import "~/styles/home-pricing.css";
+import "~/styles/home-stats.css";
+import "~/styles/home-learn.css";
 
 const title = `OneInfra · A trusted supplier of M-Sand, P-Sand and Aggregate in Chennai`;
 const description = `OneInfra is a trusted supplier of washed M-Sand, P-Sand and blue-metal Aggregate in Chennai. Same-day supply to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi and Anna Nagar. Call ${site.phone}.`;
 const jsonLd = [localBusinessLd(), websiteLd()];
+
+const heroProducts = [
+  prices.products.m_sand_double_washed,
+  prices.products.p_sand,
+  prices.products.aggregate_20mm_jelly,
+];
+const perUnit = (p: typeof prices.products.m_sand_double_washed) =>
+  Math.round((p.pricePerUnit / p.pricePerTon) * 10) / 10;
 ---
 
 <MarketingLayout title={title} description={description} current="home" jsonLd={jsonLd}>
@@ -93,8 +104,73 @@ const jsonLd = [localBusinessLd(), websiteLd()];
     </div>
   </section>
 
+  <section class="section home-pricing">
+    <div class="container">
+      <p class="eyebrow">This week's price · Chennai</p>
+      <h2 style="max-width: 28ch;">Transparent per-ton and per-unit rates for tipper loads.</h2>
+      <p class="lead">Prices shift with fuel, demand and quarry rates. The numbers below are this week's band — call for the exact rate on the day of delivery.</p>
+      <div class="home-price-grid">
+        {heroProducts.map((p, idx) => (
+          <div class="home-price-card">
+            <span class="label">{String(idx + 1).padStart(2, "0")} · {p.name.split(" ")[0]}</span>
+            <h3>{p.name.replace(/^[A-Za-z0-9-]+\s/, "")}</h3>
+            <div class="num">₹ {p.pricePerTon.toLocaleString("en-IN")}<span class="unit">/ ton</span></div>
+            <p class="per">Per unit (100 CFT ≈ 1.4 ton): ₹ {p.pricePerUnit.toLocaleString("en-IN")} (~{perUnit(p)} ton)</p>
+            <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>Call for today's {p.name.split(" ")[0]} quote</a>
+          </div>
+        ))}
+      </div>
+      <div class="home-price-disclaimer">
+        <div class="icon">i</div>
+        <p><strong>Prices exclude transport.</strong> Transport is charged per trip based on your area — Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, Anna Nagar and surrounding suburbs. We quote both numbers on the call before the tipper is loaded.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-stats">
+    <div class="container">
+      <div class="home-stats-strip">
+        <div class="stat"><div class="num">6<span class="accent">+</span></div><div class="lbl">Chennai areas served daily</div></div>
+        <div class="stat"><div class="num">IS<span class="accent">383</span></div><div class="lbl">Graded M-Sand and aggregates</div></div>
+        <div class="stat"><div class="num"><span class="accent">Same-day</span></div><div class="lbl">Delivery on most orders</div></div>
+        <div class="stat"><div class="num">1<span class="accent"> call</span></div><div class="lbl">Phone-first, no forms, no apps</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section home-learn">
+    <div class="container">
+      <p class="eyebrow">SEO-loaded learning centre</p>
+      <h2 style="max-width: 28ch;">Four short guides for first-time Chennai home-builders.</h2>
+      <p class="lead">Plain-English, two-minute reads. Written for the homeowner — not the engineer.</p>
+      <div class="home-learn-grid">
+        <a class="home-learn-card" href="/guides/msand-vs-river-sand">
+          <span class="label">Guide · 6 min read</span>
+          <h3>M-Sand vs river sand</h3>
+          <p>Strength, grading, silt, cost and the environment — why M-Sand is the default for Chennai construction in 2026.</p>
+        </a>
+        <a class="home-learn-card" href="/guides/quality-check">
+          <span class="label">Field guide · 5 min read</span>
+          <h3>How to check M-Sand quality on site</h3>
+          <p>Five field tests to run when the tipper arrives, before the load is tipped. Silt, palm, particle shape, gradation and certificate.</p>
+        </a>
+        <a class="home-learn-card" href="/guides/cft-lorry-guide">
+          <span class="label">Measurement · 6 min read</span>
+          <h3>What is CFT and how to measure a lorry</h3>
+          <p>CFT, m³, tons and units — conversion table, lorry-size chart, and a worked example with a 6-wheel tipper.</p>
+        </a>
+        <a class="home-learn-card" href="/price">
+          <span class="label">Pricing · updated weekly</span>
+          <h3>M-Sand, P-Sand and aggregate price in Chennai</h3>
+          <p>Per-ton and per-unit rates for tipper loads. Six factors that move the price across the year — and how to lock a quote.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <CtaStrip
-    title="One call gets you a firm quote for your area and quantity."
-    body="We price over the phone in under a minute. No forms, no waiting. Same-day delivery on most orders in Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, and Anna Nagar."
+    title="One call for price, quantity and delivery."
+    body="Tell us what you are building, where, and how much. We will quote a per-ton, per-unit and transport number — and book a delivery slot on the same call."
+    small="Open Mon–Sat · 7 am to 8 pm · Sun by appointment"
   />
 </MarketingLayout>
