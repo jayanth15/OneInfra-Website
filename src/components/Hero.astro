@@ -8,43 +8,89 @@ interface Props {
   body: string;
   bgImage?: string;
   bgAlt?: string;
+  sidePhoto?: { src: string; alt: string; badgeLabel?: string; badgeSub?: string };
   primaryCta?: { href: string; label: string };
   secondaryCta?: { href: string; label: string };
   trustStrip?: { n: string; l: string }[];
 }
 const {
   eyebrow, titleHtml, body, bgImage, bgAlt = "",
-  primaryCta, secondaryCta, trustStrip,
+  sidePhoto, primaryCta, secondaryCta, trustStrip,
 } = Astro.props;
 const defaultCta = { href: `tel:${site.phoneTel}`, label: `Call ${site.phone}` };
 const pCta = primaryCta ?? defaultCta;
 ---
 
-<section class="hero">
-  {bgImage && (
-    <div class="hero-bg">
+{sidePhoto ? (
+  <section class="hero hero-with-photo">
+    <div class="hero-bg-img">
       <img src={bgImage} alt={bgAlt} loading="eager" fetchpriority="high" />
     </div>
-  )}
-  <div class="container">
-    <p class="eyebrow">{eyebrow}</p>
-    <h1 set:html={titleHtml}></h1>
-    <p>{body}</p>
-    <div class="hero-cta">
-      <a class="btn btn-primary btn-large" href={pCta.href}>{pCta.label}</a>
-      {secondaryCta && (
-        <a class="btn btn-secondary btn-large" href={secondaryCta.href}>{secondaryCta.label}</a>
-      )}
-    </div>
-    {trustStrip && (
-      <div class="trust-strip">
-        {trustStrip.map((t) => (
-          <div class="trust">
-            <span class="n">{t.n}</span>
-            <span class="l">{t.l}</span>
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">{eyebrow}</p>
+          <h1 set:html={titleHtml}></h1>
+          <p class="lead">{body}</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary btn-large" href={pCta.href}>{pCta.label}</a>
+            {secondaryCta && (
+              <a class="btn btn-secondary btn-large" href={secondaryCta.href}>{secondaryCta.label}</a>
+            )}
           </div>
-        ))}
+          {trustStrip && (
+            <div class="hero-trust">
+              {trustStrip.map((t) => (
+                <div class="trust-item">
+                  <span class="trust-num" set:html={t.n}></span>
+                  <span class="trust-label">{t.l}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div class="hero-photo">
+          <img src={sidePhoto.src} alt={sidePhoto.alt} loading="eager" />
+          {sidePhoto.badgeLabel && (
+            <div class="badge">
+              <span class="dot"></span>
+              <span class="label">
+                <strong>{sidePhoto.badgeLabel}</strong>
+                {sidePhoto.badgeSub && <span>{sidePhoto.badgeSub}</span>}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+) : (
+  <section class="hero">
+    {bgImage && (
+      <div class="hero-bg">
+        <img src={bgImage} alt={bgAlt} loading="eager" fetchpriority="high" />
       </div>
     )}
-  </div>
-</section>
+    <div class="container">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 set:html={titleHtml}></h1>
+      <p>{body}</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-large" href={pCta.href}>{pCta.label}</a>
+        {secondaryCta && (
+          <a class="btn btn-secondary btn-large" href={secondaryCta.href}>{secondaryCta.label}</a>
+        )}
+      </div>
+      {trustStrip && (
+        <div class="trust-strip">
+          {trustStrip.map((t) => (
+            <div class="trust">
+              <span class="n">{t.n}</span>
+              <span class="l">{t.l}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+)}
