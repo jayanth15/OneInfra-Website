@@ -4,42 +4,159 @@ import CtaStrip from "~/components/CtaStrip.astro";
 import { site } from "~/config/site";
 import { whatsappUrl } from "~/lib/whatsapp";
 import { localBusinessLd } from "~/lib/schema";
-import "~/styles/cards.css";
+import "~/styles/phone-hero.css";
+import "~/styles/contact-form.css";
+import "~/styles/areas-card.css";
+import "~/styles/quick-faq.css";
+import "~/styles/related-grid.css";
 
-const title = `Contact OneInfra · Call, WhatsApp, or Visit · Chennai`;
+const title = `Contact OneInfra · Call +91 99943 33918 for M-Sand, P-Sand & Aggregates`;
 const description = `Call OneInfra, a trusted M-Sand, P-Sand and aggregate supplier in Chennai, at ${site.phone}. Delivery to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, Anna Nagar.`;
 const jsonLd = localBusinessLd();
-const waUrl = whatsappUrl();
+
+const faqs = [
+  { q: "What is the minimum order?", a: "One tipper — 300 CFT (≈ 8.5 m³, ≈ 13 tons). That covers a typical home plaster job in a single load. Smaller volumes can be discussed on the call." },
+  { q: "How fast can you deliver?",   a: "Most orders are loaded and on the road within four to eight hours of your call. For Ambattur, Avadi, Tambaram, Velachery and Anna Nagar we usually dispatch the same day." },
+  { q: "Do you deliver on Sundays?",  a: "By appointment. Send a WhatsApp to +91 99943 33918 and we will confirm the earliest slot — usually Monday morning." },
+  { q: "How do I pay?",               a: "Cash to the driver, UPI on arrival, or bank transfer from your office. We issue a receipt for every load. We do not ask for advance payment." },
+  { q: "What if the material is off-grade on arrival?", a: "We replace the load at our cost. Tell the driver, call us, and we will send a fresh tipper before the old one leaves the site." },
+];
+
+const learnCards = [
+  { label: "Calculator", h: "Quantity calculator",        p: "Get the tonnage, CFT and tipper count for your plot in 30 seconds." },
+  { label: "Price",      h: "This week's price band",       p: "M-Sand, P-Sand and aggregate price in Chennai, updated weekly." },
+  { label: "Measurement",h: "What is CFT and how to measure a lorry", p: "Verify the load with a tape and convert in your head." },
+  { label: "Field guide",h: "Check M-Sand quality on site", p: "Five tests to run when the tipper arrives." },
+];
+
+const deliveryAreas = [
+  "Tambaram", "Velachery", "Ambattur", "Avadi", "OMR", "ECR", "Anna Nagar",
+  "Surrounding suburbs", "Other areas on request"
+];
 ---
 
 <MarketingLayout title={title} description={description} current="contact" jsonLd={jsonLd}>
-  <section class="page-hero">
+  <section class="phone-hero">
+    <div class="hero-bg"><img src="/images-opt/delivery-truck.webp" alt="White OneInfra tipper truck beside a stockpile" loading="eager" fetchpriority="high" /></div>
     <div class="container">
-      <p class="eyebrow">Get in touch</p>
-      <h1>Call, WhatsApp, or visit the yard</h1>
-      <p>We answer in under a minute during work hours. No forms, no waiting.</p>
+      <div class="label">One number · same person picks up</div>
+      <h1>Skip the form. Call us and tell us what your site needs.</h1>
+      <a class="big-phone" href={`tel:${site.phoneTel}`}>{site.phone}</a>
+      <p class="sub">We answer from <strong>7 am to 8 pm, Monday to Saturday</strong>. For Sundays, send a WhatsApp to the same number and we will reply first thing Monday.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container" style="max-width: 720px;">
-      <div class="stats-strip" style="grid-template-columns: 1fr; gap: var(--space-6);">
-        <div class="stat">
-          <span class="num"><a href={`tel:${site.phoneTel}`}>{site.phone}</a></span>
-          <span class="lbl">Tap to call · {site.hours}</span>
+    <div class="container contact-grid">
+      <div class="contact-card">
+        <h2>Prefer a message? Tell us what you need.</h2>
+        <p>Leave your number, material and quantity. We will call back with a price and a delivery slot, usually within an hour during work hours.</p>
+        <form onsubmit="event.preventDefault(); document.getElementById('form-thanks').hidden = false; this.hidden = true;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input class="input" id="name" type="text" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input class="input" id="phone" type="tel" required />
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);">
+            <div class="field">
+              <label for="material">Material</label>
+              <select class="input" id="material">
+                <option>M-Sand</option>
+                <option>P-Sand</option>
+                <option>Aggregates (20 mm)</option>
+                <option>Aggregates (40 mm)</option>
+                <option>Mix of materials</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="area">Area in Chennai</label>
+              <input class="input" id="area" type="text" placeholder="e.g. Velachery" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="msg">Quantity &amp; any notes</label>
+            <textarea class="textarea" id="msg" placeholder="e.g. 2 tippers of M-Sand for foundation, delivery by Thursday"></textarea>
+          </div>
+          <button class="btn btn-primary btn-large" type="submit">Send &amp; request a callback</button>
+          <p class="form-note">We will not share your number. We will only call about your order.</p>
+        </form>
+        <div id="form-thanks" hidden style="padding: var(--space-8); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); text-align: center;">
+          <h3 style="font-size: 22px; margin-bottom: var(--space-3);">Thanks — we have your request.</h3>
+          <p style="color: var(--muted);">We will call you back within the hour during work hours. For something urgent, just dial {site.phone}.</p>
         </div>
-        <div class="stat">
-          <span class="num"><a href={waUrl}>WhatsApp us</a></span>
-          <span class="lbl">Prefilled message · we reply within minutes</span>
+      </div>
+      <div>
+        <div class="info-list">
+          <div class="info-item">
+            <div class="info-label">Call us</div>
+            <a class="info-value phone" href={`tel:${site.phoneTel}`}>{site.phone}</a>
+            <p class="info-meta">Mon–Sat · 7 am to 8 pm · Sun by appointment</p>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Email</div>
+            <div class="info-value">{site.email}</div>
+            <p class="info-meta">For project enquiries &amp; invoices</p>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Yard address</div>
+            <div class="info-value">OneInfra, Tambaram</div>
+            <p class="info-meta">Chennai, Tamil Nadu. Visits by appointment — please call before arriving.</p>
+          </div>
+          <div class="info-item">
+            <div class="info-label">WhatsApp</div>
+            <a class="info-value phone" href={whatsappUrl()}>WhatsApp us</a>
+            <p class="info-meta">Prefilled message · we reply within minutes</p>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Hours</div>
+            <div class="info-value">Mon – Sat · 7 am to 8 pm</div>
+            <p class="info-meta">Sunday: WhatsApp only, replies Monday morning</p>
+          </div>
         </div>
-        <div class="stat">
-          <span class="num" style="font-size: 22px;">{site.address}</span>
-          <span class="lbl">Supply point · visit the yard · weigh-ins welcome</span>
+        <div class="areas-card">
+          <h3>Where we deliver</h3>
+          <div class="areas-grid">
+            {deliveryAreas.map((a) => (
+              <div class="area"><span class="pin"></span>{a}</div>
+            ))}
+          </div>
         </div>
-        <div class="stat">
-          <span class="num" style="font-size: 22px;">{site.email}</span>
-          <span class="lbl">Email for invoicing and bulk enquiries</span>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section quick-faq">
+    <div class="container">
+      <p class="eyebrow">Quick answers</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch;">Things people usually ask on the first call.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <div class="faq">
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface); border-block: 1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">Useful reads</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch; margin-bottom: var(--space-8);">Plan your order before you call.</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5);">
+        {learnCards.map((c) => (
+          <a href={`/guides/${c.h.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} style="padding: var(--space-5); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); display: flex; flex-direction: column; gap: var(--space-2); color: var(--fg);">
+            <span class="eyebrow" style="margin: 0;">{c.label}</span>
+            <h3 style="font-size: 18px; font-weight: 600; margin: 0;">{c.h}</h3>
+            <p style="font-size: 14px; color: var(--muted); margin: 0;">{c.p}</p>
+          </a>
+        ))}
       </div>
     </div>
   </section>
