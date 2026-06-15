@@ -15,19 +15,61 @@ const jsonLd = [
   ]),
   faqLd([
     { q: "What is CFT in sand and aggregate?", a: "CFT stands for cubic feet. 1 CFT = 1 ft × 1 ft × 1 ft = 0.0283 m³. Sand and aggregate in Chennai are usually quoted per CFT or per unit (1 unit = 100 CFT)." },
-    { q: "How much does 1 unit of M-Sand weigh in Chennai?", a: "1 unit of M-Sand ≈ 1.5 ton (≈ 1500 kg). A 3.5 ton tipper load = ~2.3 units." },
-    { q: "How do I measure a tipper's load with a tape?", a: "Measure length × width × height of the pile in feet. That's the CFT. Divide by 100 to get units. Multiply by 1.5 to get approximate tons." },
+    { q: "How much does 1 unit of M-Sand weigh in Chennai?", a: "1 unit of M-Sand weighs roughly 1.4 ton (1,400 kg). A standard 300 CFT tipper carries about 13 tons — close to 2 units of M-Sand or 2.3 units of blue metal." },
+    { q: "How do I measure a tipper's load with a tape?", a: "Measure the inside length × width × height of the loaded pile in feet. That's the CFT. Divide by 100 to get units. Multiply by ~0.034 to get approximate tons for washed M-Sand." },
   ]),
 ];
 ---
 
-<GuideLayout title={title} description={description} eyebrow="Field guide" body="CFT, m³, ton, units — the four ways Chennai builders measure a tipper load, and how to convert between them." bgImage="/images-opt/Tipper-accurate.jpg" bgAlt="A tipper loaded with M-Sand at the OneInfra Tambaram yard" jsonLd={jsonLd}>
-  <h2>Quick reference</h2>
+<GuideLayout title={title} description={description} eyebrow="Field guide · Measurement" body="CFT, m³, ton, units — the four ways Chennai builders measure a tipper load, and how to convert between them." bgImage="/images-opt/Tipper-accurate.webp" bgAlt="A tipper loaded with M-Sand at the OneInfra Tambaram yard" jsonLd={jsonLd}>
+  <h2 id="cft">What is CFT?</h2>
+  <p><strong>CFT</strong> stands for <strong>cubic feet</strong> — a unit of volume. One CFT is the space of a 1 ft × 1 ft × 1 ft cube, or about 0.0283 cubic metres. Most Chennai sand and aggregate suppliers quote price per CFT, per "unit" (which is 100 CFT) or per ton — so knowing how to convert between them saves you from being over-charged on the phone.</p>
+
+  <h2 id="unit">What is a "unit" of sand?</h2>
+  <p>A <strong>unit</strong> is the trade-standard shorthand for <strong>100 CFT</strong>. A unit of M-Sand is about 1.4 ton (washed and loose). A unit of blue metal is about 1.5-1.6 ton (heavier). When a supplier says "₹ 5,500 per unit", they mean 100 CFT — not 1 ton. Knowing the unit-to-ton ratio is the fastest way to compare two quotes.</p>
+
+  <h2 id="convert">Quick conversion table</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--space-3);">
+    <thead>
+      <tr><th style="padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);">From</th><th style="padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);">To</th><th style="padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);">Multiplier</th></tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);">1 unit</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">CFT</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">100 CFT</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);">1 unit (M-Sand)</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Ton</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">~1.4 ton (washed)</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);">1 unit (Blue metal)</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">Ton</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">~1.55 ton (crushed)</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);">1 ton (M-Sand)</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">CFT</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">~23 CFT (varies by moisture)</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);">1 m³</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">CFT</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">35.3 CFT</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid var(--border);">1 standard tipper</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">CFT</td><td style="padding:10px 12px;border-bottom:1px solid var(--border);">300 CFT (≈ 13 ton M-Sand)</td></tr>
+      <tr><td style="padding:10px 12px;">1 standard tipper</td><td style="padding:10px 12px;">Units</td><td style="padding:10px 12px;">3 units</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="measure">How to measure a lorry with a tape</h2>
+  <p>Before the tipper tips, grab a 5-metre measuring tape and:</p>
+  <ol>
+    <li>Measure the <strong>inside length</strong> of the load body (in feet).</li>
+    <li>Measure the <strong>inside width</strong>.</li>
+    <li>Measure the <strong>average height</strong> of the pile above the body sides (tip it 3-4 places and average).</li>
+    <li>Multiply L × W × H. That's the CFT.</li>
+  </ol>
+  <p>A typical OneInfra 10-wheeler body is 14 ft long × 7 ft wide. A full 1.5 ft pile above the sides is 14 × 7 × 1.5 = <strong>147 CFT</strong> above the body, plus the body's full volume — which together come to the standard 300 CFT mark. If your measurement gives you less, the tipper was short-loaded.</p>
+
+  <h2 id="worked">Worked example</h2>
+  <p>You're quoted <strong>₹ 5,500 per unit</strong> for double-washed M-Sand. The tipper arrives and you measure 12 ft × 7 ft × 1.2 ft of pile above the body = 100.8 CFT — that is 1 unit. So the load is 1 unit short of a full 3-unit tipper.</p>
+  <p>Now do the math the other way. You want 5 units of M-Sand. 5 units × 1.4 ton/unit = 7 ton. 7 ton ÷ 13 ton/tipper = ~0.55 tipper. Order <strong>1 full tipper</strong> and accept the leftover, or split the load across two sites.</p>
+
+  <h2 id="pitfalls">Common Chennai pitfalls</h2>
   <ul>
-    <li><strong>1 unit</strong> = 100 CFT = ~1.5 ton (sand) or ~1.7 ton (aggregate)</li>
-    <li><strong>1 ton</strong> = 1000 kg ≈ 32 CFT of M-Sand (varies by moisture)</li>
-    <li><strong>1 m³</strong> = 35.3 CFT</li>
-    <li><strong>1 tipper (3.5 ton)</strong> = ~2.3 units of M-Sand</li>
+    <li><strong>"300 CFT" is the body capacity, not the loaded amount.</strong> A poorly-loaded 10-wheeler can carry 220 CFT and still look full. Always measure, don't eyeball.</li>
+    <li><strong>Wet sand weighs more.</strong> A monsoon-loaded tipper can come in at 16 ton for the same 300 CFT. This isn't a bargain — it just means more water weight, less actual sand.</li>
+    <li><strong>"Unit" varies by supplier.</strong> Some old-school suppliers still use "brass" or other local terms. Always confirm: 1 unit = 100 CFT = ~1.4 ton M-Sand.</li>
+    <li><strong>The sides aren't always square.</strong> Tippers with tapered or angled sides will throw off your L × W × H. Use the average of three measurements.</li>
   </ul>
-  <p>Need a quantity for your house? <a href="/calculator">Try the calculator</a>.</p>
+
+  <h2 id="house">How much CFT do you need for a house?</h2>
+  <p>Roughly, a 1,000 sq ft G+1 home needs about <strong>2,300 CFT</strong> of material in total — split between M-Sand, P-Sand and aggregate. The exact breakdown depends on your design and mix ratio. Use the <a href="/calculator">OneInfra quantity calculator</a> to get a live estimate for your plot.</p>
+
+  <p style="font-size: 14px; color: var(--muted); margin-top: var(--space-8); padding: var(--space-4); border: 1px dashed var(--border); border-radius: var(--radius-md);">
+    <strong>OneInfra tip:</strong> if you don't have a tape, ask the driver to roll the loaded tipper onto a weighbridge. We weigh every load at the Tambaram yard, and you can request a photo of the weighbridge slip on delivery.
+  </p>
 </GuideLayout>

@@ -14,19 +14,91 @@ const jsonLd = [
     { name: "Quality Check", url: site.url + "/guides/quality-check" },
   ]),
   faqLd([
-    { q: "How do I check M-Sand quality on site?", a: "Do the silt test (sand + water in a bottle), palm test (rub sand between palms), particle shape (cubical, not flaky), gradation (mix with cement should not bleed), and ask for the IS 383 mill sheet." },
-    { q: "What silt % is acceptable in M-Sand?", a: "IS 383 allows up to 3% silt for plastering sand and 5% for concrete sand. Above that, the sand will weaken the mix and increase water demand." },
+    { q: "How do I check M-Sand quality on site?", a: "Run the silt test (sand + water in a bottle), palm test (rub sand between palms), particle shape inspection (cubical, not flaky), gradation mix (mix with cement and check it holds), and ask for the IS 383 mill sheet from your supplier." },
+    { q: "What silt % is acceptable in M-Sand?", a: "IS 383 allows up to 3% silt for plastering sand and 5% for concrete sand. Above that, the sand weakens the mix and increases water demand." },
+    { q: "What if the M-Sand fails one of the tests?", a: "Stop the tipper from tipping. Call the supplier immediately. A reputable supplier will replace the load at their cost. Do not pay for sand that fails your on-site check." },
   ]),
 ];
 ---
 
-<GuideLayout title={title} description={description} eyebrow="Field guide" body="Five field tests to run the moment the tipper arrives — before the sand is unloaded. Two minutes, no equipment." bgImage="/images-opt/quality-check.jpg" bgAlt="A handful of M-Sand ready for field testing" jsonLd={jsonLd}>
-  <h2>The five tests</h2>
+<GuideLayout title={title} description={description} eyebrow="Field guide · M-Sand Quality" body="Five field tests to run the moment the tipper arrives — before the sand is unloaded. Two minutes, no equipment." bgImage="/images-opt/quality-check.webp" bgAlt="A handful of M-Sand ready for field testing" jsonLd={jsonLd}>
+
+  <h2>Run these five tests, in this order</h2>
+  <p>Each test takes 15-30 seconds. Total time: under two minutes. Do all five before you tell the driver to tip.</p>
+
+  <h3>Test 1 — Silt test (most important)</h3>
   <ol>
-    <li><strong>Silt test</strong> — half a bottle of sand, top with water, shake, let settle. Silt layer should be under 3 mm.</li>
-    <li><strong>Palm test</strong> — rub dry sand between palms. Sharp, gritty = good. Smooth, floury = too many fines.</li>
-    <li><strong>Particle shape</strong> — particles should be cubical, not flaky. Flaky particles weaken the mix.</li>
-    <li><strong>Gradation</strong> — mix sand with cement on a board. It should hold shape and not bleed water.</li>
-    <li><strong>Mill sheet</strong> — ask for the IS 383 sieve analysis. We provide this on request for every batch.</li>
+    <li>Fill a clear plastic water bottle one-third with M-Sand.</li>
+    <li>Top up with clean water, leaving an air gap.</li>
+    <li>Shake hard for 30 seconds.</li>
+    <li>Let it settle for 2 minutes.</li>
   </ol>
+  <p>Sand settles first. Silt floats and forms a layer on top. <strong>Acceptable:</strong> silt layer under 3 mm. <strong>Reject:</strong> silt layer 5 mm or more. Anything over 6 mm and the sand will weaken the mix.</p>
+
+  <h3>Test 2 — Palm test</h3>
+  <ol>
+    <li>Take a small handful of dry M-Sand.</li>
+    <li>Rub it between your palms for 5 seconds.</li>
+  </ol>
+  <p><strong>Good:</strong> gritty, sharp, abrasive feel with visible grains. <strong>Bad:</strong> smooth, floury, almost like face powder — that means too many fines.</p>
+
+  <h3>Test 3 — Particle shape</h3>
+  <p>Pick out 10-15 grains and lay them on a flat surface.</p>
+  <p><strong>Good:</strong> most grains are roughly cubical, like crushed rock. <strong>Bad:</strong> many flat, flaky, or needle-shaped grains. Flaky particles weaken concrete by creating planes of weakness. A quick way to check: flaky grains tend to break easily between fingernails; cubical grains don't.</p>
+
+  <h3>Test 4 — Gradation mix</h3>
+  <ol>
+    <li>Mix a handful of M-Sand with cement (4:1 ratio) and a little water.</li>
+    <li>Try to form a ball in your hand.</li>
+  </ol>
+  <p><strong>Good:</strong> the mix holds its shape, no water bleeds out, surface feels smooth. <strong>Bad:</strong> the mix slumps, water pools at the bottom, or it feels gritty with a wide range of particle sizes — that means poor grading.</p>
+
+  <h3>Test 5 — Mill sheet</h3>
+  <p>Ask the driver (or your supplier's office) for the <strong>IS 383 sieve analysis sheet</strong> for the batch you just received. Every legitimate supplier has this — it shows the percentage of sand passing each sieve size. OneInfra provides this on request for every load. If your supplier can't produce one, that's a red flag.</p>
+  <p>A good IS 383 sheet for plastering sand will show roughly:</p>
+  <ul>
+    <li>100% passing 4.75 mm (sand-sized only)</li>
+    <li>95-100% passing 2.36 mm</li>
+    <li>60-95% passing 1.18 mm (Zone II/III)</li>
+    <li>30-70% passing 600 micron</li>
+    <li>5-30% passing 150 micron</li>
+  </ul>
+
+  <h2>The 30-second pre-tipper checklist</h2>
+  <p>Print this and stick it on the site office wall:</p>
+  <ul>
+    <li>[ ] Driver weighed the load at the yard — what's the kg reading on the slip?</li>
+    <li>[ ] Silt test: settled silt layer under 3 mm?</li>
+    <li>[ ] Palm test: gritty, not floury?</li>
+    <li>[ ] Particle shape: mostly cubical, few flakes?</li>
+    <li>[ ] Gradation mix: holds shape, no bleed?</li>
+    <li>[ ] Mill sheet: requested and received?</li>
+  </ul>
+  <p>All six checks pass? Tell the driver to tip. Any check fails? Stop the tipper, call the supplier, get a replacement or a refund.</p>
+
+  <h2>Common Chennai-site mistakes to avoid</h2>
+  <h3>Mistake 1: "Looks fine, let's just tip it"</h3>
+  <p>M-Sand can look clean and still have 8% silt if it was rushed through the wash. The silt test is the only way to know. Two minutes saves you a 7-day concrete cure of weak concrete.</p>
+
+  <h3>Mistake 2: "It's raining, the sand will be wet anyway"</h3>
+  <p>Wet sand weighs more, but a 13-ton wet load is not "extra sand for the same price" — it's water weight. Ask the supplier to deduct the moisture (typically 5-8% on a wet day).</p>
+
+  <h3>Mistake 3: "We've been using this supplier for years"</h3>
+  <p>Trust but verify. Even the best supplier can have a bad batch. Two minutes of testing protects years of relationship.</p>
+
+  <h3>Mistake 4: "The mason says it's good"</h3>
+  <p>Masons are great at working with what they're given. They will tell you it's "good enough" even when it's marginal. Run the tests yourself or with a project engineer present.</p>
+
+  <h2>What OneInfra does on our side</h2>
+  <p>We try to make your on-site checks redundant by doing the work at the yard:</p>
+  <ul>
+    <li><strong>Double-washing.</strong> Every M-Sand and P-Sand load passes through a two-stage wash line, dropping silt to under 3%.</li>
+    <li><strong>Visual inspection.</strong> Loader operator checks every load before it leaves.</li>
+    <li><strong>Mill test report on request.</strong> Free, per batch, sent via WhatsApp.</li>
+    <li><strong>Weighbridge slip.</strong> Photo of the weighbridge reading sent on dispatch, so you can compare with the delivery measurement.</li>
+    <li><strong>Replace-if-fails.</strong> If a load fails your on-site check, call us — we will send a fresh tipper before the old one leaves the site. No argument, no charge.</li>
+  </ul>
+
+  <h2>See the material before you commit</h2>
+  <p>For any new supplier — including us — ask for a free site sample before placing a bulk order. A 50 kg bag tested on site is cheaper than a 13-ton tipper that fails. We deliver free samples to all Chennai service areas. Call <a href={`tel:${site.phoneTel}`}>{site.phone}</a> or WhatsApp to arrange.</p>
 </GuideLayout>

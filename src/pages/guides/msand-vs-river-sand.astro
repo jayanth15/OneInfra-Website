@@ -4,8 +4,8 @@ import CtaStrip from "~/components/CtaStrip.astro";
 import { site } from "~/config/site";
 import { localBusinessLd, faqLd, breadcrumbLd } from "~/lib/schema";
 
-const title = `M-Sand vs River Sand · Chennai Builder's Comparison`;
-const description = `M-Sand vs river sand compared across strength, silt, grading, cost, and environmental impact. Why Chennai construction has shifted to washed M-Sand, and how to read the difference on your site.`;
+const title = `M-Sand vs River Sand · Chennai Builder's Complete Comparison`;
+const description = `Why M-Sand is the better choice for Chennai construction in 2026 — and when river sand still has a use. Strength, grading, silt, cost, environment and quality checks compared.`;
 const jsonLd = [
   localBusinessLd(),
   breadcrumbLd([
@@ -14,15 +14,77 @@ const jsonLd = [
     { name: "M-Sand vs River Sand", url: site.url + "/guides/msand-vs-river-sand" },
   ]),
   faqLd([
-    { q: "Is M-Sand as strong as river sand?", a: "Yes. Washed M-Sand graded to IS 383 performs as well as or better than river sand in RCC and plaster, with more consistent grading." },
-    { q: "Why is M-Sand cheaper than river sand in Chennai?", a: "M-Sand is manufactured locally from granite, no river mining, lower transport cost, and more consistent supply — so it usually prices 10-20% below river sand." },
-    { q: "Does M-Sand contain silt?", a: "Washed M-Sand has < 3% silt, well within IS 383 limits. Unwashed crusher dust can run 8-15% silt and is not suitable for plaster." },
+    { q: "Is M-Sand as strong as river sand?", a: "Yes. Washed, IS 383 graded M-Sand performs as well as or better than river sand in RCC and plaster, with more consistent grading and lower silt." },
+    { q: "Why is M-Sand cheaper than river sand in Chennai?", a: "M-Sand is manufactured locally from granite, no river mining required, lower transport cost, and more consistent supply. It usually prices 10-20% below river sand." },
+    { q: "Does M-Sand contain silt?", a: "Washed M-Sand has under 3% silt, well within IS 383 limits. Unwashed crusher dust can run 8-15% silt and is not suitable for plaster or fine concrete work." },
+    { q: "Is M-Sand allowed for structural concrete?", a: "Yes. IS 383 graded M-Sand (Zone II/III) is explicitly permitted for RCC up to M30 grade when washed and graded. OneInfra provides mill test reports on request." },
   ]),
 ];
 ---
 
-<GuideLayout title={title} description={description} eyebrow="Field guide" body="M-Sand and river sand compared on strength, silt, grading, cost, and environmental impact — and how to tell what you're getting on your Chennai site." bgImage="/images-opt/msand.jpg" bgAlt="Handful of dark grey double-washed M-Sand" jsonLd={jsonLd}>
-  <h2>The short version</h2>
-  <p>Washed, IS 383 graded M-Sand is what most Chennai builders now use for both RCC and plaster. It's stronger, more consistent, cheaper, and avoids the silt and oversize problems of river sand.</p>
-  <p>Read the <a href="/guides/quality-check">5 field tests for M-Sand quality</a>.</p>
+<GuideLayout title={title} description={description} eyebrow="Guide · M-Sand vs River Sand" body="Why M-Sand is the better choice for most Chennai construction in 2026 — and the few cases where river sand still has a place." bgImage="/images-opt/msand.webp" bgAlt="Handful of dark grey double-washed M-Sand" jsonLd={jsonLd}>
+
+  <h2 id="what">What is M-Sand, and what is river sand?</h2>
+  <p><strong>M-Sand</strong> (Manufactured Sand) is crushed granite rock, ground to sand-sized particles (under 4.75 mm), then washed and graded. <strong>River sand</strong> is natural sand dredged or mined from river beds — the traditional choice in India for thousands of years. In Chennai, both are widely available, but the Tamil Nadu government has progressively restricted river sand mining since 2013 to protect river ecosystems, and M-Sand has filled the gap.</p>
+  <p>Today, over 80% of new Chennai construction uses M-Sand for structural and plaster work, with river sand now a specialty or imported product.</p>
+
+  <h2 id="why">Eight reasons M-Sand wins for most Chennai builds</h2>
+  <ol>
+    <li><strong>Consistent grading.</strong> M-Sand is graded to IS 383 Zone II/III in a controlled plant. River sand grading varies by source, season, and how deep the dredger was digging.</li>
+    <li><strong>Lower silt content.</strong> Washed M-Sand has under 3% silt. Unwashed river sand can run 6-10% silt — silt weakens concrete by increasing water demand and reducing bond strength.</li>
+    <li><strong>Better shape.</strong> M-Sand particles are angular and cubical, which gives better interlock and bond with cement paste. River sand is rounded (because of water tumbling), giving slightly less mechanical bond.</li>
+    <li><strong>Plaster-friendly.</strong> M-Sand is graded to the fine zone masons want for smooth wall finishes. River sand is often a mix of fine and coarse that requires sieving on site.</li>
+    <li><strong>No clay or organic matter.</strong> River sand occasionally contains clay lumps or organic debris that have to be washed out. M-Sand is clean by default.</li>
+    <li><strong>10-20% cheaper.</strong> M-Sand is locally manufactured, no river-mining royalty, shorter transport. Price per ton is consistently below river sand.</li>
+    <li><strong>No environmental damage.</strong> River sand mining causes bank erosion, lowers water tables, and damages aquatic habitats. M-Sand is a quarry by-product of aggregate production — material that was being made anyway.</li>
+    <li><strong>Consistent supply.</strong> No monsoon shutdowns, no government quota cuts. Order any working day of the year.</li>
+  </ol>
+
+  <h2 id="when">When you might still want river sand</h2>
+  <p>River sand still has niche uses in 2026 Chennai construction:</p>
+  <ul>
+    <li><strong>Heritage and restoration work</strong> where matching original materials matters.</li>
+    <li><strong>Tile bedding and jointing</strong> — masons sometimes prefer river sand's rounded grain for traditional tile-laying techniques.</li>
+    <li><strong>Some specialty finishes</strong> like exposed-aggregate walls where the rounded river-sand look is desired.</li>
+  </ul>
+  <p>For all other applications — foundation, RCC, brickwork, plaster, flooring screed — washed M-Sand graded to IS 383 is the better choice. The OneInfra team will always tell you when river sand is the right call; otherwise we default to M-Sand.</p>
+
+  <h2 id="comparison">Side-by-side comparison</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--space-3);">
+    <thead>
+      <tr><th style="padding:12px;text-align:left;border-bottom:1px solid var(--border);">Attribute</th><th style="padding:12px;text-align:left;border-bottom:1px solid var(--border);">M-Sand (washed, IS 383)</th><th style="padding:12px;text-align:left;border-bottom:1px solid var(--border);">River sand</th></tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:12px;border-bottom:1px solid var(--border);">Source</td><td style="padding:12px;border-bottom:1px solid var(--border);">Crushed granite, manufactured</td><td style="padding:12px;border-bottom:1px solid var(--border);">Natural, river bed</td></tr>
+      <tr><td style="padding:12px;border-bottom:1px solid var(--border);">Grading consistency</td><td style="padding:12px;border-bottom:1px solid var(--border);">High (controlled plant)</td><td style="padding:12px;border-bottom:1px solid var(--border);">Variable (source-dependent)</td></tr>
+      <tr><td style="padding:12px;border-bottom:1px solid var(--border);">Silt content</td><td style="padding:12px;border-bottom:1px solid var(--border);">&lt; 3% (washed)</td><td style="padding:12px;border-bottom:1px solid var(--border);">3-10% (varies)</td></tr>
+      <tr><td style="padding:12px;border-bottom:1px solid var(--border);">Particle shape</td><td style="padding:12px;border-bottom:1px solid var(--border);">Cubical, angular</td><td style="padding:12px;border-bottom:1px solid var(--border);">Rounded, smooth</td></tr>
+      <tr><td style="padding:12px;border-bottom:1px solid var(--border);">Cost (per ton, Chennai, 2026)</td><td style="padding:12px;border-bottom:1px solid var(--border);">~₹ 1,250</td><td style="padding:12px;border-bottom:1px solid var(--border);">~₹ 1,500-1,800 (when available)</td></tr>
+      <tr><td style="padding:12px;border-bottom:1px solid var(--border);">Availability</td><td style="padding:12px;border-bottom:1px solid var(--border);">Year-round, all areas</td><td style="padding:12px;border-bottom:1px solid var(--border);">Seasonal, government-quota restricted</td></tr>
+      <tr><td style="padding:12px;border-bottom:1px solid var(--border);">Environmental impact</td><td style="padding:12px;border-bottom:1px solid var(--border);">Low (quarry by-product)</td><td style="padding:12px;border-bottom:1px solid var(--border);">High (river degradation)</td></tr>
+      <tr><td style="padding:12px;">IS 383 certified</td><td style="padding:12px;">Yes, by default</td><td style="padding:12px;">If washed, but variable</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="chennai">Why the shift to M-Sand matters in Chennai</h2>
+  <p>Chennai's construction boom from 2015 onwards, combined with successive court orders restricting Palar and Cauvery river sand mining, has forced a market shift to M-Sand. The Tamil Nadu government now officially recognises M-Sand as an equivalent of river sand for most applications. Building codes, structural engineers, and ready-mix concrete plants have all adapted.</p>
+  <p>The result: M-Sand in Chennai today is reliable, certified, and cheaper. River sand is a specialty, premium-priced, and harder to source. New homeowners almost never need to think about river sand — and that's a good thing.</p>
+
+  <h2 id="check">How to check M-Sand quality on delivery</h2>
+  <p>Five field tests you can run in under two minutes when the tipper arrives. Full details in our <a href="/guides/quality-check">M-Sand quality check guide</a>. In short: silt test in a water bottle, palm test for grit, particle shape inspection, gradation mix, and ask for the IS 383 mill sheet.</p>
+
+  <h2 id="price">How price compares in 2026</h2>
+  <p>As of June 2026, OneInfra's M-Sand prices are:</p>
+  <ul>
+    <li><strong>Washed M-Sand:</strong> ₹ 1,250/ton (≈ ₹ 1,750 per unit)</li>
+    <li><strong>Double-washed P-Sand:</strong> ₹ 1,400/ton (≈ ₹ 2,000 per unit)</li>
+  </ul>
+  <p>River sand, when available, runs ₹ 1,500-1,800/ton — but with frequent stockouts. For a typical 1,000 sq ft home, switching to M-Sand saves ₹ 5,000-8,000 on materials alone, with no quality compromise.</p>
+
+  <h2 id="call">When to call us</h2>
+  <p>If you have an architect's BOQ and want us to quote against it, call <a href={`tel:${site.phoneTel}`}>{site.phone}</a> or WhatsApp the quantities. If you just want to know which grade of M-Sand to use for your specific job, ask on the call — we'll tell you in plain English without upselling.</p>
+
+  <p style="font-size: 14px; color: var(--muted); margin-top: var(--space-8); padding: var(--space-4); border: 1px dashed var(--border); border-radius: var(--radius-md);">
+    <strong>OneInfra position:</strong> we only stock washed, IS 383 graded M-Sand and P-Sand. We do not stock unwashed crusher dust under the M-Sand label, and we will tell you if a different material would suit your job better.
+  </p>
 </GuideLayout>
