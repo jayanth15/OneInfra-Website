@@ -1,109 +1,178 @@
 ---
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
-import { prices, productOrder, type ProductKey } from "~/config/site";
+import { site, prices, productOrder, type ProductKey } from "~/config/site";
 import { localBusinessLd, productListLd } from "~/lib/schema";
-import "~/styles/cards.css";
+import "~/styles/product-pcard.css";
+import "~/styles/where-used.css";
+import "~/styles/compare-table.css";
 
 const title = `Products · OneInfra M-Sand, P-Sand, Dust, 12mm / 20mm / 25mm / 40mm aggregates & WMM`;
 const description = `OneInfra is a trusted civil material supplier in Chennai for 9 grades: M-Sand, P-Sand, crusher dust, 12mm chips, 20mm jelly, 20mm blue, 25mm and 40mm blue metal, plus WMM. See real product photos, sizes, grades and what each is used for.`;
 const jsonLd = [localBusinessLd(), productListLd()];
 
-const sandKeys: ProductKey[] = ['m_sand_double_washed', 'p_sand'];
-const aggKeys: ProductKey[] = ['aggregate_12mm', 'aggregate_20mm_jelly', 'aggregate_20mm_blue', 'aggregate_25mm', 'aggregate_40mm'];
-const subKeys: ProductKey[] = ['crusher_dust', 'wmm'];
+// Per-product use-case text from original products.html
+const useCases: Record<ProductKey, string> = {
+  m_sand_double_washed: "Concrete (RCC, beams, columns), brickwork mortar, plaster base coat, foundation PCC.",
+  p_sand:               "Internal wall plaster, ceiling plaster, finish coats, tile-bedding and jointing.",
+  crusher_dust:         "Sub-base under floor slabs, backfill, pathway compaction, brick manufacturing.",
+  aggregate_12mm:       "Floor screed, thin RCC sections, pathway gravel, plinth protection around buildings.",
+  aggregate_20mm_jelly: "Standard coarse aggregate for RCC slabs, beams and columns. The most-used size on Chennai sites.",
+  aggregate_20mm_blue:  "Same size as jelly, but a tighter grading and lower dust — preferred for high-grade M25+ concrete.",
+  aggregate_25mm:      "Mass-concrete pour (footings, rafts, dams), lean-concrete bases, road sub-base on highways.",
+  aggregate_40mm:      "Foundation backfill, retaining wall drainage layer, road base, gabion walls.",
+  wmm:                  "A graded mix of crusher dust, 12mm and 20mm aggregate in a controlled ratio. Base layer under bitumen roads, driveways, parking lots and compound roads.",
+};
+
+// Per-product size label (matches original)
+const sizeLabels: Record<ProductKey, string> = {
+  m_sand_double_washed: "M-Sand · double washed",
+  p_sand:               "P-Sand · plastering",
+  crusher_dust:         "Crusher dust · < 4.75 mm",
+  aggregate_12mm:       "12 mm · chips",
+  aggregate_20mm_jelly: "20 mm · jelly",
+  aggregate_20mm_blue:  "20 mm · blue metal",
+  aggregate_25mm:      "25 mm · coarse",
+  aggregate_40mm:      "40 mm · gravel",
+  wmm:                  "WMM · wet mix macadam",
+};
+
+// Per-product grade (matches original)
+const gradeMeta: Record<ProductKey, string> = {
+  m_sand_double_washed: "IS 383 Zone II/III",
+  p_sand:               "Plaster · fine",
+  crusher_dust:         "Fine powder",
+  aggregate_12mm:       "10–12 mm",
+  aggregate_20mm_jelly: "16–20 mm",
+  aggregate_20mm_blue:  "16–20 mm · clean",
+  aggregate_25mm:      "20–25 mm",
+  aggregate_40mm:      "40–63 mm",
+  wmm:                  "MoRTH spec",
+};
+
+// 8-col compare table
+const compareRows = [
+  { use: "Foundation PCC",          m: true,  p: false, a20: true,  a12: false, a40: true,  dust: true,  wmm: false },
+  { use: "RCC (slab / beam / column)", m: true,  p: false, a20: true,  a12: false, a40: false, dust: false, wmm: false },
+  { use: "Brickwork / block-work",  m: true,  p: false, a20: false, a12: false, a40: false, dust: false, wmm: false },
+  { use: "Internal wall plaster",  m: false, p: true,  a20: false, a12: false, a40: false, dust: false, wmm: false },
+  { use: "Ceiling plaster",         m: false, p: true,  a20: false, a12: false, a40: false, dust: false, wmm: false },
+  { use: "Floor screed",            m: true,  p: false, a20: false, a12: true,  a40: false, dust: false, wmm: false },
+  { use: "Driveway / compound road", m: false, p: false, a20: false, a12: true,  a40: true,  dust: true,  wmm: true  },
+  { use: "Drainage / backfill",     m: false, p: false, a20: false, a12: false, a40: true,  dust: true,  wmm: false },
+];
 ---
 
 <MarketingLayout title={title} description={description} current="products" jsonLd={jsonLd}>
   <section class="page-hero">
+    <div class="hero-bg"><img src="/images-opt/hero-product-falling.webp" alt="Dark blue metal aggregate falling onto a pile beside fine grey M-Sand" loading="eager" fetchpriority="high" /></div>
     <div class="container">
-      <p class="eyebrow">Catalogue · 9 grades</p>
-      <h1>All 9 grades we deliver in Chennai</h1>
-      <p>Real photos. Real IS 383 grading. Real Chennai prices. Pick a grade to see size, use, and current rate.</p>
+      <p class="eyebrow">9 grades · washed · IS 383</p>
+      <h1>M-Sand, P-Sand and every aggregate size you need on a Chennai site.</h1>
+      <p style="font-size:18px;color:var(--muted);max-width:60ch;margin-top:var(--space-4);">Crushed granite, double-washed and graded to spec. From fine plaster sand to 40mm blue metal for RCC and road base — one phone call gets you a per-tipper quote and a delivery slot.</p>
+      <div class="hero-cta" style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-6);">
+        <a class="btn btn-primary btn-large" href={`tel:${site.phoneTel}`}>Call {site.phone}</a>
+        <a class="btn btn-secondary btn-large" href="#catalogue">See all 9 products</a>
+      </div>
     </div>
   </section>
 
-  <section id="m-sand" class="section">
+  <section class="product-section" id="catalogue" style="padding-block:var(--space-20);">
     <div class="container">
-      <p class="eyebrow">Sand</p>
-      <h2 style="margin-bottom: var(--space-3);">M-Sand and P-Sand</h2>
-      <p style="color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:var(--space-8);">
-        Two grades of washed sand for Chennai construction — M-Sand for concrete, P-Sand for plaster.
-      </p>
-      <div class="product-grid">
-        {sandKeys.map((k) => {
+      <div class="section-head" style="margin-bottom:var(--space-12);">
+        <p class="eyebrow">Catalogue</p>
+        <h2 style="font-size:clamp(28px, 3.6vw, 44px);font-weight:600;max-width:24ch;margin-bottom:var(--space-3);">Nine grades. One supplier. Real photos of what we load on the truck.</h2>
+        <p class="section-sub" style="color:var(--muted);font-size:18px;max-width:56ch;">Every product is washed, sieved and inspected before loading. Hover any product to see a closer view — call to lock today's price and a tipper slot.</p>
+      </div>
+
+      <div class="product-pcard-grid-8">
+        {productOrder.map((k) => {
           const p = prices.products[k];
+          const isWmm = k === "wmm";
           return (
-            <div class="page-card" id={p.slug}>
-              <div class="thumb"><img src={p.image} alt={p.name} loading="lazy" width="800" height="600" /></div>
+            <article class={`pcard ${isWmm ? "pcard-wide" : ""}`} id={p.slug}>
+              <div class="photo"><img src={p.image} alt={`${p.name} — ${useCases[k]}`} loading="lazy" width="800" height="600" /></div>
               <div class="body">
-                <span class="label">{p.unitSize}</span>
+                <span class="size">{sizeLabels[k]}</span>
                 <h3>{p.name}</h3>
-                <p>{p.description}</p>
-                <span class="arrow">From ₹{p.pricePerTon}/ton · ₹{p.pricePerUnit}/unit →</span>
+                <p class="use">{useCases[k]}</p>
+                <div class="meta">
+                  <span>Grade <strong>{gradeMeta[k]}</strong></span>
+                  <span>Pack <strong>{isWmm ? "Tipper only" : "Tipper"}</strong></span>
+                  {isWmm && <span>Min order <strong>3 tippers</strong></span>}
+                </div>
+                <a class="order" href={`tel:${site.phoneTel}`}>Call to order →</a>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
     </div>
   </section>
 
-  <section id="aggregate" class="section">
-    <div class="container">
-      <p class="eyebrow">Aggregate (Jelly)</p>
-      <h2 style="margin-bottom: var(--space-3);">Blue-metal jelly — 12mm to 40mm</h2>
-      <p style="color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:var(--space-8);">
-        Five sizes of blue-metal aggregate, washed and graded to IS 383. Pick the right size for your slab, beam, column, or foundation.
-      </p>
-      <div class="product-grid">
-        {aggKeys.map((k) => {
-          const p = prices.products[k];
-          return (
-            <div class="page-card" id={p.slug}>
-              <div class="thumb"><img src={p.image} alt={p.name} loading="lazy" width="800" height="600" /></div>
-              <div class="body">
-                <span class="label">{p.unitSize}</span>
-                <h3>{p.name}</h3>
-                <p>{p.description}</p>
-                <span class="arrow">From ₹{p.pricePerTon}/ton · ₹{p.pricePerUnit}/unit →</span>
-              </div>
-            </div>
-          );
-        })}
+  <section class="where-used">
+    <div class="container info-wrap">
+      <div class="info-img"><img src="/images-opt/hero-five-houses.webp" alt="3D infographic showing which OneInfra product is used in each part of a 2-story house — M-Sand in foundation, M-Sand + 20mm in columns, M-Sand in walls, P-Sand in plaster, 12mm chips in flooring" loading="lazy" width="900" /></div>
+      <div>
+        <p class="eyebrow">Where each product is used</p>
+        <h2>See at a glance which material goes where in your house.</h2>
+        <p>For a typical G+1 Indian home, you need 3-4 different grades. Use this as a quick checklist before you call — saves a round-trip.</p>
+        <ul>
+          <li><div><strong>Foundation &amp; PCC</strong><span>20mm jelly + M-Sand for the base concrete.</span></div></li>
+          <li><div><strong>Columns, beams, roof slab</strong><span>20mm blue metal + M-Sand for the RCC.</span></div></li>
+          <li><div><strong>Brickwork &amp; blockwork</strong><span>M-Sand + cement mortar (1:6 typical).</span></div></li>
+          <li><div><strong>Internal &amp; ceiling plaster</strong><span>P-Sand — finer grain, smoother finish.</span></div></li>
+          <li><div><strong>Flooring, driveways, compound road</strong><span>12mm chips (light traffic) or WMM (heavy).</span></div></li>
+        </ul>
+        <p style="margin-top: var(--space-5);"><a href="/calculator" style="color: var(--accent); font-weight: 500;">→ Open the M-Sand calculator to estimate quantities for your home</a></p>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="compare-section" style="padding-block:var(--space-20);">
     <div class="container">
-      <p class="eyebrow">Sub-base &amp; fines</p>
-      <h2 style="margin-bottom: var(--space-3);">Crusher Dust and WMM</h2>
-      <p style="color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:var(--space-8);">
-        Crusher dust for block-work joints and yard compaction. WMM (Wet Mix Macadam) for road sub-base and heavy foundations.
-      </p>
-      <div class="product-grid">
-        {subKeys.map((k) => {
-          const p = prices.products[k];
-          return (
-            <div class="page-card" id={p.slug}>
-              <div class="thumb"><img src={p.image} alt={p.name} loading="lazy" width="800" height="600" /></div>
-              <div class="body">
-                <span class="label">{p.unitSize}</span>
-                <h3>{p.name}</h3>
-                <p>{p.description}</p>
-                <span class="arrow">From ₹{p.pricePerTon}/ton · ₹{p.pricePerUnit}/unit →</span>
-              </div>
-            </div>
-          );
-        })}
+      <p class="eyebrow">At a glance</p>
+      <h2 style="font-weight: 600;">What each material is best used for.</h2>
+      <p style="color:var(--muted);font-size:18px;max-width:56ch;margin-top:var(--space-3);margin-bottom:0;">A quick guide. When in doubt, call us and we will suggest the right grade for your job.</p>
+      <div style="overflow-x:auto;margin-top:var(--space-8);">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Use case</th>
+            <th>M-Sand</th>
+            <th>P-Sand</th>
+            <th>20mm</th>
+            <th>12mm</th>
+            <th>40mm</th>
+            <th>Dust</th>
+            <th>WMM</th>
+          </tr>
+        </thead>
+        <tbody>
+          {compareRows.map((r) => (
+            <tr>
+              <td>{r.use}</td>
+              <td class={r.m  ? "check" : "maybe"}>{r.m  ? "✓" : "—"}</td>
+              <td class={r.p  ? "check" : "maybe"}>{r.p  ? "✓" : "—"}</td>
+              <td class={r.a20? "check" : "maybe"}>{r.a20? "✓" : "—"}</td>
+              <td class={r.a12? "check" : "maybe"}>{r.a12? "✓" : "—"}</td>
+              <td class={r.a40? "check" : "maybe"}>{r.a40? "✓" : "—"}</td>
+              <td class={r.dust? "check" : "maybe"}>{r.dust? "✓" : "—"}</td>
+              <td class={r.wmm? "check" : "maybe"}>{r.wmm? "✓" : "—"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       </div>
     </div>
   </section>
 
-  <CtaStrip
-    title="Not sure which grade you need?"
-    body="Tell us the size of the slab, beam, or wall and we'll tell you exactly what to order. No forms — one phone call."
-    secondaryCta={{ href: "/calculator", label: "Use the calculator" }}
-  />
+  <section class="cta-strip" style="background:var(--fg);color:var(--bg);padding-block:var(--space-20);text-align:center;">
+    <div class="container">
+      <h2 style="font-size:clamp(32px, 4.5vw, 56px);font-weight:600;max-width:22ch;margin:0 auto var(--space-5);color:var(--bg);">One call gets you today's price, today's delivery.</h2>
+      <p style="color:color-mix(in oklab, var(--bg) 70%, transparent);max-width:48ch;margin:0 auto var(--space-8);font-size:17px;">Mention the material, the size, and your site area. We quote per tipper and per unit, and we can deliver the same day across most of Chennai.</p>
+      <a class="phone" href={`tel:${site.phoneTel}`} style="font-family:var(--font-mono);font-size:clamp(28px, 4vw, 44px);font-weight:600;color:var(--bg);margin-bottom:var(--space-6);display:block;">{site.phone}</a>
+      <a class="btn btn-primary btn-large" href={`tel:${site.phoneTel}`}>Call now to order</a>
+    </div>
+  </section>
 </MarketingLayout>
