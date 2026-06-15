@@ -24,10 +24,10 @@ const promises = [
 ];
 
 const learnCards = [
-  { label: "Guide",          h: "M-Sand vs river sand",          p: "Why M-Sand is the default for Chennai construction in 2026." },
-  { label: "Field guide",    h: "Check M-Sand quality on site",   p: "Five tests to run when the tipper arrives, before the load is tipped." },
-  { label: "Measurement",    h: "What is CFT and how to measure a lorry", p: "CFT, m³, tons and units — one chart and a worked example." },
-  { label: "Calculator",     h: "Quantity calculator",           p: "Type the built-up area — get tonnage, CFT and tipper count." },
+  { label: "Guide",          slug: "msand-vs-river-sand",         h: "M-Sand vs river sand",          p: "Why M-Sand is the default for Chennai construction in 2026." },
+  { label: "Field guide",    slug: "quality-check",                h: "Check M-Sand quality on site",   p: "Five tests to run when the tipper arrives, before the load is tipped." },
+  { label: "Measurement",    slug: "cft-lorry-guide",              h: "What is CFT and how to measure a lorry", p: "CFT, m³, tons and units — one chart and a worked example." },
+  { label: "Calculator",     slug: "calculator",                    h: "Quantity calculator",           p: "Type the built-up area — get tonnage, CFT and tipper count." },
 ];
 ---
 
@@ -101,7 +101,7 @@ const learnCards = [
       <p style="color: var(--muted); font-size: 17px; max-width: 60ch;">The four guides we wrote for first-time Chennai home-builders.</p>
       <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); margin-top: var(--space-8);">
         {learnCards.map((c) => (
-          <a href={`/guides/${c.h.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} style="padding: var(--space-5); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); display: flex; flex-direction: column; gap: var(--space-2); color: var(--fg);">
+          <a href={c.slug === "calculator" ? `/${c.slug}` : `/guides/${c.slug}`} style="padding: var(--space-5); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); display: flex; flex-direction: column; gap: var(--space-2); color: var(--fg);">
             <span class="eyebrow" style="margin: 0;">{c.label}</span>
             <h3 style="font-size: 18px; font-weight: 600; margin: 0;">{c.h}</h3>
             <p style="font-size: 14px; color: var(--muted); margin: 0;">{c.p}</p>
