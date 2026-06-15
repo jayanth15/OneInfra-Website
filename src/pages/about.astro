@@ -3,40 +3,117 @@ import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site } from "~/config/site";
 import { localBusinessLd } from "~/lib/schema";
+import "~/styles/value-card.css";
+import "~/styles/related-grid.css";
 
-const title = `About OneInfra · Trusted M-Sand, P-Sand and Aggregate Supplier in Chennai`;
+const title = `About OneInfra · Chennai civil material supplier`;
 const description = `OneInfra is a trusted supplier of washed M-Sand, P-Sand and aggregates to homeowners, masons and civil engineers across Chennai. Our own fleet, fair pricing, IS 383 graded.`;
 const jsonLd = localBusinessLd();
+
+const values = [
+  { n: "01", h: "Honest grading",       p: "We grade to IS 383. The M-Sand we deliver is the same M-Sand we sample. No mixed loads, no surprise filler." },
+  { n: "02", h: "Open pricing",         p: "The price we quote on the phone is the price on the receipt. No fuel surcharge added at the gate." },
+  { n: "03", h: "One call, one person", p: "You speak to the same person who loads the truck. No call centres, no escalation matrix, no ticket numbers." },
+];
+
+const promises = [
+  { h: "Washed, not dusty",        p: "Every M-Sand and P-Sand load passes through our wash line. Dust, clay and silt are removed before the tipper leaves our supply point." },
+  { h: "Graded to IS 383",        p: "Aggregates are sieved to Bureau of Indian Standards sizes. Plaster sand is the fine grade masons expect, not builder's sand." },
+  { h: "Loaded the day you call",  p: "Most orders are loaded and on the road within four to eight hours. We will tell you a real time on the phone, not a vague 'by evening'." },
+  { h: "Our drivers, our trucks",  p: "No subcontracted loads. The driver who picks up your material is an OneInfra employee, on salary, and accountable." },
+];
+
+const learnCards = [
+  { label: "Guide",          h: "M-Sand vs river sand",          p: "Why M-Sand is the default for Chennai construction in 2026." },
+  { label: "Field guide",    h: "Check M-Sand quality on site",   p: "Five tests to run when the tipper arrives, before the load is tipped." },
+  { label: "Measurement",    h: "What is CFT and how to measure a lorry", p: "CFT, m³, tons and units — one chart and a worked example." },
+  { label: "Calculator",     h: "Quantity calculator",           p: "Type the built-up area — get tonnage, CFT and tipper count." },
+];
 ---
 
 <MarketingLayout title={title} description={description} current="about" jsonLd={jsonLd}>
   <section class="page-hero">
+    <div class="hero-bg"><img src="/images-opt/hero-five-houses.webp" alt="Construction site with five partially-built houses, rebar columns rising into a warm sky" loading="eager" fetchpriority="high" /></div>
     <div class="container">
-      <p class="eyebrow">About us</p>
-      <h1>A small Chennai team, one tipper, then a fleet.</h1>
-      <p>We started in Tambaram with one tipper and a phone number. Today we run a daily route to seven Chennai areas, IS 383 graded, and price over the phone in under a minute.</p>
+      <p class="eyebrow">About OneInfra</p>
+      <h1>A trusted supplier of M-Sand, P-Sand and Aggregate in Chennai.</h1>
+      <p>OneInfra is a local civil material supplier based in Tambaram, Chennai. We wash, grade and deliver M-Sand, P-Sand, crusher dust, 12mm / 20mm / 25mm / 40mm blue metal and WMM to homeowners, masons and builders across the city — six days a week, with our own fleet of tippers.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <h2 style="margin-bottom: var(--space-4);">What we believe</h2>
-      <p style="font-size:17px;color:var(--muted);margin-bottom:var(--space-4);">
-        Construction buyers in Chennai deserve honest material at a fair price. We cut out middlemen, weigh every load in front of you, and tell you the IS 383 grade before you pay.
-      </p>
-      <h2 style="margin-top: var(--space-12); margin-bottom: var(--space-4);">Our quality promise</h2>
-      <ul style="display:grid;grid-template-columns:1fr;gap:var(--space-3);list-style:none;padding:0;font-size:16px;">
-        <li>✓ Washed before loading</li>
-        <li>✓ IS 383 grading on every batch</li>
-        <li>✓ Mill test report on request</li>
-        <li>✓ Tipper weighed at the yard</li>
-        <li>✓ Same-day delivery in 6 areas</li>
-      </ul>
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Our story</p>
+        <h2>We started because a mason we knew couldn't get a tipper on time.</h2>
+        <p>OneInfra began as a single tipper and a contact list of source quarries. We saw the same problem over and over: builders and homeowners wanted clean, graded M-Sand and aggregates at a fair price, and they wanted it on a specific day. The supply chain in Chennai often failed on both.</p>
+        <p>Today we run our own supply point, our own fleet and our own wash-and-screen line. We don't claim to be the biggest — just the most reliable supplier on your speed-dial.</p>
+      </div>
+      <div class="photo"><img src="/images-opt/site-construction.webp" alt="Chennai house construction site with OneInfra delivery in the background" loading="lazy" width="800" height="600" /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">What we believe</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch;">Three things we do — and three things we never do.</h2>
+      <div class="values">
+        {values.map((v) => (
+          <div class="value">
+            <div class="v-num">{v.n}</div>
+            <h3>{v.h}</h3>
+            <p>{v.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section promise" id="promise">
+    <div class="container">
+      <p class="eyebrow">Our quality promise</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch;">If a load doesn't meet the grade, we replace it free.</h2>
+      <p style="color: var(--muted); font-size: 18px; max-width: 56ch; margin-top: var(--space-3);">We sample every batch and visually check the load before it leaves the supply point. If a mason or engineer finds the material off-grade on arrival, we replace the load at our cost.</p>
+      <div class="promise-grid">
+        {promises.map((p) => (
+          <div class="promise-item">
+            <h3>{p.h}</h3>
+            <p>{p.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fleet">
+    <div class="container">
+      <p class="eyebrow">Our fleet</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch;">A working fleet of tippers, not a logo on a truck.</h2>
+      <p style="color: var(--muted); font-size: 18px; max-width: 56ch; margin-top: var(--space-3);">Six tippers on the road daily, all owned, all insured, all driven by OneInfra staff. Each 10-wheeler tipper carries 300 CFT (≈ 8.5 m³, ≈ 13 tons) — enough for an average home plaster job in one load.</p>
+      <div class="fleet-photo"><img src="/images-opt/delivery-truck.webp" alt="Blue OneInfra tipper lorry loaded with construction sand on a Tamil Nadu road" loading="lazy" width="1600" height="900" /></div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface); border-block: 1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">Useful reads</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch; margin-bottom: var(--space-4);">What to know before you order.</h2>
+      <p style="color: var(--muted); font-size: 17px; max-width: 60ch;">The four guides we wrote for first-time Chennai home-builders.</p>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); margin-top: var(--space-8);">
+        {learnCards.map((c) => (
+          <a href={`/guides/${c.h.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} style="padding: var(--space-5); border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); display: flex; flex-direction: column; gap: var(--space-2); color: var(--fg);">
+            <span class="eyebrow" style="margin: 0;">{c.label}</span>
+            <h3 style="font-size: 18px; font-weight: 600; margin: 0;">{c.h}</h3>
+            <p style="font-size: 14px; color: var(--muted); margin: 0;">{c.p}</p>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
   <CtaStrip
-    title="Talk to us, not a form."
-    body="One phone call, one firm quote. We answer in under a minute during work hours."
+    title="Want a quote for your site? Call us."
+    body="One call gets you a per-unit price, a transport estimate and a delivery slot. If you are a civil engineer quoting a project, ask about volume pricing."
+    small="Open Mon–Sat · 7 am to 8 pm · Sun by appointment"
   />
 </MarketingLayout>
