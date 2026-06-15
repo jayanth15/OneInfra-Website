@@ -11,9 +11,33 @@ const description = `OneInfra is a trusted supplier of clean M-Sand, P-Sand and 
 const jsonLd = [localBusinessLd(), productListLd()];
 
 const audienceCards = [
-  { title: "Homeowners", body: "Building a house in Chennai? We'll tell you exactly which grade, what quantity, and a fair price — in plain English." },
-  { title: "Masons & contractors", body: "Daily route, same-day tipper loading, no fake promises. WhatsApp your BOQ, get a quote in 5 minutes." },
-  { title: "Civil engineers", body: "IS 383 graded, washed, with mill test reports on request. Quantities match your BOQ, no short loading." },
+  {
+    title: "Homeowners",
+    body: "Building a house in Chennai? We will tell you exactly which grade, what quantity, and a fair price — in plain English.",
+    bullets: [
+      "Quantity calculator for your plot",
+      "One call locks today's rate",
+      "Free site sample on request"
+    ]
+  },
+  {
+    title: "Masons & contractors",
+    body: "Daily route, same-day tipper loading, no fake promises. WhatsApp your BOQ, get a quote in 5 minutes.",
+    bullets: [
+      "Volume pricing on repeat orders",
+      "Tipper weighted at the yard",
+      "Direct line to the loader, not a call centre"
+    ]
+  },
+  {
+    title: "Civil engineers",
+    body: "IS 383 graded, washed, with mill test reports on request. Quantities match your BOQ, no short loading.",
+    bullets: [
+      "Mill test sheet per batch",
+      "Project-based quantity take-off",
+      "ITB-grade materials for M25+ concrete"
+    ]
+  },
 ];
 
 const steps = [
@@ -29,8 +53,14 @@ const steps = [
     eyebrow="Chennai · Trusted supplier"
     titleHtml={`One call gets you <span class="accent">clean M-Sand, P-Sand and blue-metal</span> at a fair Chennai price.`}
     body="Nine grades, real product photos, IS 383 graded and washed before loading. Same-day delivery to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi and Anna Nagar."
-    bgImage="/images-opt/Home-Example.jpg"
+    bgImage="/images-opt/Home-Example.webp"
     bgAlt="OneInfra supply yard in Tambaram with three grades of aggregate in conical piles"
+    sidePhoto={{
+      src: "/images-opt/hero-chennai-site.webp",
+      alt: "Chennai construction site with tipper and aggregate stockpiles",
+      badgeLabel: "IS 383 graded",
+      badgeSub: "Washed · sieved · ready to load"
+    }}
     secondaryCta={{ href: "/products", label: "See all 9 grades" }}
     trustStrip={[
       { n: "9 grades", l: "M-Sand · P-Sand · Dust · 12/20/20-blue/25/40mm · WMM" },
@@ -39,6 +69,17 @@ const steps = [
       { n: "Tambaram supply", l: "7 Chennai areas served daily" },
     ]}
   />
+
+  <section style="background: var(--fg); color: var(--surface); padding-block: var(--space-5);">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;">
+        <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in oklab, var(--surface) 65%, transparent);">
+          One number · same person picks up · <strong style="color:var(--surface);font-weight:500;">Mon–Sat 7am–8pm</strong>
+        </span>
+        <a href={`tel:${site.phoneTel}`} style="font-family:var(--font-display);font-size:clamp(22px, 2.4vw, 28px);font-weight:600;color:var(--surface);letter-spacing:-0.01em;text-decoration:none;">{site.phone}</a>
+      </div>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container">
@@ -59,7 +100,7 @@ const steps = [
                 <span class="label">{p.unitSize}</span>
                 <h3>{p.name}</h3>
                 <p>{p.description}</p>
-                <span class="arrow">From ₹{p.pricePerTon}/ton →</span>
+                <span class="arrow">From ₹{p.pricePerTon.toLocaleString("en-IN")}/ton →</span>
               </div>
             </a>
           );
@@ -75,9 +116,16 @@ const steps = [
       <div class="pages-grid">
         {audienceCards.map((c) => (
           <div class="page-card" style="cursor:default;">
-            <div class="body" style="padding: var(--space-6);">
+            <div class="body" style="padding: var(--space-6); gap: var(--space-3);">
               <h3 style="font-size:20px;">{c.title}</h3>
               <p style="font-size:15px;color:var(--muted);">{c.body}</p>
+              <ul style="list-style:none;padding:0;margin:var(--space-3) 0 0;display:flex;flex-direction:column;gap:var(--space-2);">
+                {c.bullets.map((b) => (
+                  <li style="font-size:14px;color:var(--fg);padding-left:22px;position:relative;">
+                    <span style="position:absolute;left:0;color:var(--accent);">→</span>{b}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         ))}
@@ -104,7 +152,7 @@ const steps = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="background: var(--surface); border-block: 1px solid var(--border);">
     <div class="container">
       <p class="eyebrow">Areas served daily</p>
       <h2 style="margin-bottom: var(--space-3);">7 Chennai areas, daily route</h2>
