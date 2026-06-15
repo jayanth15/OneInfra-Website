@@ -5,18 +5,50 @@ import PriceCard from "~/components/PriceCard.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site, prices, productOrder } from "~/config/site";
 import { localBusinessLd, productListLd } from "~/lib/schema";
+import "~/styles/factor-grid.css";
+import "~/styles/related-grid.css";
 
-const title = `M-Sand, P-Sand and Aggregate Price in Chennai · OneInfra`;
+const title = `M-Sand Price in Chennai Today · OneInfra`;
 const description = `Current M-Sand, P-Sand and blue-metal aggregate price in Chennai per ton and per unit. Updated weekly. Factors that change the price and how to lock a quote on one call.`;
 const jsonLd = [localBusinessLd(), productListLd()];
+
+const factors = [
+  { n: "01", h: "Grade and zone",          p: "IS 383 Zone II is the most common construction grade. Finer zones (Zone III / IV) and concrete-grade washed M-Sand cost more because extra sieving is required." },
+  { n: "02", h: "Wash cycle",                p: "Single-washed M-Sand is cheaper than double-washed. Double-washed removes the silt that weakens concrete — worth the premium for slabs and beams." },
+  { n: "03", h: "Distance from supply point to site", p: "Transport is the biggest variable. A site in Tambaram costs less to deliver to than a site in Maraimalai Nagar. We price transport on the call based on your pin code." },
+  { n: "04", h: "Tipper size",               p: "A standard 10-wheeler tipper carries 300 CFT (≈ 8.5 m³, ≈ 13 tons). A 6-wheeler carries 200 CFT, a 12-wheeler carries 400 CFT. Per-ton price drops on bigger loads." },
+  { n: "05", h: "Diesel and royalty",        p: "Stone-royalty revisions by the state government and diesel price changes flow into the rate within a few weeks. We revise the published band weekly." },
+  { n: "06", h: "Demand and season",         p: "Summer (Mar–Jun) and post-monsoon (Oct–Dec) are peak construction months. Prices climb 5–10% at the peak; off-season, the same grade is cheaper." },
+];
+
+// Compare table data
+const compareRows = [
+  { label: "M-Sand (IS 383 · washed)",     perTon: 1250, perUnit: "5,400 – 5,500", minOrder: "1 tipper (300 CFT)" },
+  { label: "P-Sand (plaster · double washed)", perTon: 1400, perUnit: "6,000 – 6,100", minOrder: "1 tipper (300 CFT)" },
+  { label: "Blue metal 20 mm",              perTon: 1150, perUnit: "4,900 – 5,000", minOrder: "1 tipper (300 CFT)" },
+  { label: "Blue metal 40 mm",              perTon: 1200, perUnit: "5,100 – 5,200", minOrder: "1 tipper (300 CFT)" },
+  { label: "Gravel mix 6 mm",               perTon: 1300, perUnit: "5,600 – 5,700", minOrder: "1 tipper (300 CFT)" },
+];
+
+// Top 3 price cards
+const topPriceCards: typeof prices.products.m_sand_double_washed[] = [
+  prices.products.m_sand_double_washed,
+  prices.products.p_sand,
+  prices.products.aggregate_20mm_jelly,
+];
 ---
 
 <MarketingLayout title={title} description={description} current="price" jsonLd={jsonLd}>
   <section class="page-hero">
+    <div class="hero-bg"><img src="/images-opt/product-psand.webp" alt="P-Sand (plastering sand) on a hand-held pile, fine off-white material" loading="eager" fetchpriority="high" /></div>
     <div class="container">
-      <p class="eyebrow">Pricing · This week in Chennai</p>
-      <h1>This week's M-Sand, P-Sand and aggregate price in Chennai</h1>
-      <p>Updated every Monday. One phone call locks the rate for your order — no form, no waiting.</p>
+      <p class="eyebrow">Price guide · Chennai</p>
+      <h1>M-Sand, P-Sand and aggregate price in Chennai today.</h1>
+      <p>OneInfra publishes a weekly price band so homeowners, masons and small builders can budget before they call. The price you are quoted on the phone is the price you pay on the truck — no last-minute changes.</p>
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-top:var(--space-5);font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--muted);padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface);">
+        <span style="width:8px;height:8px;border-radius:999px;background:var(--success);box-shadow:0 0 0 4px color-mix(in oklab, var(--success) 25%, transparent);"></span>
+        Rates updated this week · Chennai · inclusive of supply point loading
+      </div>
     </div>
   </section>
 
@@ -25,18 +57,83 @@ const jsonLd = [localBusinessLd(), productListLd()];
       <PriceFreshness />
 
       <div class="price-grid">
-        {productOrder.map((k) => <PriceCard product={prices.products[k]} />)}
+        {topPriceCards.map((p, idx) => <PriceCard product={p} index={idx} />)}
       </div>
 
-      <div class="price-disclaimer">
-        <div class="icon">i</div>
-        <p>{site.priceDisclaimer}</p>
+      <div style="display:flex;gap:var(--space-4);background:color-mix(in oklab, var(--warn) 6%, var(--surface));border:1px solid color-mix(in oklab, var(--warn) 50%, var(--border));border-radius:var(--radius-md);padding:var(--space-6);margin-top:var(--space-8);">
+        <div style="font-family:var(--font-mono);font-weight:700;color:var(--warn);font-size:20px;flex:0 0 28px;">!</div>
+        <p style="font-size:14px;color:var(--fg);"><strong>Prices are loading-point prices and exclude transport.</strong> Transport is charged per trip based on the delivery area — Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, Anna Nagar and surrounding suburbs. We will quote both numbers on the call, before the tipper is loaded. Prices shift with fuel, demand and quarry rates; the only price that matters is the one we give you on the phone for the day of delivery.</p>
       </div>
     </div>
   </section>
 
+  <section class="section" style="background: var(--surface); border-block: 1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">What changes the price</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch; margin-bottom: var(--space-4);">Six factors that move M-Sand and aggregate price in Chennai.</h2>
+      <p style="color: var(--muted); font-size: 18px; max-width: 60ch;">If two quotes differ by a few hundred rupees a ton, here is usually why.</p>
+      <div class="factor-grid" style="margin-top: var(--space-8);">
+        {factors.map((f) => (
+          <div class="factor">
+            <div class="n">{f.n}</div>
+            <h4>{f.h}</h4>
+            <p>{f.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">At a glance</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch; margin-bottom: var(--space-4);">OneInfra published price band, this week.</h2>
+      <p style="color: var(--muted); font-size: 18px; max-width: 60ch;">Per-unit prices assume 1 unit = 100 CFT ≈ 1.4 ton. Minimum order is one tipper.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:15px;margin-top:var(--space-8);">
+        <thead>
+          <tr><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Material</th><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Per ton</th><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Per unit (100 CFT)</th><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Minimum order</th></tr>
+        </thead>
+        <tbody>
+          {compareRows.map((r) => (
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:16px 18px;font-weight:500;color:var(--fg);">{r.label}</td>
+              <td style="padding:16px 18px;font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right;">₹ {r.perTon.toLocaleString("en-IN")}</td>
+              <td style="padding:16px 18px;font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right;">₹ {r.perUnit}</td>
+              <td style="padding:16px 18px;">{r.minOrder}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <CtaStrip
-    title="Lock this week's rate on one call."
-    body="We price by phone in under a minute. Tell us the grade, quantity, and delivery area."
+    title="Lock a price in one call."
+    body="Tell us the material, grade, quantity and your area. We will quote the per-ton, per-unit and transport numbers, and book a delivery slot on the same call."
+    small="Open Mon–Sat · 7 am to 8 pm · Sun by appointment"
   />
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Keep reading</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; margin-bottom: var(--space-8);">More from OneInfra.</h2>
+      <div class="related">
+        <a href="/products">
+          <span class="kicker">Products</span>
+          <h4>See all grades, sizes and packing options</h4>
+          <p>M-Sand, P-Sand and 20 / 40 mm blue metal — what to use, where.</p>
+        </a>
+        <a href="/guides/cft-lorry-guide">
+          <span class="kicker">Measurement</span>
+          <h4>What is CFT and how to measure a lorry</h4>
+          <p>Stop guessing the quantity. Calculate CFT and tons yourself in two minutes.</p>
+        </a>
+        <a href="/calculator">
+          <span class="kicker">Calculator</span>
+          <h4>M-Sand quantity calculator</h4>
+          <p>Type your built-up area, get the tons and the tipper count for your site.</p>
+        </a>
+      </div>
+    </div>
+  </section>
 </MarketingLayout>
