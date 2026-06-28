@@ -7,10 +7,11 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   jsonLd?: object | object[];
+  noindex?: boolean;
 }
-const { title, description, current, canonical, ogImage, jsonLd } = Astro.props;
+const { title, description, current, canonical, ogImage, jsonLd, noindex } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} current={current} canonical={canonical} ogImage={ogImage} jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} current={current} canonical={canonical} ogImage={ogImage} jsonLd={jsonLd} noindex={noindex}>
   <slot />
 </BaseLayout>

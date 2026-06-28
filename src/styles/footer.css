@@ -13,7 +13,7 @@
 }
 @media (max-width: 920px) { .pagefoot-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .pagefoot-grid { grid-template-columns: 1fr; } }
-.pagefoot h4 {
+.pagefoot .footer-heading {
   font-size: 13px;
   font-weight: 600;
   color: var(--fg);

@@ -2,12 +2,11 @@
 import GuideLayout from "~/layouts/GuideLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site } from "~/config/site";
-import { localBusinessLd, faqLd, breadcrumbLd } from "~/lib/schema";
+import { faqLd, breadcrumbLd } from "~/lib/schema";
 
 const title = `M-Sand vs River Sand · Chennai Builder's Complete Comparison`;
 const description = `Why M-Sand is the better choice for Chennai construction in 2026 — and when river sand still has a use. Strength, grading, silt, cost, environment and quality checks compared.`;
 const jsonLd = [
-  localBusinessLd(),
   breadcrumbLd([
     { name: "Home", url: site.url + "/" },
     { name: "Guides", url: site.url + "/guides/cft-lorry-guide" },

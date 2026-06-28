@@ -3,7 +3,7 @@ import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import Hero from "~/components/Hero.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site, prices, productOrder } from "~/config/site";
-import { localBusinessLd, websiteLd } from "~/lib/schema";
+import { websiteLd } from "~/lib/schema";
 import "~/styles/cards.css";
 import "~/styles/home-pricing.css";
 import "~/styles/home-stats.css";
@@ -11,16 +11,18 @@ import "~/styles/home-learn.css";
 
 const title = `OneInfra · A trusted supplier of M-Sand, P-Sand and Aggregate in Chennai`;
 const description = `OneInfra is a trusted supplier of washed M-Sand, P-Sand and blue-metal Aggregate in Chennai. Same-day supply to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi and Anna Nagar. Call ${site.phone}.`;
-const jsonLd = [localBusinessLd(), websiteLd()];
+const jsonLd = [websiteLd()];
 
 const heroProducts = [
   prices.products.m_sand_double_washed,
   prices.products.p_sand,
   prices.products.aggregate_20mm_jelly,
 ];
-const perUnit = (p: typeof prices.products.m_sand_double_washed) =>
-  Math.round((p.pricePerUnit / p.pricePerTon) * 10) / 10;
-const shortName = (name: string) => name.split(/[\s(-]/)[0];
+const shortName = (name: string) => {
+  if (name.startsWith("M-Sand")) return "Msand";
+  if (name.startsWith("P-Sand")) return "Psand";
+  return name.split(/[\s(-]/)[0];
+};
 ---
 
 <MarketingLayout title={title} description={description} current="home" jsonLd={jsonLd}>
@@ -116,7 +118,7 @@ const shortName = (name: string) => name.split(/[\s(-]/)[0];
             <span class="label">{String(idx + 1).padStart(2, "0")} · {shortName(p.name)}</span>
             <h3>{p.name}</h3>
             <div class="num">₹ {p.pricePerTon.toLocaleString("en-IN")}<span class="unit">/ ton</span></div>
-            <p class="per">Per unit (100 CFT ≈ 1.4 ton): ₹ {p.pricePerUnit.toLocaleString("en-IN")} (~{perUnit(p)} ton)</p>
+            <p class="per">Per unit (100 CFT ≈ 4.5 ton): ₹ {p.pricePerUnit.toLocaleString("en-IN")} (~{p.unitToTon} ton)</p>
             <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>Call for today's {shortName(p.name)} quote</a>
           </div>
         ))}

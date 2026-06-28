@@ -1,0 +1,53 @@
+# OneInfra
+> OneInfra is a trusted supplier of washed M-Sand, P-Sand, crusher dust, blue metal aggregates and WMM (Wet Mix Macadam) for construction in Chennai, Tamil Nadu. We supply IS 383 graded, double-washed materials to homeowners, masons, contractors and civil engineers — with same-day tipper delivery to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi and Anna Nagar.
+
+## Products
+- [All 9 Grades](https://oneinfra.in/products): M-Sand (Double Washed), P-Sand (Plastering Sand), Crusher Dust, 12mm Chips, 20mm Jelly Stones, 20mm Blue Metal (Grade A), 25mm Aggregate, 40mm Gravel (HBG), WMM (Wet Mix Macadam)
+- [M-Sand (Double Washed)](https://oneinfra.in/products#m-sand-double-washed): Crushed granite fines, double-washed to IS 383 Zone II/III. ₹1,250/ton. Default for Chennai RCC and plaster.
+- [P-Sand (Plastering Sand)](https://oneinfra.in/products#p-sand): Fine-grade double-washed plastering sand, IS 1542 graded. ₹1,400/ton. For smooth wall and ceiling finishes.
+- [20mm Jelly Stones](https://oneinfra.in/products#20mm-jelly): Standard 16-20 mm coarse aggregate for RCC slabs, beams and columns. ₹1,150/ton.
+- [20mm Blue Metal (Grade A)](https://oneinfra.in/products#20mm-blue-metal): Tight-graded clean blue metal for high-grade M25+ concrete. ₹1,200/ton.
+- [Crusher Dust](https://oneinfra.in/products#crusher-dust): Fine blue-metal dust (<4.75 mm) for sub-base, backfill and compaction. ₹950/ton.
+- [12mm Chips](https://oneinfra.in/products#12mm-chips): 10-12 mm blue-metal chips for floor screed, thin RCC, pathway gravel. ₹1,100/ton.
+- [25mm Aggregate](https://oneinfra.in/products#25mm-blue-metal): 20-25 mm coarse aggregate for mass concrete and road sub-base. ₹1,250/ton.
+- [40mm Gravel (HBG)](https://oneinfra.in/products#40mm-blue-metal): 40-63 mm large aggregate for foundation backfill and drainage. ₹1,200/ton.
+- [WMM (Wet Mix Macadam)](https://oneinfra.in/products#wmm): Pre-mixed graded aggregate with controlled moisture for road base. ₹1,100/ton.
+
+## Pricing
+- [This Week's Price Band](https://oneinfra.in/price): Current per-ton and per-unit rates for all 9 grades in Chennai. Updated weekly every Monday. Prices are loading-point prices and exclude transport.
+- [M-Sand Price in Chennai Today](https://oneinfra.in/price): ₹1,250/ton for double-washed M-Sand. Per unit (100 CFT ≈ 4.5 ton): ₹1,750.
+- [P-Sand Price in Chennai Today](https://oneinfra.in/price): ₹1,400/ton for plastering sand. Per unit (100 CFT ≈ 4.5 ton): ₹2,000.
+- [Six Factors That Move M-Sand and Aggregate Price in Chennai](https://oneinfra.in/price#factors): Grade and zone, wash cycle, distance from supply point, tipper size, diesel and royalty, demand and season.
+
+## Quantity Calculator
+- [M-Sand & Aggregate Quantity Calculator](https://oneinfra.in/calculator): Free tool for Chennai home-builders. Enter your built-up area and floors. Get tonnage, CFT, tipper count and live price estimate for M-Sand, P-Sand and blue metal.
+
+## Guides (Educational Content)
+- [M-Sand vs River Sand: Complete Comparison](https://oneinfra.in/guides/msand-vs-river-sand): Strength, grading, silt content, cost comparison and environmental impact. Why M-Sand is the default for Chennai construction in 2026.
+- [How to Check M-Sand Quality on Site](https://oneinfra.in/guides/quality-check): Five field tests to run when the tipper arrives — silt test, palm test, particle shape, gradation and certificate check.
+- [CFT, m³, Ton and Units: Chennai Builder's Measurement Guide](https://oneinfra.in/guides/cft-lorry-guide): CFT explained with conversion tables, how to measure a lorry with a tape, worked examples, and common Chennai pitfalls.
+
+## Service Areas (Chennai)
+- [Tambaram](https://oneinfra.in/areas/tambaram): M-Sand, P-Sand and aggregate supplier. Our supply point is located here.
+- [Velachery](https://oneinfra.in/areas/velachery): Daily delivery of washed construction materials.
+- [OMR (Old Mahabalipuram Road)](https://oneinfra.in/areas/omr): Construction material supply along the OMR corridor.
+- [ECR (East Coast Road)](https://oneinfra.in/areas/ecr): Same-day delivery to ECR construction sites.
+- [Ambattur](https://oneinfra.in/areas/ambattur): Industrial area construction material supply.
+- [Avadi](https://oneinfra.in/areas/avadi): Reliable sand and aggregate delivery.
+- [Anna Nagar](https://oneinfra.in/areas/anna-nagar): Premium residential area supply service.
+
+## About
+- [About OneInfra](https://oneinfra.in/about): Our story, quality promise, fleet and values. We started as a single tipper and now operate our own supply point, wash line and fleet in Tambaram, Chennai.
+- [Contact OneInfra](https://oneinfra.in/contact): Call +91 99943 33918, WhatsApp, email hello@oneinfra.in, or visit our Tambaram yard. Open Mon-Sat 7 AM-8 PM.
+
+## Key Details
+- Phone: +91 99943 33918
+- Email: hello@oneinfra.in
+- Address: Tambaram, Chennai, Tamil Nadu 600045
+- Hours: Mon-Sat 7:00 AM – 8:00 PM
+- Supply Point: Tambaram, Chennai
+- Grading Standard: IS 383 (aggregates), IS 1542 (plaster sand)
+- Delivery: Same-day tipper delivery across 7 Chennai areas
+- Minimum Order: 1 tipper (300 CFT)
+- Price Basis: Loading-point prices, transport quoted separately based on delivery area
+- Last Price Update: Weekly on Mondays

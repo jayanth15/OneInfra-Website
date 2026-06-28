@@ -4,13 +4,13 @@ import PriceFreshness from "~/components/PriceFreshness.astro";
 import PriceCard from "~/components/PriceCard.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site, prices, productOrder } from "~/config/site";
-import { localBusinessLd, productListLd } from "~/lib/schema";
+import { productListLd } from "~/lib/schema";
 import "~/styles/factor-grid.css";
 import "~/styles/related-grid.css";
 
 const title = `M-Sand Price in Chennai Today · OneInfra`;
 const description = `Current M-Sand, P-Sand and blue-metal aggregate price in Chennai per ton and per unit. Updated weekly. Factors that change the price and how to lock a quote on one call.`;
-const jsonLd = [localBusinessLd(), productListLd()];
+const jsonLd = [productListLd()];
 
 const factors = [
   { n: "01", h: "Grade and zone",          p: "IS 383 Zone II is the most common construction grade. Finer zones (Zone III / IV) and concrete-grade washed M-Sand cost more because extra sieving is required." },
@@ -23,11 +23,11 @@ const factors = [
 
 // Compare table data
 const compareRows = [
-  { label: "M-Sand (IS 383 · washed)",     perTon: 1250, perUnit: "5,400 – 5,500", minOrder: "1 tipper (300 CFT)" },
-  { label: "P-Sand (plaster · double washed)", perTon: 1400, perUnit: "6,000 – 6,100", minOrder: "1 tipper (300 CFT)" },
-  { label: "Blue metal 20 mm",              perTon: 1150, perUnit: "4,900 – 5,000", minOrder: "1 tipper (300 CFT)" },
-  { label: "Blue metal 40 mm",              perTon: 1200, perUnit: "5,100 – 5,200", minOrder: "1 tipper (300 CFT)" },
-  { label: "Gravel mix 6 mm",               perTon: 1300, perUnit: "5,600 – 5,700", minOrder: "1 tipper (300 CFT)" },
+  { label: "M-Sand (IS 383 · washed)",     perTon: 1250, perUnit: "5,500 – 5,700", minOrder: "1 tipper (300 CFT)" },
+  { label: "P-Sand (plaster · double washed)", perTon: 1400, perUnit: "6,200 – 6,400", minOrder: "1 tipper (300 CFT)" },
+  { label: "Blue metal 20 mm",              perTon: 1150, perUnit: "5,100 – 5,300", minOrder: "1 tipper (300 CFT)" },
+  { label: "Blue metal 40 mm",              perTon: 1200, perUnit: "5,300 – 5,500", minOrder: "1 tipper (300 CFT)" },
+  { label: "Gravel mix 6 mm",               perTon: 1300, perUnit: "5,700 – 6,000", minOrder: "1 tipper (300 CFT)" },
 ];
 
 // Top 3 price cards
@@ -88,7 +88,7 @@ const topPriceCards: typeof prices.products.m_sand_double_washed[] = [
     <div class="container">
       <p class="eyebrow">At a glance</p>
       <h2 style="font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; max-width: 28ch; margin-bottom: var(--space-4);">OneInfra published price band, this week.</h2>
-      <p style="color: var(--muted); font-size: 18px; max-width: 60ch;">Per-unit prices assume 1 unit = 100 CFT ≈ 1.4 ton. Minimum order is one tipper.</p>
+      <p style="color: var(--muted); font-size: 18px; max-width: 60ch;">Per-unit prices assume 1 unit = 100 CFT ≈ 4.5 ton. Minimum order is one tipper.</p>
       <table style="width:100%;border-collapse:collapse;font-size:15px;margin-top:var(--space-8);">
         <thead>
           <tr><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Material</th><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Per ton</th><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Per unit (100 CFT)</th><th style="padding:16px 18px;text-align:left;border-bottom:1px solid var(--border);color:var(--muted);font-weight:500;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;text-transform:uppercase;">Minimum order</th></tr>

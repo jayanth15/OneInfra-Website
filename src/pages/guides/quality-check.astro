@@ -2,12 +2,11 @@
 import GuideLayout from "~/layouts/GuideLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site } from "~/config/site";
-import { localBusinessLd, faqLd, breadcrumbLd } from "~/lib/schema";
+import { faqLd, breadcrumbLd } from "~/lib/schema";
 
 const title = `5 Field Tests for M-Sand Quality · Chennai Builder Guide`;
 const description = `Five field tests to check M-Sand quality the moment the tipper arrives. Silt test, palm test, particle shape, gradation, and the IS 383 sieve check. For Chennai homeowners, masons and small builders.`;
 const jsonLd = [
-  localBusinessLd(),
   breadcrumbLd([
     { name: "Home", url: site.url + "/" },
     { name: "Guides", url: site.url + "/guides/cft-lorry-guide" },

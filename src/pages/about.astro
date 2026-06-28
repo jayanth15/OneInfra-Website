@@ -2,13 +2,13 @@
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site } from "~/config/site";
-import { localBusinessLd } from "~/lib/schema";
+
 import "~/styles/value-card.css";
 import "~/styles/related-grid.css";
 
 const title = `About OneInfra · Chennai civil material supplier`;
 const description = `OneInfra is a trusted supplier of washed M-Sand, P-Sand and aggregates to homeowners, masons and civil engineers across Chennai. Our own fleet, fair pricing, IS 383 graded.`;
-const jsonLd = localBusinessLd();
+const jsonLd = undefined;
 
 const values = [
   { n: "01", h: "Honest grading",       p: "We grade to IS 383. The M-Sand we deliver is the same M-Sand we sample. No mixed loads, no surprise filler." },

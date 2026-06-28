@@ -10,6 +10,7 @@ interface Props {
   ogImage?: string;
   current: "home" | "products" | "price" | "calculator" | "about" | "contact" | "guide" | "area" | "blog";
   jsonLd?: object | object[];
+  noindex?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   ogImage = "/og-image.jpg",
   current,
   jsonLd,
+  noindex = false,
 } = Astro.props;
 
 import Nav from "~/components/Nav.astro";
@@ -48,7 +50,7 @@ const allLd = jsonLd
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="robots" content={noindex ? "noindex" : "index,follow,max-image-preview:large"} />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />

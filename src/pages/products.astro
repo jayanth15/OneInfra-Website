@@ -2,14 +2,14 @@
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site, prices, productOrder, type ProductKey } from "~/config/site";
-import { localBusinessLd, productListLd } from "~/lib/schema";
+import { productListLd } from "~/lib/schema";
 import "~/styles/product-pcard.css";
 import "~/styles/where-used.css";
 import "~/styles/compare-table.css";
 
 const title = `Products · OneInfra M-Sand, P-Sand, Dust, 12mm / 20mm / 25mm / 40mm aggregates & WMM`;
 const description = `OneInfra is a trusted civil material supplier in Chennai for 9 grades: M-Sand, P-Sand, crusher dust, 12mm chips, 20mm jelly, 20mm blue, 25mm and 40mm blue metal, plus WMM. See real product photos, sizes, grades and what each is used for.`;
-const jsonLd = [localBusinessLd(), productListLd()];
+const jsonLd = [productListLd()];
 
 // Per-product use-case text from original products.html
 const useCases: Record<ProductKey, string> = {

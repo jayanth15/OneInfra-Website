@@ -2,7 +2,7 @@
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site, productOrder, prices } from "~/config/site";
-import { localBusinessLd } from "~/lib/schema";
+
 import "~/styles/calc-blueprint.css";
 import "~/styles/calc-form.css";
 import "~/styles/result-card.css";
@@ -11,7 +11,7 @@ import "~/styles/related-grid.css";
 
 const title = `M-Sand and aggregate quantity calculator · OneInfra Chennai`;
 const description = `Free Chennai-builder quantity calculator. Type your built-up area, floors and building type, get M-Sand, P-Sand and blue-metal tonnage, CFT, tipper count and a live price estimate.`;
-const jsonLd = localBusinessLd();
+const jsonLd = undefined;
 
 const priceMap: Record<string, { name: string; pricePerTon: number; pricePerUnit: number }> = {};
 for (const k of productOrder) {

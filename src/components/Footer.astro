@@ -23,7 +23,7 @@ const year = new Date().getFullYear();
         </p>
       </div>
       <div>
-        <h4>Products</h4>
+        <h2 class="footer-heading">Products</h2>
         <a href="/products">All 9 grades</a>
         <a href="/products#m-sand">M-Sand</a>
         <a href="/products#p-sand">P-Sand</a>
@@ -32,14 +32,14 @@ const year = new Date().getFullYear();
         <a href="/price">This week's price</a>
       </div>
       <div>
-        <h4>Learn</h4>
+        <h2 class="footer-heading">Learn</h2>
         <a href="/guides/msand-vs-river-sand">M-Sand vs River Sand</a>
         <a href="/guides/quality-check">How to check M-Sand quality</a>
         <a href="/guides/cft-lorry-guide">CFT and lorry guide</a>
         <a href="/calculator">Quantity calculator</a>
       </div>
       <div>
-        <h4>Service areas</h4>
+        <h2 class="footer-heading">Service areas</h2>
         {site.serviceAreas.map((a) => (
           <a href={`/areas/${a.toLowerCase().replace(/[\s.]/g, "-")}`}>{a}</a>
         ))}

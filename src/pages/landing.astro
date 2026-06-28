@@ -3,12 +3,12 @@ import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import Hero from "~/components/Hero.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site, prices, productOrder } from "~/config/site";
-import { localBusinessLd, productListLd } from "~/lib/schema";
+import { productListLd } from "~/lib/schema";
 import "~/styles/cards.css";
 
 const title = `OneInfra · M-Sand, P-Sand and Aggregate Supplier in Chennai`;
 const description = `OneInfra is a trusted supplier of clean M-Sand, P-Sand and Aggregate to homeowners, contractors and builders across Chennai. Call ${site.phone} for a same-day quote.`;
-const jsonLd = [localBusinessLd(), productListLd()];
+const jsonLd = [productListLd()];
 
 const audienceCards = [
   {

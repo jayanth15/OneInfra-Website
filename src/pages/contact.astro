@@ -3,7 +3,7 @@ import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { site } from "~/config/site";
 import { whatsappUrl } from "~/lib/whatsapp";
-import { localBusinessLd } from "~/lib/schema";
+
 import "~/styles/phone-hero.css";
 import "~/styles/contact-form.css";
 import "~/styles/areas-card.css";
@@ -12,7 +12,7 @@ import "~/styles/related-grid.css";
 
 const title = `Contact OneInfra · Call +91 99943 33918 for M-Sand, P-Sand & Aggregates`;
 const description = `Call OneInfra, a trusted M-Sand, P-Sand and aggregate supplier in Chennai, at ${site.phone}. Delivery to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, Anna Nagar.`;
-const jsonLd = localBusinessLd();
+const jsonLd = undefined;
 
 const faqs = [
   { q: "What is the minimum order?", a: "One tipper — 300 CFT (≈ 8.5 m³, ≈ 13 tons). That covers a typical home plaster job in a single load. Smaller volumes can be discussed on the call." },

@@ -4,16 +4,17 @@ These tasks require accounts / VPS access not available in the dev environment. 
 
 ## Task 24: Deploy to Dokploy
 
-In Dokploy UI:
+Prices are configured in `.env`. Edit the file, run `npm run build`, redeploy.
+
 1. New Application → Service → Static Site
 2. Name: `oneinfra`
-3. Repository: `jayanth15/oneinfra-astro` (already pushed)
+3. Repository: `jayanth15/oneinfra-astro`
 4. Branch: `main`
 5. Build command: `npm run build`
 6. Output directory: `dist`
 7. Port: 80
 8. Click Deploy
-9. Once deployed, paste `dokploy/nginx.conf` into "Advanced → Custom Nginx Configuration"
+9. Paste `dokploy/nginx.conf` into "Advanced → Custom Nginx Configuration"
 10. Redeploy
 
 ## Task 25: Wire Cloudflare DNS

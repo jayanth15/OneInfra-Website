@@ -2,9 +2,10 @@
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 const title = `Page not found · OneInfra`;
 const description = `The page you were looking for doesn't exist. Try the home page or call us.`;
+const noindex = true;
 ---
 
-<MarketingLayout title={title} description={description} current="home">
+<MarketingLayout title={title} description={description} current="home" noindex={noindex}>
   <section class="page-hero" style="text-align:center;">
     <div class="container">
       <p class="eyebrow">404</p>

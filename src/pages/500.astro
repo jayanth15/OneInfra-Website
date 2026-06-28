@@ -3,9 +3,10 @@ import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import { site } from "~/config/site";
 const title = `Something went wrong · OneInfra`;
 const description = `The page failed to load. Please try again or call us.`;
+const noindex = true;
 ---
 
-<MarketingLayout title={title} description={description} current="home">
+<MarketingLayout title={title} description={description} current="home" noindex={noindex}>
   <section class="page-hero" style="text-align:center;">
     <div class="container">
       <p class="eyebrow">500</p>
