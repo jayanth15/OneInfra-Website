@@ -1,0 +1,67 @@
+.mobile-action-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-action-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: var(--space-2) var(--space-3) calc(var(--space-2) + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+    gap: var(--space-2);
+  }
+
+  .mobile-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    min-height: 44px;
+  }
+
+  .mobile-btn-call {
+    background: #111111;
+    color: #ffffff;
+  }
+
+  .mobile-btn-call:hover {
+    background: #262626;
+    text-decoration: none;
+  }
+
+  .mobile-btn-wa {
+    background: #16a34a;
+    color: #ffffff;
+  }
+
+  .mobile-btn-wa:hover {
+    background: #15803d;
+    text-decoration: none;
+  }
+
+  .mobile-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* Add padding to page bottom on mobile so content isn't covered by the bar */
+  body {
+    padding-bottom: 64px;
+  }
+}

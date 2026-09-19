@@ -1,6 +1,7 @@
 ---
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
+import TrustBadges from "~/components/TrustBadges.astro";
 import { site, prices, productOrder, type ProductKey } from "~/config/site";
 import { productListLd } from "~/lib/schema";
 import "~/styles/product-pcard.css";
@@ -76,6 +77,8 @@ const compareRows = [
       </div>
     </div>
   </section>
+
+  <TrustBadges />
 
   <section class="product-section" id="catalogue" style="padding-block:var(--space-20);">
     <div class="container">

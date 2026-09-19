@@ -1,0 +1,140 @@
+---
+import GuideLayout from "~/layouts/GuideLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site } from "~/config/site";
+import { faqLd, breadcrumbLd } from "~/lib/schema";
+
+const title = `M20, M25 & M15 Concrete Mix Ratio Guide for Chennai Slabs · OneInfra`;
+const description = `Complete concrete mix ratio guide for Chennai home builders. Nominal ratios (1:1.5:3, 1:1:2), cement bags, M-Sand, and 20mm blue metal needed per 100 sq ft roof slab, with curing tips in Chennai weather.`;
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", url: `${site.url}/` },
+    { name: "Guides", url: `${site.url}/guides/cft-lorry-guide` },
+    { name: "Concrete Mix Ratio Guide", url: `${site.url}/guides/concrete-mix-ratio-chennai` },
+  ]),
+  faqLd([
+    {
+      q: "What is the recommended concrete mix ratio for a roof slab in Chennai?",
+      a: "For residential roof slabs, beams, and columns in Chennai, M20 grade (1 : 1.5 : 3 — Cement : M-Sand : 20mm Aggregate) or M25 grade (1 : 1 : 2) is the standard civil specification according to IS 456."
+    },
+    {
+      q: "How many bags of cement and tons of M-Sand for a 1,000 sq ft slab?",
+      a: "For a standard 5-inch thick 1,000 sq ft RCC roof slab (approx 417 cu ft wet concrete), you will need approximately 75–82 bags of 53-grade cement, 8 to 9 tons of double-washed M-Sand (Zone II), and 16 to 17 tons of 20mm blue metal aggregate."
+    },
+    {
+      q: "Why should I use double-washed M-Sand instead of unwashed sand for RCC?",
+      a: "Unwashed sand has excessive micro-fines (>10% silt) which soak up water, causing shrinkage cracks and reducing compressive strength by up to 25%. Double-washed M-Sand guarantees silt < 3% for full structural bonding."
+    },
+    {
+      q: "How does Chennai's summer heat affect concrete mix and curing?",
+      a: "Chennai temperatures above 35°C accelerate water evaporation from freshly poured slabs. Maintain a water-cement ratio of 0.45 to 0.50, cast early in the morning, and initiate pond curing within 12 to 16 hours for a minimum of 14 days."
+    }
+  ]),
+];
+---
+
+<GuideLayout
+  title={title}
+  description={description}
+  eyebrow="Guide · Concrete Mix Design"
+  body="Nominal mix ratios (M15, M20, M25), material calculations per 100 sq ft of slab, and practical tips for casting concrete in Chennai's climate."
+  bgImage="/images-opt/aggregates.webp"
+  bgAlt="20mm blue metal aggregate and washed sand for concrete mixing"
+  jsonLd={jsonLd}
+>
+  <h2 id="ratios">Standard Concrete Mix Ratios (IS 456 Nominal Mixes)</h2>
+  <p>
+    When casting residential foundations, columns, beams, or roof slabs in Chennai, contractors and structural engineers specify concrete by grade. The letter <strong>M</strong> stands for "Mix", and the number represents the characteristic compressive strength in Megapascals (N/mm²) after 28 days of wet curing.
+  </p>
+
+  <div style="overflow-x: auto; margin: var(--space-4) 0;">
+    <table style="width:100%; border-collapse: collapse; font-size: 14px;">
+      <thead>
+        <tr style="background: var(--surface); border-bottom: 2px solid var(--border);">
+          <th style="padding: 12px; text-align: left;">Grade</th>
+          <th style="padding: 12px; text-align: left;">Nominal Ratio (C : S : A)</th>
+          <th style="padding: 12px; text-align: left;">Characteristic Strength</th>
+          <th style="padding: 12px; text-align: left;">Recommended Application in Chennai</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 12px; font-weight: 600;">M10</td>
+          <td style="padding: 12px; font-family: var(--font-mono);">1 : 3 : 6</td>
+          <td style="padding: 12px;">10 N/mm²</td>
+          <td style="padding: 12px;">PCC (Plain Cement Concrete) levelling course, compound wall bed.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 12px; font-weight: 600;">M15</td>
+          <td style="padding: 12px; font-family: var(--font-mono);">1 : 2 : 4</td>
+          <td style="padding: 12px;">15 N/mm²</td>
+          <td style="padding: 12px;">Ground floor flooring PCC, pathway slabs, boundary column foundations.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border); background: rgba(47, 111, 235, 0.04);">
+          <td style="padding: 12px; font-weight: 700; color: var(--accent);">M20</td>
+          <td style="padding: 12px; font-family: var(--font-mono); font-weight: 600;">1 : 1.5 : 3</td>
+          <td style="padding: 12px; font-weight: 600;">20 N/mm²</td>
+          <td style="padding: 12px;"><strong>Most common residential RCC:</strong> Roof slabs, lintels, standard beams and footings.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 12px; font-weight: 700; color: var(--accent);">M25</td>
+          <td style="padding: 12px; font-family: var(--font-mono); font-weight: 600;">1 : 1 : 2</td>
+          <td style="padding: 12px; font-weight: 600;">25 N/mm²</td>
+          <td style="padding: 12px;">Heavy-load columns, cantilever beams, water tank slabs, coastal villa frames (ECR/OMR).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="slab-calc">Material Calculation for 100 sq ft Roof Slab (5-inch thickness)</h2>
+  <p>
+    A standard residential roof slab in Tamil Nadu is poured at a thickness of <strong>5 inches (0.416 feet)</strong>. For every 100 square feet of slab area:
+  </p>
+  <ul>
+    <li><strong>Wet Concrete Volume:</strong> 100 sq ft × (5 ÷ 12) ft = <strong>41.67 Cubic Feet (CFT)</strong> ≈ 1.18 m³.</li>
+    <li><strong>Dry Volume Factor:</strong> Dry ingredients shrink by approximately 54% when mixed with water. Dry volume required = 41.67 × 1.54 = <strong>64.17 CFT</strong>.</li>
+  </ul>
+
+  <h3>For M20 Grade (Ratio 1 : 1.5 : 3 = Total 5.5 parts):</h3>
+  <ul>
+    <li><strong>Cement:</strong> (1 ÷ 5.5) × 64.17 = 11.67 CFT ≈ <strong>9.5 to 10 bags</strong> (50 kg each).</li>
+    <li><strong>M-Sand (Double Washed):</strong> (1.5 ÷ 5.5) × 64.17 = 17.5 CFT ≈ <strong>0.85 to 0.90 Ton</strong> (~18 CFT).</li>
+    <li><strong>20mm Blue Metal:</strong> (3 ÷ 5.5) × 64.17 = 35.0 CFT ≈ <strong>1.65 to 1.75 Ton</strong> (~35 CFT).</li>
+  </ul>
+
+  <div style="padding: var(--space-4); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); margin: var(--space-5) 0;">
+    <h4 style="margin-bottom: var(--space-2); color: var(--fg);">Rule of Thumb for a 1,000 sq ft House Roof Slab:</h4>
+    <p style="font-size: 15px; color: var(--muted); line-height: 1.5;">
+      Multiply the numbers above by 10: <strong>~95 to 100 bags cement</strong>, <strong>8.5 to 9 tons of M-Sand</strong> (approx 1 tipper load), and <strong>17 tons of 20mm blue metal</strong> (approx 2 tipper loads).
+    </p>
+  </div>
+
+  <h2 id="aggregates">Why 20mm Blue Metal &amp; Double-Washed M-Sand Are Essential</h2>
+  <p>
+    Using unwashed sand or round river gravel will fail structural compression tests:
+  </p>
+  <ol>
+    <li>
+      <strong>Angular Granite Interlock:</strong> Machine-crushed 20mm blue metal has rough, fractured surfaces. When cement paste hydrates, it forms a mechanical interlock that rounded pebbles cannot replicate.
+    </li>
+    <li>
+      <strong>Grading to IS 383 Zone II:</strong> Sieve analysis must ensure a balanced distribution of 4.75mm down to 150-micron particles so voids between coarse rocks are filled completely without excess cement.
+    </li>
+    <li>
+      <strong>Zero Salt / Chloride:</strong> Coastal sand from ECR or uncertified quarries contains chlorides that initiate reinforcement rust within 3 to 5 years. OneInfra M-Sand is sourced exclusively from inland hard granite quarries.
+    </li>
+  </ol>
+
+  <h2 id="hot-weather">Hot-Weather Concreting Tips in Chennai</h2>
+  <ul>
+    <li><strong>Morning Pour:</strong> Schedule tipper arrivals so concrete mixing starts by 7:00 AM before ambient heat crosses 32°C.</li>
+    <li><strong>Moist Stockpiles:</strong> Lightly sprinkle your 20mm aggregate stockpile with water before loading into the mixer to prevent it from absorbing mix water.</li>
+    <li><strong>Pond Curing:</strong> Make cement-mortar bunds (kiari) on the slab within 12 hours and keep flooded with clean water for at least 14 days (21 days for OPC 43/53 grade).</li>
+  </ul>
+
+  <CtaStrip
+    title="Casting a slab in Chennai this week?"
+    body="Lock your M-Sand and 20mm blue metal delivery. Computerized weighbridge slips, same-day delivery, and direct yard rates."
+  />
+</GuideLayout>

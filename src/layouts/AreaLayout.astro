@@ -1,58 +1,203 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import { site } from "~/config/site";
+import { site, prices, productOrder } from "~/config/site";
+import { whatsappUrl } from "~/lib/whatsapp";
+import { faqLd, breadcrumbLd } from "~/lib/schema";
+import type { AreaData } from "~/content/areas";
+import "~/styles/areas-card.css";
 
 interface Props {
-  area: string;
-  intro: string;
-  landmarks: string[];
-  deliveryTime: string;
+  areaData: AreaData;
   jsonLd?: object | object[];
 }
-const { area, intro, landmarks, deliveryTime, jsonLd } = Astro.props;
-const title = `M-Sand, P-Sand and Aggregate supplier in ${area}, Chennai · OneInfra`;
-const description = `OneInfra supplies washed M-Sand, P-Sand and blue-metal aggregate to ${area}, Chennai. Same-day delivery, IS 383 graded, fair price. Call ${site.phone}.`;
+
+const { areaData, jsonLd: extraJsonLd = [] } = Astro.props;
+const { name: area, intro, landmarks, deliveryTime, truckAccess, popularMaterials, faqs } = areaData;
+
+const title = `M-Sand, P-Sand and Aggregate Supplier in ${area}, Chennai · OneInfra`;
+const description = `OneInfra supplies double-washed M-Sand, P-Sand, and blue-metal aggregates to ${area}, Chennai. Same-day tipper delivery (${deliveryTime}), IS 383 certified, computerized weighbridge slip. Call ${site.phone}.`;
+
+const waAreaUrl = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hi OneInfra, I need a price and delivery quote for ${area}, Chennai.`)}`;
+
+const pageBreadcrumbs = breadcrumbLd([
+  { name: "Home", url: `${site.url}/` },
+  { name: "Service Areas", url: `${site.url}/#areas` },
+  { name: area, url: `${site.url}/areas/${areaData.key}` },
+]);
+
+const pageFaqLd = faqs && faqs.length > 0 ? faqLd(faqs) : undefined;
+const combinedJsonLd = [
+  pageBreadcrumbs,
+  ...(pageFaqLd ? [pageFaqLd] : []),
+  ...(Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd]),
+];
+
+const featuredKeys = [
+  "m_sand_double_washed",
+  "p_sand",
+  "aggregate_20mm_jelly",
+  "crusher_dust",
+] as const;
 ---
 
 <BaseLayout
   title={title}
   description={description}
   current="area"
-  jsonLd={jsonLd}
+  jsonLd={combinedJsonLd}
 >
   <section class="hero">
     <div class="hero-bg">
-      <img src="/images-opt/delivery-truck.webp" alt={`Tipper unloading M-Sand at a ${area} construction site`} loading="eager" fetchpriority="high" />
+      <img
+        src="/images-opt/delivery-truck.webp"
+        alt={`Tipper lorry delivering double-washed M-Sand at a construction site in ${area}, Chennai`}
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
     <div class="container">
-      <p class="eyebrow">{area} · Chennai · Civil material supply</p>
-      <h1>M-Sand, P-Sand and <span class="accent">aggregate supplier in {area}</span></h1>
+      <p class="eyebrow">{area} · Chennai · Civil Material Supply</p>
+      <h1>M-Sand, P-Sand &amp; <span class="accent">Aggregate Supplier in {area}</span></h1>
       <p>{intro}</p>
-      <div class="hero-cta">
+      <div class="hero-cta" style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5);">
         <a class="btn btn-primary btn-large" href={`tel:${site.phoneTel}`}>Call {site.phone}</a>
-        <a class="btn btn-secondary btn-large" href="/calculator">Use the calculator</a>
+        <a class="btn btn-secondary btn-large" href={waAreaUrl} target="_blank" rel="noopener">WhatsApp {area} Quote</a>
+        <a class="btn btn-secondary btn-large" href="/calculator">Quantity Calculator</a>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <!-- Local Highlights & Trust Bar -->
+  <section class="section" style="padding-top: var(--space-8); padding-bottom: var(--space-8); background: var(--surface); border-bottom: 1px solid var(--border);">
     <div class="container">
-      <p class="eyebrow">About our {area} supply</p>
-      <h2 style="max-width:24ch; margin-bottom: var(--space-4);">Same-day delivery, fair price, IS 383 graded</h2>
-      <p style="font-size:17px;color:var(--muted);max-width:60ch;margin-bottom:var(--space-6);">
-        We run a daily route through {area} and nearby localities. Typical delivery window:
-        <strong>{deliveryTime}</strong> from the Tambaram supply point. Order before 4 PM for
-        same-day tipper loading.
-      </p>
-      <p style="font-size:15px;color:var(--muted);margin-bottom:var(--space-2);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em;">
-        Areas we cover in {area}
-      </p>
-      <ul style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-2);list-style:none;padding:0;">
-        {landmarks.map((l) => (
-          <li style="padding:var(--space-2) 0;color:var(--fg);">→ {l}</li>
-        ))}
-      </ul>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4);">
+        <div style="padding: var(--space-4); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
+          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase;">Delivery Time</div>
+          <div style="font-size: 20px; font-weight: 700; margin-top: var(--space-1); color: var(--fg);">{deliveryTime}</div>
+          <p style="font-size: 13px; color: var(--muted); margin-top: var(--space-1);">From Tambaram yard directly to your site in {area}</p>
+        </div>
+
+        <div style="padding: var(--space-4); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
+          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase;">Weighbridge Slip</div>
+          <div style="font-size: 20px; font-weight: 700; margin-top: var(--space-1); color: var(--fg);">100% Computerized</div>
+          <p style="font-size: 13px; color: var(--muted); margin-top: var(--space-1);">Gross &amp; tare printout provided with every lorry</p>
+        </div>
+
+        <div style="padding: var(--space-4); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
+          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase;">Quality Certified</div>
+          <div style="font-size: 20px; font-weight: 700; margin-top: var(--space-1); color: var(--fg);">IS 383 Zone II/III</div>
+          <p style="font-size: 13px; color: var(--muted); margin-top: var(--space-1);">Double-washed, silt content guaranteed &lt; 3%</p>
+        </div>
+
+        <div style="padding: var(--space-4); background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);">
+          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase;">Direct Yard Pricing</div>
+          <div style="font-size: 20px; font-weight: 700; margin-top: var(--space-1); color: var(--fg);">Zero Broker Fee</div>
+          <p style="font-size: 13px; color: var(--muted); margin-top: var(--space-1);">Quarry-direct rates transparently quoted on phone</p>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Local Pricing & Products -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Rates for {area} Builders</p>
+      <h2 style="max-width: 28ch; margin-bottom: var(--space-3);">This week's loading point rates for popular grades</h2>
+      <p style="color: var(--muted); font-size: 16px; max-width: 65ch; margin-bottom: var(--space-6);">
+        Base rates per ton and per unit (100 CFT ≈ 4.5 tons). Delivery to {area} is quoted based on exact unloading address.
+      </p>
+
+      <div style="overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <table style="width: 100%; border-collapse: collapse; font-size: 15px; text-align: left;">
+          <thead>
+            <tr style="background: var(--bg); border-bottom: 1px solid var(--border);">
+              <th style="padding: var(--space-3) var(--space-4); font-weight: 600;">Grade / Material</th>
+              <th style="padding: var(--space-3) var(--space-4); font-weight: 600;">Standard Use</th>
+              <th style="padding: var(--space-3) var(--space-4); font-weight: 600;">Rate / Ton</th>
+              <th style="padding: var(--space-3) var(--space-4); font-weight: 600;">Rate / Unit (100 CFT)</th>
+              <th style="padding: var(--space-3) var(--space-4); font-weight: 600; text-align: right;">Instant Quote</th>
+            </tr>
+          </thead>
+          <tbody>
+            {featuredKeys.map((key) => {
+              const prod = prices.products[key];
+              const prodWa = whatsappUrl(key, area);
+              return (
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: var(--space-4); font-weight: 600; color: var(--fg);">{prod.name}</td>
+                  <td style="padding: var(--space-4); color: var(--muted); font-size: 14px;">{prod.description.split(".")[0]}.</td>
+                  <td style="padding: var(--space-4); font-weight: 700; color: var(--fg);">₹ {prod.pricePerTon.toLocaleString("en-IN")}</td>
+                  <td style="padding: var(--space-4); color: var(--muted);">₹ {prod.pricePerUnit.toLocaleString("en-IN")}</td>
+                  <td style="padding: var(--space-4); text-align: right;">
+                    <a
+                      href={prodWa}
+                      target="_blank"
+                      rel="noopener"
+                      class="btn btn-secondary"
+                      style="padding: 6px 12px; font-size: 13px;"
+                    >
+                      WhatsApp Quote
+                    </a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Truck Access & Logistics in this area -->
+  <section class="section" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-8); align-items: start;">
+        <div>
+          <p class="eyebrow">Logistics &amp; Street Access</p>
+          <h2 style="margin-bottom: var(--space-4);">Tipper lorry delivery to {area} sites</h2>
+          <p style="font-size: 16px; color: var(--muted); line-height: 1.6; margin-bottom: var(--space-4);">
+            {truckAccess || `We deliver throughout ${area} using dedicated 6-wheeler tippers (300 CFT) for tight residential layouts and 10-wheeler lorries (600 CFT) for commercial or high-volume pours.`}
+          </p>
+          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: var(--space-4);">
+            <div style="font-weight: 600; font-size: 14px; margin-bottom: var(--space-1);">✓ Need morning unloading before traffic?</div>
+            <p style="font-size: 13px; color: var(--muted);">
+              Book the previous evening. Our first tippers depart at 7:00 AM so materials are ready when your masons arrive.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow">Localities Covered in {area}</p>
+          <h3 style="margin-bottom: var(--space-3); font-size: 18px;">Key routes and delivery spots</h3>
+          <ul style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2); list-style: none; padding: 0;">
+            {landmarks.map((l) => (
+              <li style="padding: var(--space-2) 0; color: var(--fg); font-size: 15px;">
+                <span style="color: var(--accent); margin-right: 6px;">→</span> {l}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local FAQs -->
+  {faqs && faqs.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Frequently Asked Questions</p>
+        <h2 style="max-width: 28ch; margin-bottom: var(--space-6);">Common questions about sand &amp; aggregate delivery in {area}</h2>
+        <div style="max-width: 800px; display: flex; flex-direction: column; gap: var(--space-4);">
+          {faqs.map((faq) => (
+            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-5);">
+              <h3 style="font-size: 17px; font-weight: 600; margin-bottom: var(--space-2); color: var(--fg);">{faq.q}</h3>
+              <p style="color: var(--muted); font-size: 15px; line-height: 1.6;">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <slot />
 </BaseLayout>

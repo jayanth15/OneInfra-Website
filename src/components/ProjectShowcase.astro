@@ -1,0 +1,65 @@
+---
+const projects = [
+  {
+    location: "East Tambaram, Chennai",
+    type: "Individual Duplex Villa (2,600 sq ft)",
+    materials: "125 Tons M-Sand, 65 Tons 20mm Jelly, 25 Tons P-Sand",
+    feedback: "The computerized weighbridge slip matched our structural engineer's BOQ to the exact kilogram. Zero disputes on quantity, and the silt test had less than 2% residue.",
+    author: "R. Shanmugam",
+    role: "Homeowner & Civil Contractor",
+  },
+  {
+    location: "Medavakkam, Chennai",
+    type: "G+3 Residential Apartment (8 Units)",
+    materials: "340 Tons M-Sand (IS 383 Zone II), 190 Tons 20mm Blue Metal",
+    feedback: "For our slab casting, we needed 8 tipper loads starting at 7:00 AM sharp. OneInfra lined up every lorry without delay. The concrete cube test at 28 days came out at 28.4 N/mm² for M25.",
+    author: "K. Venkatesh",
+    role: "Site Engineer, Prime Housing",
+  },
+  {
+    location: "Porur (Mugalivakkam), Chennai",
+    type: "Residential Independent House (1,800 sq ft)",
+    materials: "90 Tons Double-Washed M-Sand, 20 Tons P-Sand",
+    feedback: "P-Sand for internal plastering saved us a full coat of putty. The masons said it was the smoothest washed sand they have worked with in Chennai this year.",
+    author: "M. Balaji",
+    role: "Property Owner",
+  },
+];
+---
+
+<section class="section" style="padding-top: var(--space-8); padding-bottom: var(--space-8);" aria-label="Customer Reviews and Case Studies">
+  <div class="container">
+    <p class="eyebrow">Verified Site Deliveries</p>
+    <h2 style="max-width: 28ch; margin-bottom: var(--space-3);">Trusted on over 500+ residential and commercial sites in Chennai</h2>
+    <p style="color: var(--muted); font-size: 16px; max-width: 65ch; margin-bottom: var(--space-8);">
+      Here is what builders and homeowners in Tambaram, Medavakkam, and Porur say about our weights, grading, and tipper punctuality.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-5);">
+      {projects.map((p) => (
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-5); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-2);">
+              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase;">{p.location}</span>
+              <span style="color: #eab308; font-size: 14px;">★★★★★</span>
+            </div>
+            <h3 style="font-size: 17px; font-weight: 700; color: var(--fg); margin-bottom: var(--space-2);">{p.type}</h3>
+            <p style="font-size: 13px; color: var(--accent); font-family: var(--font-mono); margin-bottom: var(--space-3);">{p.materials}</p>
+            <p style="font-size: 14px; color: var(--muted); line-height: 1.55; font-style: italic; margin-bottom: var(--space-4);">
+              "{p.feedback}"
+            </p>
+          </div>
+          <div style="border-top: 1px solid var(--border); padding-top: var(--space-3); display: flex; align-items: center; gap: var(--space-3);">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--accent);">
+              {p.author.charAt(0)}
+            </div>
+            <div>
+              <div style="font-size: 14px; font-weight: 600; color: var(--fg);">{p.author}</div>
+              <div style="font-size: 12px; color: var(--muted);">{p.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

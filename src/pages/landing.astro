@@ -2,6 +2,8 @@
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import Hero from "~/components/Hero.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
+import TrustBadges from "~/components/TrustBadges.astro";
+import ProjectShowcase from "~/components/ProjectShowcase.astro";
 import { site, prices, productOrder } from "~/config/site";
 import { productListLd } from "~/lib/schema";
 import "~/styles/cards.css";
@@ -66,9 +68,11 @@ const steps = [
       { n: "9 grades", l: "M-Sand · P-Sand · Dust · 12/20/20-blue/25/40mm · WMM" },
       { n: "Same day", l: "delivery on most orders" },
       { n: "IS 383", l: "graded &amp; washed before loading" },
-      { n: "Tambaram supply", l: "7 Chennai areas served daily" },
+      { n: "Tambaram supply", l: "14 Chennai areas served daily" },
     ]}
   />
+
+  <TrustBadges />
 
   <section style="background: var(--fg); color: var(--surface); padding-block: var(--space-5);">
     <div class="container">
@@ -152,10 +156,12 @@ const steps = [
     </div>
   </section>
 
+  <ProjectShowcase />
+
   <section class="section" style="background: var(--surface); border-block: 1px solid var(--border);">
     <div class="container">
       <p class="eyebrow">Areas served daily</p>
-      <h2 style="margin-bottom: var(--space-3);">7 Chennai areas, daily route</h2>
+      <h2 style="margin-bottom: var(--space-3);">14 Chennai areas, daily route</h2>
       <p style="color:var(--muted);font-size:17px;max-width:60ch;margin-bottom:var(--space-6);">
         Tipper on the road every working day, Tambaram supply point.
       </p>

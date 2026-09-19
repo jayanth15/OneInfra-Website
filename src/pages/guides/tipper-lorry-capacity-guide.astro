@@ -1,0 +1,144 @@
+---
+import GuideLayout from "~/layouts/GuideLayout.astro";
+import CtaStrip from "~/components/CtaStrip.astro";
+import { site } from "~/config/site";
+import { faqLd, breadcrumbLd } from "~/lib/schema";
+
+const title = `Tipper Lorry Capacity in Chennai: 2 Unit, 3 Unit, 4 Unit & 6/10-Wheeler Guide · OneInfra`;
+const description = `Complete breakdown of tipper lorry sizes in Chennai and Tamil Nadu. Understand 1 Unit (100 CFT ≈ 4.5 Ton), 2-unit 6-wheelers, 4-unit 10-wheelers, inner body dimensions, and how to verify load weight on computerized weighbridges.`;
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", url: `${site.url}/` },
+    { name: "Guides", url: `${site.url}/guides/cft-lorry-guide` },
+    { name: "Tipper Lorry Capacity Guide", url: `${site.url}/guides/tipper-lorry-capacity-guide` },
+  ]),
+  faqLd([
+    {
+      q: "How many tons is 1 unit of M-Sand in Tamil Nadu?",
+      a: "In Tamil Nadu civil practice, 1 'Unit' equals exactly 100 Cubic Feet (CFT). For dry, compacted double-washed M-Sand, 1 unit weighs approximately 4.5 metric tons (4,500 kg)."
+    },
+    {
+      q: "How many CFT does a 6-wheeler tipper carry in Chennai?",
+      a: "A standard 6-wheeler tipper truck typically carries 2 to 3 units, which translates to 200 to 300 CFT (approx 9 to 13.5 tons) depending on the height of the metal body extension."
+    },
+    {
+      q: "What size tipper can enter narrow residential streets in Chennai?",
+      a: "For residential layout streets under 25 feet wide with overhead power lines or tight corner turns (common in Velachery, Madipakkam, Tambaram East), a compact 6-wheeler carrying 200–300 CFT is recommended."
+    },
+    {
+      q: "How do I prevent short-loading when buying M-Sand?",
+      a: "Always insist on a computerized weighbridge slip showing tare weight (empty lorry), gross weight (loaded lorry), and net weight. Tape measurements can be deceived by hollow loading or domed crowns."
+    }
+  ]),
+];
+---
+
+<GuideLayout
+  title={title}
+  description={description}
+  eyebrow="Measurement Guide · Tipper Fleets"
+  body="Demystifying 'Units', CFT, and Tonnage for tippers in Chennai. Inner dimensions, payload capacities, and how to inspect deliveries on site."
+  bgImage="/images-opt/Tipper-accurate.webp"
+  bgAlt="Tipper lorry unloading construction aggregate on a Chennai site"
+  jsonLd={jsonLd}
+>
+  <h2 id="units">The Tamil Nadu 'Unit' Standard Explained</h2>
+  <p>
+    In Chennai and across Tamil Nadu, aggregate and sand have historically been traded in <strong>Units</strong> rather than tonnes. While government public works and computerized weighbridges use metric tonnes, local contractors and lorry operators continue to quote in units:
+  </p>
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); margin: var(--space-4) 0;">
+    <p style="font-size: 18px; font-weight: 700; color: var(--fg); margin-bottom: var(--space-1);">
+      1 Unit = 100 Cubic Feet (CFT) ≈ 2.83 Cubic Meters (m³)
+    </p>
+    <p style="font-size: 15px; color: var(--muted);">
+      For double-washed M-Sand (density ~1,600 kg/m³), 1 Unit converts to approximately <strong>4.5 Metric Tons</strong>.
+    </p>
+  </div>
+
+  <h2 id="truck-types">Common Tipper Lorry Types &amp; Capacities in Chennai</h2>
+  <div style="overflow-x: auto; margin: var(--space-4) 0;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <thead>
+        <tr style="background: var(--surface); border-bottom: 2px solid var(--border);">
+          <th style="padding: 12px; text-align: left;">Lorry Type</th>
+          <th style="padding: 12px; text-align: left;">Typical Units</th>
+          <th style="padding: 12px; text-align: left;">Volume (CFT)</th>
+          <th style="padding: 12px; text-align: left;">Tonnage Payload</th>
+          <th style="padding: 12px; text-align: left;">Best Suited For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 12px; font-weight: 600;">6-Wheeler (Compact)</td>
+          <td style="padding: 12px; font-family: var(--font-mono);">2.0 to 2.5 Units</td>
+          <td style="padding: 12px;">200 – 250 CFT</td>
+          <td style="padding: 12px; font-weight: 600;">9 – 11.5 Tons</td>
+          <td style="padding: 12px;">Narrow residential streets, small renovations, independent house plastering.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border); background: rgba(47, 111, 235, 0.04);">
+          <td style="padding: 12px; font-weight: 700; color: var(--accent);">6-Wheeler (High Body)</td>
+          <td style="padding: 12px; font-family: var(--font-mono); font-weight: 600;">3.0 Units</td>
+          <td style="padding: 12px;">300 CFT</td>
+          <td style="padding: 12px; font-weight: 700;">13.5 – 14.5 Tons</td>
+          <td style="padding: 12px;"><strong>Most popular Chennai tipper:</strong> Standard residential foundation and slab pours.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 12px; font-weight: 600;">10-Wheeler (Taurus)</td>
+          <td style="padding: 12px; font-family: var(--font-mono);">4.0 to 4.5 Units</td>
+          <td style="padding: 12px;">400 – 450 CFT</td>
+          <td style="padding: 12px; font-weight: 600;">18 – 21 Tons</td>
+          <td style="padding: 12px;">Apartment complexes, main road sites, bulk foundation gravel.</td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border);">
+          <td style="padding: 12px; font-weight: 600;">12 / 14-Wheeler (Multi-Axle)</td>
+          <td style="padding: 12px; font-family: var(--font-mono);">6.0 to 7.0 Units</td>
+          <td style="padding: 12px;">600 – 700 CFT</td>
+          <td style="padding: 12px; font-weight: 600;">28 – 32 Tons</td>
+          <td style="padding: 12px;">Commercial projects, layout road WMM, industrial warehouse sub-bases.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="measuring">How to Verify Lorry Volume with a Measuring Tape</h2>
+  <p>
+    If you want to measure the tipper box manually before tipping:
+  </p>
+  <ol>
+    <li>
+      <strong>Level the Load:</strong> Ensure the material is reasonably level before measuring. A peaked heap in the center will distort depth readings.
+    </li>
+    <li>
+      <strong>Measure Inner Dimensions:</strong> Measure inside length (L), inside width (W), and average material height (H) in feet using a steel tape.
+    </li>
+    <li>
+      <strong>Apply the Formula:</strong>
+      <div style="font-family: var(--font-mono); padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); margin: 8px 0;">
+        Volume (CFT) = Length (ft) × Width (ft) × Height (ft)
+      </div>
+      <em>Example: A box measuring 14 ft long, 7 ft wide, and 3 ft deep = 14 × 7 × 3 = <strong>294 CFT ≈ 2.94 Units (~13.2 Tons)</strong>.</em>
+    </li>
+  </ol>
+
+  <h2 id="weighbridge">Why Computerized Weighbridge Slips Beat Tape Measurements</h2>
+  <p>
+    While tape measurement works well for coarse stones, fine sand can suffer from <strong>bulking</strong> (volume expands by up to 20% when moist) or uneven settlement during transport.
+  </p>
+  <p>
+    At OneInfra, every single lorry passes through our certified electronic weighbridge:
+  </p>
+  <ul>
+    <li><strong>Tare Weight:</strong> Empty truck weighed prior to loading.</li>
+    <li><strong>Gross Weight:</strong> Loaded truck weighed before dispatch.</li>
+    <li><strong>Net Weight:</strong> Exact material weight printed on the slip and handed to you on delivery.</li>
+  </ul>
+  <p>
+    This completely eliminates disputes over lorry body height or short-loading.
+  </p>
+
+  <CtaStrip
+    title="Need a tipper load in Chennai today?"
+    body="Pick between 6-wheeler or 10-wheeler delivery. Transparent pricing per ton and per unit with guaranteed weighbridge slips."
+  />
+</GuideLayout>

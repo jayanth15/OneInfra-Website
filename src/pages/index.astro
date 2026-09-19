@@ -2,6 +2,9 @@
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import Hero from "~/components/Hero.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
+import TrustBadges from "~/components/TrustBadges.astro";
+import MaterialGuideTable from "~/components/MaterialGuideTable.astro";
+import ProjectShowcase from "~/components/ProjectShowcase.astro";
 import { site, prices, productOrder } from "~/config/site";
 import { websiteLd } from "~/lib/schema";
 import "~/styles/cards.css";
@@ -9,8 +12,8 @@ import "~/styles/home-pricing.css";
 import "~/styles/home-stats.css";
 import "~/styles/home-learn.css";
 
-const title = `OneInfra · A trusted supplier of M-Sand, P-Sand and Aggregate in Chennai`;
-const description = `OneInfra is a trusted supplier of washed M-Sand, P-Sand and blue-metal Aggregate in Chennai. Same-day supply to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi and Anna Nagar. Call ${site.phone}.`;
+const title = `OneInfra · Trusted Supplier of M-Sand, P-Sand and Aggregate in Chennai`;
+const description = `OneInfra is a trusted supplier of double-washed M-Sand, P-Sand and blue-metal aggregates in Chennai. Same-day tipper supply to Tambaram, Velachery, Porur, Medavakkam, OMR, ECR, Guduvanchery, Ambattur and Anna Nagar. Call ${site.phone}.`;
 const jsonLd = [websiteLd()];
 
 const heroProducts = [
@@ -27,43 +30,36 @@ const shortName = (name: string) => {
 
 <MarketingLayout title={title} description={description} current="home" jsonLd={jsonLd}>
   <Hero
-    eyebrow="Chennai · Civil material supply"
+    eyebrow="Chennai · Direct Quarry Material Supply"
     titleHtml={`A trusted supplier of M-Sand, P-Sand and <span class="accent">Aggregate in Chennai.</span>`}
-    body="OneInfra supplies washed M-Sand, P-Sand and blue-metal aggregates to homeowners, masons and builders across Chennai. Nine grades, real product photos, a working quantity calculator, and short plain-English field guides for first-time home-builders."
+    body="OneInfra supplies double-washed M-Sand, P-Sand and certified blue-metal aggregates to homeowners, masons and builders across Chennai. Real photos, computerized weighbridge slips, an interactive quantity calculator, and plain-English field guides."
     bgImage="/images-opt/product-msand-double-washed.webp"
     bgAlt="Washed M-Sand on a hand-held pile, dark grey granite fines"
     secondaryCta={{ href: "/products", label: "See all 9 products" }}
     trustStrip={[
       { n: "9 grades", l: "M-Sand · P-Sand · Dust · 12/20/25/40mm · WMM" },
-      { n: "Same day", l: "delivery on most orders" },
-      { n: "IS 383", l: "graded &amp; washed before loading" },
-      { n: "Tambaram supply point", l: "7 Chennai areas served daily" },
+      { n: "Same day", l: "delivery across Chennai" },
+      { n: "IS 383", l: "graded &amp; double-washed" },
+      { n: "Tambaram yard", l: "14 Chennai areas served daily" },
     ]}
   />
 
+  <TrustBadges />
+
   <section class="section">
     <div class="container">
-      <p class="eyebrow">Start here</p>
-      <h2 style="max-width: 24ch; margin-bottom: var(--space-3);">Five core pages — products, price, process, people, phone.</h2>
+      <p class="eyebrow">Explore OneInfra</p>
+      <h2 style="max-width: 24ch; margin-bottom: var(--space-3);">Everything you need for structural and finishing masonry.</h2>
       <p style="color:var(--muted);font-size:17px;max-width:56ch;margin-bottom:var(--space-8);">
-        The shortlist. Each one is one call away from a quote.
+        Select a section below or call us directly for an instant quote.
       </p>
       <div class="pages-grid">
-        <a class="page-card" href="/landing">
-          <div class="thumb"><img src="/images-opt/hero-chennai-site.webp" alt="3D illustration of a Chennai construction site with a tipper and aggregate stockpiles" loading="lazy" width="800" height="450" /></div>
-          <div class="body">
-            <span class="label">Marketing site</span>
-            <h3>Landing</h3>
-            <p>Hero, 9-product grid, audience, process, areas, phone CTA. The first page most visitors will read.</p>
-            <span class="arrow">Open landing →</span>
-          </div>
-        </a>
         <a class="page-card" href="/products">
           <div class="thumb"><img src="/images-opt/product-msand-double-washed.webp" alt="Handful of dark grey double-washed M-Sand" loading="lazy" width="800" height="450" /></div>
           <div class="body">
             <span class="label">Catalogue</span>
             <h3>Products &amp; grades</h3>
-            <p>All 9 grades with real photos: M-Sand, P-Sand, dust, 12/20/20-blue/25/40mm, WMM. Sizes, uses, IS 383 spec.</p>
+            <p>All 9 grades with real photos: M-Sand, P-Sand, dust, 12/20/25/40mm, WMM. Sizes, uses, IS 383 spec.</p>
             <span class="arrow">See products →</span>
           </div>
         </a>
@@ -76,30 +72,39 @@ const shortName = (name: string) => {
             <span class="arrow">See price →</span>
           </div>
         </a>
+        <a class="page-card" href="/calculator">
+          <div class="thumb"><img src="/images-opt/Home-Example.webp" alt="OneInfra supply yard with M-Sand, P-Sand and 20mm aggregate stockpiled" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Estimator</span>
+            <h3>Quantity calculator</h3>
+            <p>Type your built-up area and number of floors. Get tonnage, CFT, tipper count and a live price estimate.</p>
+            <span class="arrow">Open calculator →</span>
+          </div>
+        </a>
+        <a class="page-card" href="/areas/tambaram">
+          <div class="thumb"><img src="/images-opt/delivery-truck.webp" alt="Tipper truck delivering aggregates" loading="lazy" width="800" height="450" /></div>
+          <div class="body">
+            <span class="label">Local delivery</span>
+            <h3>14 Chennai areas</h3>
+            <p>Same-day routes to Tambaram, Velachery, Porur, Medavakkam, OMR, ECR, Guduvanchery, Ambattur, and Anna Nagar.</p>
+            <span class="arrow">Check your area →</span>
+          </div>
+        </a>
         <a class="page-card" href="/about">
           <div class="thumb"><img src="/images-opt/About-Page.webp" alt="20mm blue metal aggregate" loading="lazy" width="800" height="450" /></div>
           <div class="body">
             <span class="label">Company</span>
             <h3>About OneInfra</h3>
-            <p>Our story, what we believe, our quality promise, and the fleet that runs the seven daily areas.</p>
+            <p>Our story, our quality promise, computerized weighbridge operations, and our dedicated delivery fleet.</p>
             <span class="arrow">About us →</span>
-          </div>
-        </a>
-        <a class="page-card" href="/calculator">
-          <div class="thumb"><img src="/images-opt/Home-Example.webp" alt="OneInfra supply yard with M-Sand, P-Sand and 20mm aggregate stockpiled" loading="lazy" width="800" height="450" /></div>
-          <div class="body">
-            <span class="label">Tool</span>
-            <h3>Quantity calculator</h3>
-            <p>Type your built-up area and number of floors. Get tonnage, CFT, tipper count and a live price estimate.</p>
-            <span class="arrow">Open calculator →</span>
           </div>
         </a>
         <a class="page-card" href="/contact">
           <div class="thumb"><img src="/images-opt/site-construction.webp" alt="Chennai construction site at golden hour" loading="lazy" width="800" height="450" /></div>
           <div class="body">
             <span class="label">Get in touch</span>
-            <h3>Contact</h3>
-            <p>Call, WhatsApp, or visit the supply point. We answer in under a minute during work hours.</p>
+            <h3>Contact &amp; Yard Visit</h3>
+            <p>Call, WhatsApp, or visit the Tambaram supply point. We answer in under a minute during work hours.</p>
             <span class="arrow">Contact us →</span>
           </div>
         </a>
@@ -125,28 +130,42 @@ const shortName = (name: string) => {
       </div>
       <div class="home-price-disclaimer">
         <div class="icon">i</div>
-        <p><strong>Prices exclude transport.</strong> Transport is charged per trip based on your area — Tambaram, Velachery, OMR, ECR, Ambattur, Avadi, Anna Nagar and surrounding suburbs. We quote both numbers on the call before the tipper is loaded.</p>
+        <p><strong>Prices exclude transport.</strong> Transport is charged per trip based on your area — Tambaram, Velachery, Porur, Medavakkam, OMR, ECR, Guduvanchery, Ambattur, Avadi, Anna Nagar, and surrounding suburbs. We quote both numbers on the call before the tipper is loaded.</p>
       </div>
     </div>
   </section>
 
+  <MaterialGuideTable />
+
   <section class="section home-stats">
     <div class="container">
       <div class="home-stats-strip">
-        <div class="stat"><div class="num">6<span class="accent">+</span></div><div class="lbl">Chennai areas served daily</div></div>
-        <div class="stat"><div class="num">IS<span class="accent">383</span></div><div class="lbl">Graded M-Sand and aggregates</div></div>
-        <div class="stat"><div class="num"><span class="accent">Same-day</span></div><div class="lbl">Delivery on most orders</div></div>
+        <div class="stat"><div class="num">14<span class="accent">+</span></div><div class="lbl">Chennai areas served daily</div></div>
+        <div class="stat"><div class="num">IS<span class="accent">383</span></div><div class="lbl">Graded M-Sand &amp; aggregates</div></div>
+        <div class="stat"><div class="num"><span class="accent">100%</span></div><div class="lbl">Weighbridge slip guaranteed</div></div>
         <div class="stat"><div class="num">1<span class="accent"> call</span></div><div class="lbl">Phone-first, no forms, no apps</div></div>
       </div>
     </div>
   </section>
 
+  <ProjectShowcase />
+
   <section class="section home-learn">
     <div class="container">
-      <p class="eyebrow">SEO-loaded learning centre</p>
-      <h2 style="max-width: 28ch;">Four short guides for first-time Chennai home-builders.</h2>
-      <p class="lead">Plain-English, two-minute reads. Written for the homeowner — not the engineer.</p>
+      <p class="eyebrow">Builder Knowledge Base</p>
+      <h2 style="max-width: 28ch;">Field guides for Chennai home-builders &amp; contractors.</h2>
+      <p class="lead">Plain-English, practical guides written for homeowners, engineers, and masons.</p>
       <div class="home-learn-grid">
+        <a class="home-learn-card" href="/guides/concrete-mix-ratio-chennai">
+          <span class="label">Field guide · 7 min read</span>
+          <h3>Concrete mix ratios (M20, M25, M15)</h3>
+          <p>Cement, M-Sand, and 20mm blue metal calculations per 100 sq ft roof slab, with hot-weather curing tips in Chennai.</p>
+        </a>
+        <a class="home-learn-card" href="/guides/tipper-lorry-capacity-guide">
+          <span class="label">Measurement · 6 min read</span>
+          <h3>Tipper lorry capacity in Chennai</h3>
+          <p>Units, CFT, and tonnage for 2-unit 6-wheelers and 4-unit 10-wheelers. How to measure lorry boxes and verify weigh slips.</p>
+        </a>
         <a class="home-learn-card" href="/guides/msand-vs-river-sand">
           <span class="label">Guide · 6 min read</span>
           <h3>M-Sand vs river sand</h3>
@@ -164,7 +183,7 @@ const shortName = (name: string) => {
         </a>
         <a class="home-learn-card" href="/price">
           <span class="label">Pricing · updated weekly</span>
-          <h3>M-Sand, P-Sand and aggregate price in Chennai</h3>
+          <h3>This week's price band in Chennai</h3>
           <p>Per-ton and per-unit rates for tipper loads. Six factors that move the price across the year — and how to lock a quote.</p>
         </a>
       </div>

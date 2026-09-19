@@ -1,7 +1,9 @@
 ---
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
+import TrustBadges from "~/components/TrustBadges.astro";
 import { site, productOrder, prices } from "~/config/site";
+import { faqLd, breadcrumbLd } from "~/lib/schema";
 
 import "~/styles/calc-blueprint.css";
 import "~/styles/calc-form.css";
@@ -11,7 +13,33 @@ import "~/styles/related-grid.css";
 
 const title = `M-Sand and aggregate quantity calculator · OneInfra Chennai`;
 const description = `Free Chennai-builder quantity calculator. Type your built-up area, floors and building type, get M-Sand, P-Sand and blue-metal tonnage, CFT, tipper count and a live price estimate.`;
-const jsonLd = undefined;
+
+const calcFaqs = [
+  {
+    q: "How much M-Sand is needed for a 1,000 sq ft house in Chennai?",
+    a: "For a typical G+0 (ground floor) 1,000 sq ft home in Chennai, approximately 75 to 85 metric tons of M-Sand is required for foundation, RCC columns/beams, roof slab, and brickwork masonry."
+  },
+  {
+    q: "How much P-Sand is needed for plastering a 1,000 sq ft house?",
+    a: "About 20 to 25 metric tons (approx 2 tipper loads of 300 CFT) of double-washed P-Sand is required for internal walls, external elevation, and ceiling plastering."
+  },
+  {
+    q: "How many tippers will deliver this total material?",
+    a: "A 1,000 sq ft home requires approximately 13 tipper trips (using standard 6-wheeler 300 CFT trucks) delivered in phases as each stage of construction progresses."
+  },
+  {
+    q: "Can I order materials load by load rather than all at once?",
+    a: "Yes. In Chennai, most homeowners have limited street stacking space. You can schedule 1 or 2 tippers per stage (e.g. foundation first, slab next, plastering later) and lock rates with us."
+  }
+];
+
+const jsonLd = [
+  breadcrumbLd([
+    { name: "Home", url: `${site.url}/` },
+    { name: "Calculator", url: `${site.url}/calculator` },
+  ]),
+  faqLd(calcFaqs),
+];
 
 const priceMap: Record<string, { name: string; pricePerTon: number; pricePerUnit: number }> = {};
 for (const k of productOrder) {
@@ -22,6 +50,7 @@ for (const k of productOrder) {
   };
 }
 const priceMapJson = JSON.stringify(priceMap);
+const siteWhatsapp = site.whatsapp;
 ---
 
 <MarketingLayout title={title} description={description} current="calculator" jsonLd={jsonLd}>
@@ -33,6 +62,8 @@ const priceMapJson = JSON.stringify(priceMap);
       <p>Type your built-up area and number of floors. The calculator returns the tonnage, CFT, tipper count and a live OneInfra price estimate for washed M-Sand, plaster sand and blue metal in Chennai.</p>
     </div>
   </section>
+
+  <TrustBadges />
 
   <section class="house-blueprint-section">
     <div class="container">
@@ -172,11 +203,26 @@ const priceMapJson = JSON.stringify(priceMap);
           <p class="small-line" id="totalTon">≈ 145 tons · 13 tipper trips · 1,000 sq ft · G · residential</p>
           <div class="actions">
             <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>Call to confirm this quote</a>
-            <a class="btn btn-secondary" href={`mailto:${site.email}?subject=OneInfra%20quote%20request`}>Email a copy</a>
+            <a class="btn btn-secondary" id="waCalcBtn" href="#" target="_blank" rel="noopener" style="background:#16a34a;color:#fff;border-color:#16a34a;">WhatsApp this Estimate</a>
           </div>
         </div>
 
         <p class="footnote"><strong>How we calculate:</strong> these are maximum-quality consumption rates for Chennai residential RCC construction — 80 ton M-Sand, 25 ton P-Sand and 40 ton blue metal per 1,000 sq ft of built-up area per floor. Conversions use the standard Chennai trade: <strong>1 unit = 100 CFT</strong>, <strong>one tipper = 300 CFT</strong>, and <strong>300 CFT ≈ 13 tons</strong> on average (varies by moisture and grade). Adjust for villas (+15% plaster), commercial (−10% plaster), or warehouses (−30% concrete). Live prices use this week's <a href="/price">OneInfra price band</a>. Transport is quoted separately on the call.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">Frequently Asked Questions</p>
+      <h2 style="max-width: 28ch; margin-bottom: var(--space-6);">Quantity and estimation questions answered</h2>
+      <div style="max-width: 800px; display: flex; flex-direction: column; gap: var(--space-4);">
+        {calcFaqs.map((faq) => (
+          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-5);">
+            <h3 style="font-size: 17px; font-weight: 600; margin-bottom: var(--space-2); color: var(--fg);">{faq.q}</h3>
+            <p style="color: var(--muted); font-size: 15px; line-height: 1.6;">{faq.a}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -211,7 +257,7 @@ const priceMapJson = JSON.stringify(priceMap);
     small="Open Mon–Sat · 7 am to 8 pm · Sun by appointment"
   />
 
-  <script type="application/json" id="price-map" set:html={priceMapJson} is:inline></script>
+  <script type="application/json" id="price-map" data-wa={siteWhatsapp} set:html={priceMapJson} is:inline></script>
   <script is:inline>
     (function () {
       const PRICES = JSON.parse(document.getElementById("price-map").textContent);
@@ -307,6 +353,14 @@ const priceMapJson = JSON.stringify(priceMap);
         document.getElementById('totalTon').textContent =
           '≈ ' + Math.round(mTon + pTon + aTon) + ' tons · ' + (mTipper + pTipper + aTipper) + ' tipper trips · ' +
           area.toLocaleString('en-IN') + ' sq ft · ' + (floors === 1 ? 'G' : 'G+' + (floors - 1)) + ' · ' + usage;
+
+        const waEl = document.getElementById("price-map");
+        const waNum = (waEl && waEl.dataset.wa) ? waEl.dataset.wa : "919994333918";
+        const waBtn = document.getElementById("waCalcBtn");
+        if (waBtn) {
+          const msg = "Hi OneInfra, I calculated materials for " + totalArea.toLocaleString('en-IN') + " sq ft (" + (floors === 1 ? "G" : "G+" + (floors - 1)) + "). Estimated: " + fmtNum(mTon, 1) + "t M-Sand, " + fmtNum(pTon, 1) + "t P-Sand, " + fmtNum(aTon, 1) + "t Aggregates. Please send delivery quote.";
+          waBtn.href = "https://wa.me/" + waNum + "?text=" + encodeURIComponent(msg);
+        }
       }
 
       const areaInput = document.getElementById('area');

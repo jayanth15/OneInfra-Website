@@ -26,6 +26,7 @@ const {
 import Nav from "~/components/Nav.astro";
 import Footer from "~/components/Footer.astro";
 import JsonLd from "~/components/JsonLd.astro";
+import MobileActionBar from "~/components/MobileActionBar.astro";
 
 const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
 const ogImageAbs = ogImage.startsWith("http") ? ogImage : `${site.url}${ogImage}`;
@@ -40,6 +41,16 @@ const allLd = jsonLd
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17432905077" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17432905077');
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#2f6feb" />
@@ -76,5 +87,6 @@ const allLd = jsonLd
       <slot />
     </main>
     <Footer />
+    <MobileActionBar />
   </body>
 </html>

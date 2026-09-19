@@ -1,0 +1,90 @@
+---
+import { site, prices } from "~/config/site";
+import { whatsappUrl } from "~/lib/whatsapp";
+
+const applications = [
+  {
+    stage: "Roof Slabs, Beams & Columns (RCC)",
+    recommended: "20mm Blue Metal (Grade A) & Double-Washed M-Sand",
+    spec: "IS 383 Zone II / M20-M25 Grade",
+    why: "Angular blue metal creates high mechanical interlock; double-washed granite sand guarantees zero salt and maximum compressive strength.",
+    productKey: "aggregate_20mm_blue",
+  },
+  {
+    stage: "Internal & Ceiling Wall Plastering",
+    recommended: "P-Sand (Plastering Sand)",
+    spec: "IS 1542 Graded (<150 micron controlled)",
+    why: "Super-fine sieved sand with micro-silt removed. Eliminates wall cracks, roughness, and reduces paint primer consumption.",
+    productKey: "p_sand",
+  },
+  {
+    stage: "Brick & Fly Ash Block Masonry",
+    recommended: "M-Sand (Double Washed)",
+    spec: "IS 383 Zone II/III",
+    why: "Consistent grading provides uniform mortar bed thickness and superior bonding with red clay bricks and solid blocks.",
+    productKey: "m_sand_double_washed",
+  },
+  {
+    stage: "Foundation, Footings & Rafts",
+    recommended: "25mm Aggregate & 40mm Gravel (HBG)",
+    spec: "20mm-40mm Hard Broken Granite",
+    why: "Massive load-bearing capacity for column pits and basement floor sub-bases with zero water absorption.",
+    productKey: "aggregate_25mm",
+  },
+  {
+    stage: "Compound Roads, Driveways & Paving",
+    recommended: "WMM (Wet Mix Macadam) & Crusher Dust",
+    spec: "MoRTH Specification Graded",
+    why: "Pre-mixed aggregate with controlled moisture compacts into a rock-hard pavement foundation that will not sink under heavy vehicle loads.",
+    productKey: "wmm",
+  },
+];
+---
+
+<section class="section" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);" aria-label="Chennai Material Selection Matrix">
+  <div class="container">
+    <p class="eyebrow">Material Selection Guide</p>
+    <h2 style="max-width: 28ch; margin-bottom: var(--space-3);">Which sand and aggregate for which part of your house?</h2>
+    <p style="color: var(--muted); font-size: 16px; max-width: 65ch; margin-bottom: var(--space-8);">
+      Using the wrong grade causes wall cracks, weak RCC slabs, or wasted money. Here is the standard civil specification for residential construction in Chennai.
+    </p>
+
+    <div style="overflow-x: auto; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md);">
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; text-align: left;">
+        <thead>
+          <tr style="background: rgba(0,0,0,0.03); border-bottom: 1px solid var(--border);">
+            <th style="padding: var(--space-4); font-weight: 600;">Construction Stage</th>
+            <th style="padding: var(--space-4); font-weight: 600;">Recommended Grade</th>
+            <th style="padding: var(--space-4); font-weight: 600;">Specification</th>
+            <th style="padding: var(--space-4); font-weight: 600;">Why It Matters</th>
+            <th style="padding: var(--space-4); font-weight: 600; text-align: right;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {applications.map((app) => {
+            const waLink = whatsappUrl(app.productKey);
+            return (
+              <tr style="border-bottom: 1px solid var(--border);">
+                <td style="padding: var(--space-4); font-weight: 600; color: var(--fg);">{app.stage}</td>
+                <td style="padding: var(--space-4); font-weight: 600; color: var(--accent);">{app.recommended}</td>
+                <td style="padding: var(--space-4); font-family: var(--font-mono); font-size: 13px; color: var(--muted);">{app.spec}</td>
+                <td style="padding: var(--space-4); font-size: 14px; color: var(--fg); max-width: 320px; line-height: 1.45;">{app.why}</td>
+                <td style="padding: var(--space-4); text-align: right; white-space: nowrap;">
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-secondary"
+                    style="padding: 6px 12px; font-size: 13px;"
+                  >
+                    Quote →
+                  </a>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

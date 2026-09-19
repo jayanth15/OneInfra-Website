@@ -1,5 +1,5 @@
 # OneInfra
-> OneInfra is a trusted supplier of washed M-Sand, P-Sand, crusher dust, blue metal aggregates and WMM (Wet Mix Macadam) for construction in Chennai, Tamil Nadu. We supply IS 383 graded, double-washed materials to homeowners, masons, contractors and civil engineers — with same-day tipper delivery to Tambaram, Velachery, OMR, ECR, Ambattur, Avadi and Anna Nagar.
+> OneInfra is a trusted supplier of washed M-Sand, P-Sand, crusher dust, blue metal aggregates and WMM (Wet Mix Macadam) for construction in Chennai, Tamil Nadu. We supply IS 383 graded, double-washed materials to homeowners, masons, contractors and civil engineers — with same-day tipper delivery across 14 Chennai corridors: Tambaram, Velachery, Porur, Medavakkam, OMR, ECR, Guduvanchery, Ambattur, Avadi, Anna Nagar, Poonamallee, Madipakkam, Perambur, and Sholinganallur.
 
 ## Products
 - [All 9 Grades](https://oneinfra.in/products): M-Sand (Double Washed), P-Sand (Plastering Sand), Crusher Dust, 12mm Chips, 20mm Jelly Stones, 20mm Blue Metal (Grade A), 25mm Aggregate, 40mm Gravel (HBG), WMM (Wet Mix Macadam)
@@ -15,39 +15,48 @@
 
 ## Pricing
 - [This Week's Price Band](https://oneinfra.in/price): Current per-ton and per-unit rates for all 9 grades in Chennai. Updated weekly every Monday. Prices are loading-point prices and exclude transport.
-- [M-Sand Price in Chennai Today](https://oneinfra.in/price): ₹1,250/ton for double-washed M-Sand. Per unit (100 CFT ≈ 4.5 ton): ₹1,750.
-- [P-Sand Price in Chennai Today](https://oneinfra.in/price): ₹1,400/ton for plastering sand. Per unit (100 CFT ≈ 4.5 ton): ₹2,000.
+- [M-Sand Price in Chennai Today](https://oneinfra.in/price): ₹1,250/ton for double-washed M-Sand. Per unit (100 CFT ≈ 4.5 ton): ₹5,500 - ₹5,700.
+- [P-Sand Price in Chennai Today](https://oneinfra.in/price): ₹1,400/ton for plastering sand. Per unit (100 CFT ≈ 4.5 ton): ₹6,200 - ₹6,400.
 - [Six Factors That Move M-Sand and Aggregate Price in Chennai](https://oneinfra.in/price#factors): Grade and zone, wash cycle, distance from supply point, tipper size, diesel and royalty, demand and season.
 
 ## Quantity Calculator
-- [M-Sand & Aggregate Quantity Calculator](https://oneinfra.in/calculator): Free tool for Chennai home-builders. Enter your built-up area and floors. Get tonnage, CFT, tipper count and live price estimate for M-Sand, P-Sand and blue metal.
+- [M-Sand & Aggregate Quantity Calculator](https://oneinfra.in/calculator): Free tool for Chennai home-builders. Enter your built-up area and floors. Get tonnage, CFT, tipper count and live price estimate for M-Sand, P-Sand and blue metal with instant WhatsApp quotation.
 
 ## Guides (Educational Content)
+- [Concrete Mix Ratio Guide for Chennai Slabs](https://oneinfra.in/guides/concrete-mix-ratio-chennai): M15, M20, M25 nominal mix design, material calculations per 100 sq ft of roof slab, water-cement ratios, and curing practices for Chennai heat.
+- [Tipper Lorry Capacity Guide](https://oneinfra.in/guides/tipper-lorry-capacity-guide): Units, CFT, and tonnage for 2-unit 6-wheelers and 4-unit 10-wheelers in Tamil Nadu. Inner box dimensions and weighbridge verification.
 - [M-Sand vs River Sand: Complete Comparison](https://oneinfra.in/guides/msand-vs-river-sand): Strength, grading, silt content, cost comparison and environmental impact. Why M-Sand is the default for Chennai construction in 2026.
 - [How to Check M-Sand Quality on Site](https://oneinfra.in/guides/quality-check): Five field tests to run when the tipper arrives — silt test, palm test, particle shape, gradation and certificate check.
 - [CFT, m³, Ton and Units: Chennai Builder's Measurement Guide](https://oneinfra.in/guides/cft-lorry-guide): CFT explained with conversion tables, how to measure a lorry with a tape, worked examples, and common Chennai pitfalls.
 
-## Service Areas (Chennai)
-- [Tambaram](https://oneinfra.in/areas/tambaram): M-Sand, P-Sand and aggregate supplier. Our supply point is located here.
+## Service Areas (14 Chennai Corridors)
+- [Tambaram](https://oneinfra.in/areas/tambaram): Primary supply yard and washing point.
 - [Velachery](https://oneinfra.in/areas/velachery): Daily delivery of washed construction materials.
-- [OMR (Old Mahabalipuram Road)](https://oneinfra.in/areas/omr): Construction material supply along the OMR corridor.
-- [ECR (East Coast Road)](https://oneinfra.in/areas/ecr): Same-day delivery to ECR construction sites.
-- [Ambattur](https://oneinfra.in/areas/ambattur): Industrial area construction material supply.
-- [Avadi](https://oneinfra.in/areas/avadi): Reliable sand and aggregate delivery.
-- [Anna Nagar](https://oneinfra.in/areas/anna-nagar): Premium residential area supply service.
+- [Porur](https://oneinfra.in/areas/porur): Residential and commercial building supply along Mount-Poonamallee road.
+- [Medavakkam](https://oneinfra.in/areas/medavakkam): Independent villa and builder floor material supply within 45 minutes.
+- [Guduvanchery](https://oneinfra.in/areas/guduvanchery): Rapidly expanding GST Road residential layout supply.
+- [OMR (Old Mahabalipuram Road)](https://oneinfra.in/areas/omr): Multi-story towers and IT corridor construction material supply.
+- [Sholinganallur](https://oneinfra.in/areas/sholinganallur): Core IT expressway connection point for sand and blue metal.
+- [ECR (East Coast Road)](https://oneinfra.in/areas/ecr): Coastal villas and foundation drainage aggregates.
+- [Ambattur](https://oneinfra.in/areas/ambattur): Industrial estate and residential western belt delivery.
+- [Avadi](https://oneinfra.in/areas/avadi): Northwest Chennai construction corridor supply.
+- [Anna Nagar](https://oneinfra.in/areas/anna-nagar): Rebuilding and renovation materials with compact tippers.
+- [Poonamallee](https://oneinfra.in/areas/poonamallee): Bangalore highway corridor and warehouse development supply.
+- [Madipakkam](https://oneinfra.in/areas/madipakkam): Interior residential layout delivery with maneuverable 6-wheelers.
+- [Perambur](https://oneinfra.in/areas/perambur): North Chennai morning-slot delivery before peak traffic.
 
-## About
-- [About OneInfra](https://oneinfra.in/about): Our story, quality promise, fleet and values. We started as a single tipper and now operate our own supply point, wash line and fleet in Tambaram, Chennai.
-- [Contact OneInfra](https://oneinfra.in/contact): Call +91 99943 33918, WhatsApp, email hello@oneinfra.in, or visit our Tambaram yard. Open Mon-Sat 7 AM-8 PM.
+## Quality & Guarantees
+- 100% Computerized Weighbridge Slip with tare, gross, and net weight.
+- Silt content strictly under 3% (double-washed hydro-cyclone plant).
+- IS 383:2016 Zone II/III certified grading.
+- Zero broker markup; direct loading from Tambaram yard.
 
 ## Key Details
 - Phone: +91 99943 33918
+- WhatsApp: +91 99943 33918
 - Email: hello@oneinfra.in
 - Address: Tambaram, Chennai, Tamil Nadu 600045
 - Hours: Mon-Sat 7:00 AM – 8:00 PM
 - Supply Point: Tambaram, Chennai
-- Grading Standard: IS 383 (aggregates), IS 1542 (plaster sand)
-- Delivery: Same-day tipper delivery across 7 Chennai areas
-- Minimum Order: 1 tipper (300 CFT)
-- Price Basis: Loading-point prices, transport quoted separately based on delivery area
-- Last Price Update: Weekly on Mondays
+- Delivery: Same-day tipper delivery across 14 Chennai areas
+- Minimum Order: 1 tipper (300 CFT ≈ 9-10 tons)

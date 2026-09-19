@@ -3,12 +3,12 @@ import AreaLayout from "~/layouts/AreaLayout.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
 import { areaByKey, type AreaData } from "~/content/areas";
 
-const a: AreaData = areaByKey["ambattur"];
+const a: AreaData = areaByKey["poonamallee"];
 ---
 
 <AreaLayout areaData={a}>
   <CtaStrip
-    title={`Need M-Sand or aggregate in ${a.name}?`}
-    body="Call us directly or WhatsApp your BOQ. We quote per-ton, per-unit, and delivery in under a minute."
+    title={`Need M-Sand or aggregate delivery in ${a.name}?`}
+    body="Call us directly or WhatsApp your BOQ. We quote per-ton, per-unit, and transport in under a minute."
   />
 </AreaLayout>

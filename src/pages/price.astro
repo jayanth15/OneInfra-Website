@@ -1,16 +1,36 @@
 ---
 import MarketingLayout from "~/layouts/MarketingLayout.astro";
-import PriceFreshness from "~/components/PriceFreshness.astro";
 import PriceCard from "~/components/PriceCard.astro";
 import CtaStrip from "~/components/CtaStrip.astro";
+import TrustBadges from "~/components/TrustBadges.astro";
 import { site, prices, productOrder } from "~/config/site";
-import { productListLd } from "~/lib/schema";
+import { productListLd, faqLd } from "~/lib/schema";
 import "~/styles/factor-grid.css";
 import "~/styles/related-grid.css";
 
 const title = `M-Sand Price in Chennai Today · OneInfra`;
 const description = `Current M-Sand, P-Sand and blue-metal aggregate price in Chennai per ton and per unit. Updated weekly. Factors that change the price and how to lock a quote on one call.`;
-const jsonLd = [productListLd()];
+
+const pricingFaqs = [
+  {
+    q: "How much is 1 unit of M-Sand in Chennai today?",
+    a: "1 unit of double-washed M-Sand (100 CFT ≈ 4.5 tons) currently ranges between ₹5,500 to ₹5,700 at the loading point, or ₹1,250 per ton. Transport is quoted transparently based on your delivery area."
+  },
+  {
+    q: "Why do you quote both per-ton and per-unit prices?",
+    a: "Traditional contractors order in Units (100 CFT), but civil engineers and weighbridges measure in Metric Tonnes. We provide both rates along with computerized weighbridge slips so there is zero confusion."
+  },
+  {
+    q: "How is transport calculated in Chennai?",
+    a: "Transport is billed per tipper trip from our Tambaram yard based on distance, toll routes, and lorry size (6-wheeler vs 10-wheeler). We confirm the total transport cost before dispatch."
+  },
+  {
+    q: "Can I lock this week's price for an upcoming slab casting?",
+    a: "Yes. Call or WhatsApp us with your required tonnage and delivery dates. We can lock your quotation for up to 7 days."
+  }
+];
+
+const jsonLd = [productListLd(), faqLd(pricingFaqs)];
 
 const factors = [
   { n: "01", h: "Grade and zone",          p: "IS 383 Zone II is the most common construction grade. Finer zones (Zone III / IV) and concrete-grade washed M-Sand cost more because extra sieving is required." },
@@ -52,10 +72,10 @@ const topPriceCards: typeof prices.products.m_sand_double_washed[] = [
     </div>
   </section>
 
+  <TrustBadges />
+
   <section class="section">
     <div class="container">
-      <PriceFreshness />
-
       <div class="price-grid">
         {topPriceCards.map((p, idx) => <PriceCard product={p} index={idx} />)}
       </div>
@@ -104,6 +124,21 @@ const topPriceCards: typeof prices.products.m_sand_double_washed[] = [
           ))}
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <p class="eyebrow">Frequently Asked Questions</p>
+      <h2 style="max-width: 28ch; margin-bottom: var(--space-6);">Pricing and delivery questions answered</h2>
+      <div style="max-width: 800px; display: flex; flex-direction: column; gap: var(--space-4);">
+        {pricingFaqs.map((faq) => (
+          <div style="background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-5);">
+            <h3 style="font-size: 17px; font-weight: 600; margin-bottom: var(--space-2); color: var(--fg);">{faq.q}</h3>
+            <p style="color: var(--muted); font-size: 15px; line-height: 1.6;">{faq.a}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 

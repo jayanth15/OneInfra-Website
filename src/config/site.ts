@@ -16,6 +16,9 @@ export const site = {
   serviceAreas: [
     'Tambaram', 'Velachery', 'OMR', 'ECR',
     'Ambattur', 'Avadi', 'Anna Nagar',
+    'Porur', 'Medavakkam', 'Guduvanchery',
+    'Poonamallee', 'Madipakkam', 'Perambur',
+    'Sholinganallur',
   ] as const,
   priceDisclaimer:
     'Prices are loading-point prices and exclude transport. Transport is quoted on the call based on your delivery area.',
@@ -58,8 +61,8 @@ const P = (k: string, ton: number, unit: number) => ({
 
 export const prices = {
   validFrom: envStr('PRICES_VALID_FROM', '2026-06-15'),
-  validUntil: envStr('PRICES_VALID_UNTIL', '2026-06-22'),
-  lastUpdatedNote: envStr('PRICES_NOTE', 'This week: 20mm jelly up 3% due to Ambattur quarry truck strike; M-Sand steady.'),
+  validUntil: envStr('PRICES_VALID_UNTIL', '2026-12-31'),
+  lastUpdatedNote: envStr('PRICES_NOTE', ''),
   products: {
     m_sand_double_washed: {
       name: 'M-Sand (Double Washed)', slug: 'm-sand-double-washed',
